@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key key}) : super(key: key);
 
-  // This widget is the home page of your application. It is stateful, meaning
+  // This widget is the home ui of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
   // how it looks.
 
@@ -12,25 +12,17 @@ class SignUpPage extends StatefulWidget {
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
 
-
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(
-
-      ),
+      appBar: AppBar(),
       body: Center(
-
         child: Column(
-
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
@@ -39,7 +31,6 @@ class _SignUpPageState extends State<SignUpPage> {
           ],
         ),
       ),
-
     );
   }
 }
