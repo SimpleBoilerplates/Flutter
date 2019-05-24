@@ -19,19 +19,22 @@ class AuthApiProvider {
 //  );
 //  Dio dio = new Dio(options);
 
-  Future<Map<String,dynamic>> signIn(String email, String password) async {
-   try {
-     final data = jsonEncode({"email": email, "password": password});
+  Future<Map<String, dynamic>> signIn(String email, String password) async {
+    try {
+      final data = jsonEncode({"email": email, "password": password});
 
-    // final response = await dio.post("/login", data: data);
-     var response = await client.post('$_baseUrl/login',headers: {"Accept": "application/json"},body: json.encode(data),
-     );
+      // final response = await dio.post("/login", data: data);
+      var response = await client.post(
+        '$_baseUrl/login',
+        headers: {"Accept": "application/json"},
+        body: json.encode(data),
+      );
 
-     print("sign called "+response.body);
-     return jsonDecode(response.body);
-   } on DioError catch(e) {
-     // The request was made and the server responded with a status code
-     // that falls out of the range of 2xx and is also not 304.
+      print("sign called " + response.body);
+      return jsonDecode(response.body);
+    } on DioError catch (e) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx and is also not 304.
 
 //     if(e.error) {
 //       print(e.response.data);
@@ -42,14 +45,49 @@ class AuthApiProvider {
 //       print(e.request);
 //       print(e.message);
 //     }
-     throw Exception('Failed to load post '+e.message);
+      throw Exception('Failed to load post ' + e.message);
+    }
+  }
 
-   }
+  Future<Map<String, dynamic>> signUp(
+      String email, String password, String name) async {
+    try {
+      final data =
+          jsonEncode({"email": email, "password": password, "name": name});
+
+      // final response = await dio.post("/login", data: data);
+      var response = await client.post(
+        '$_baseUrl/signUp',
+        headers: {"Accept": "application/json"},
+        body: json.encode(data),
+      );
+
+      print("sign called " + response.body);
+      return jsonDecode(response.body);
+    } on DioError catch (e) {
+      // The request was made and the server responded with a status code
+      // that falls out of the range of 2xx and is also not 304.
+
+//     if(e.error) {
+//       print(e.response.data);
+//       print(e.response.headers);
+//       print(e.response.request);
+//     } else{
+//       // Something happened in setting up or sending the request that triggered an Error
+//       print(e.request);
+//       print(e.message);
+//     }
+      throw Exception('Failed to load post ' + e.message);
+    }
   }
 }
 
 class AuthRepository {
   final authApiProvider = AuthApiProvider();
-  Future<Map<String,dynamic>> signIn(String email, String password) =>
+  Future<Map<String, dynamic>> signIn(String email, String password) =>
       authApiProvider.signIn(email, password);
+
+  Future<Map<String, dynamic>> signUp(
+          String email, String password, String name) =>
+      authApiProvider.signUp(email, password, name);
 }

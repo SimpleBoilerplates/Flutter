@@ -46,4 +46,17 @@ class AuthHelper {
 
     return saved;
   }
+
+  static Future<bool> logout() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var saved = false;
+
+    try {
+      prefs.remove(_token);
+      saved = true;
+    } on Exception catch (e) {
+      print("custom exception is been obtained");
+    }
+    return saved;
+  }
 }

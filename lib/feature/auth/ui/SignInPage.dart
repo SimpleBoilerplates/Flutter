@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/shared/routes.dart';
-import '../blocs/auth_bloc.dart';
+import '../blocs/AuthBloc.dart';
 import 'package:flutter_boilerplate/feature/auth/resource/AuthHelper.dart';
 import 'dart:developer';
 import 'dart:convert';
@@ -13,11 +13,11 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-
- bool isLoading = false;
+  bool isLoading = false;
 
   TextEditingController textEditControllerEmail = new TextEditingController();
-  TextEditingController textEditControllerPassword = new TextEditingController();
+  TextEditingController textEditControllerPassword =
+      new TextEditingController();
 
   @override
   void dispose() {
@@ -44,30 +44,27 @@ class _SignInPageState extends State<SignInPage> {
       setState(() {
         isLoading = false;
       });
-      //debugPrint(data);
 
-      if(!value["error"]) {
+      if (!value["error"]) {
         print(value["data"]);
-        //AuthHelper.setAccessToken(data["token"]);
-        //Navigator.pushReplacementNamed(context, Routes.home);
+        AuthHelper.setAccessToken(value["token"]);
+        Navigator.pushReplacementNamed(context, Routes.home);
       }
     });
   }
 
- @override
- Widget build(BuildContext context) {
-   return _buildInputWidget();
+  @override
+  Widget build(BuildContext context) {
+    return _buildInputWidget();
 
-    if(isLoading){
+    if (isLoading) {
       return _buildLoadingWidget();
-    }else {
+    } else {
       return _buildInputWidget();
     }
+  }
 
- }
-
-
-  Widget _buildInputWidget(){
+  Widget _buildInputWidget() {
     return Scaffold(
       appBar: AppBar(),
       body: Container(
@@ -91,32 +88,45 @@ class _SignInPageState extends State<SignInPage> {
               obscureText: true,
               decoration: InputDecoration(labelText: 'Password'),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 25),
             SizedBox(
               width: double.infinity,
               height: 45,
               child: RaisedButton(
+                color: Colors.blueGrey,
                 onPressed: () {
                   signIn();
                 },
-                child: const Text('Sign In', style: TextStyle(fontSize: 20)),
+                child: const Text('Sign In',
+                    style: TextStyle(fontSize: 18, color: Colors.white)),
               ),
             ),
-//        StreamBuilder<Map<String, dynamic>>(
-//          stream: bloc.signedIn,
-//          builder: (context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
-//            if (snapshot.hasData) {
-//              _buildSuccessWidget("");
-//            } else if (snapshot.hasError) {
-//              return _buildErrorWidget(snapshot.error);
-//            } else {
-//              return SizedBox();
-//            }
-//          },
-//        )
+            const SizedBox(height: 10),
+            SizedBox(
+              width: double.infinity,
+              height: 45,
+              child: FlatButton(
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, Routes.signUp);
+                },
+                child: const Text('Sign Up', style: TextStyle(fontSize: 18)),
+              ),
+            ),
+            StreamBuilder<Map<String, dynamic>>(
+              stream: bloc.signedIn,
+              builder: (context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
+                if (snapshot.hasData) {
+                  _buildSuccessWidget("");
+                } else if (snapshot.hasError) {
+                  return _buildErrorWidget(snapshot.error);
+                }else{
+                  return const SizedBox(height: 0);
+                }
+                //return Center(child: CircularProgressIndicator());
+              },
+            )
           ],
         ),
-
       ),
     );
   }
@@ -124,26 +134,24 @@ class _SignInPageState extends State<SignInPage> {
   Widget _buildLoadingWidget() {
     return Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text("Please Wait..."), CircularProgressIndicator()],
-        ));
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [Text("Please Wait..."), CircularProgressIndicator()],
+    ));
   }
 
   Widget _buildErrorWidget(String error) {
     return Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text(error), CircularProgressIndicator()],
-        ));
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [Text(error), CircularProgressIndicator()],
+    ));
   }
 
   Widget _buildSuccessWidget(String message) {
     return Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [Text(message), CircularProgressIndicator()],
-        ));
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [Text(message), CircularProgressIndicator()],
+    ));
   }
-
 }
-

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/feature/home/HomePage.dart';
+import 'package:flutter_boilerplate/feature/home/ui/HomePage.dart';
 import 'package:flutter_boilerplate/feature/landing/LandingPage.dart';
 import 'package:flutter_boilerplate/feature/auth/ui/SignInPage.dart';
 import 'package:flutter_boilerplate/feature/auth/ui/SignUpPage.dart';
