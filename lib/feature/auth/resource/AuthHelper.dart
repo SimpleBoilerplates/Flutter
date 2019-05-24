@@ -32,4 +32,18 @@ class AuthHelper {
 
     return token;
   }
+
+  static Future<bool> setAccessToken(String token) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var saved = false;
+
+    try {
+      prefs.setString(_token, token);
+      saved = true;
+    } on Exception catch (e) {
+      print("custom exception is been obtained");
+    }
+
+    return saved;
+  }
 }

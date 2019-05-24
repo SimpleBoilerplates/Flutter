@@ -1,29 +1,55 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:http/http.dart' show Client;
+import 'package:http/http.dart';
 import 'package:flutter_boilerplate/shared/constant/K.dart';
+import 'dart:developer';
+import 'package:dio/dio.dart';
+import 'dart:io';
 
 class AuthApiProvider {
   Client client = Client();
   final _baseUrl = K.baseUrl;
 
-  Future<Map<String, dynamic>> signIn(String email, String password) async {
-    final response = await client.get("$_baseUrl/login");
-    if (response.statusCode == 200) {
-      // If the call to the server was successful, parse the JSON
-      return json.decode(response.body);
-    } else {
-      // If that call was not successful, throw an error.
-      throw Exception('Failed to load post');
-    }
+//  final headers = {"Accept": "application/json"};
+//  static BaseOptions options = new BaseOptions(
+//    baseUrl: K.baseUrl,
+//    //connectTimeout: 5000,
+//    //receiveTimeout: 3000,
+//    contentType: ContentType.parse("application/json")
+//  );
+//  Dio dio = new Dio(options);
+
+  Future<Map<String,dynamic>> signIn(String email, String password) async {
+   try {
+     final data = jsonEncode({"email": email, "password": password});
+
+    // final response = await dio.post("/login", data: data);
+     var response = await client.post('$_baseUrl/login',headers: {"Accept": "application/json"},body: json.encode(data),
+     );
+
+     print("sign called "+response.body);
+     return jsonDecode(response.body);
+   } on DioError catch(e) {
+     // The request was made and the server responded with a status code
+     // that falls out of the range of 2xx and is also not 304.
+
+//     if(e.error) {
+//       print(e.response.data);
+//       print(e.response.headers);
+//       print(e.response.request);
+//     } else{
+//       // Something happened in setting up or sending the request that triggered an Error
+//       print(e.request);
+//       print(e.message);
+//     }
+     throw Exception('Failed to load post '+e.message);
+
+   }
   }
 }
 
 class AuthRepository {
   final authApiProvider = AuthApiProvider();
-
-  Future<Map<String, dynamic>> signIn(String email, String password) =>
+  Future<Map<String,dynamic>> signIn(String email, String password) =>
       authApiProvider.signIn(email, password);
-
-  //Future<TrailerModel> fetchTrailers(int movieId) => moviesApiProvider.fetchTrailer(movieId);
 }
