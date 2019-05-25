@@ -5,6 +5,7 @@ import '../blocs/AuthBloc.dart';
 import 'package:flutter_boilerplate/feature/auth/resource/AuthHelper.dart';
 import 'dart:developer';
 import 'dart:convert';
+import 'package:flutter_boilerplate/shared/helper/FormValidator.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key key}) : super(key: key);
@@ -64,16 +65,16 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return _buildInputWidget();
+    return _formWidget();
 
     if (isLoading) {
-      return _buildLoadingWidget();
+      return _loadingWidget();
     } else {
-      return _buildInputWidget();
+      return _formWidget();
     }
   }
 
-  Widget _buildInputWidget() {
+  Widget _formWidget() {
     return Scaffold(
       appBar: AppBar(),
       body: Container(
@@ -86,22 +87,25 @@ class _SignUpPageState extends State<SignUpPage> {
               style: Theme.of(context).textTheme.title,
             ),
             const SizedBox(height: 30),
-            TextField(
+            TextFormField(
               controller: textEditControllerName,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(labelText: 'Full Name'),
+              validator: FormValidator.validateName,
             ),
             const SizedBox(height: 10),
-            TextField(
+            TextFormField(
               controller: textEditControllerEmail,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(labelText: 'Email'),
+              validator: FormValidator.validateEmail,
             ),
             const SizedBox(height: 10),
-            TextField(
+            TextFormField(
               controller: textEditControllerPassword,
               obscureText: true,
               decoration: InputDecoration(labelText: 'Password'),
+              validator: FormValidator.validatePassword,
             ),
             const SizedBox(height: 25),
             SizedBox(
@@ -133,9 +137,9 @@ class _SignUpPageState extends State<SignUpPage> {
               stream: bloc.signedIn,
               builder: (context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
                 if (snapshot.hasData) {
-                  _buildSuccessWidget("");
+                  _successWidget("");
                 } else if (snapshot.hasError) {
-                  return _buildErrorWidget(snapshot.error);
+                  return _errorWidget(snapshot.error);
                 } else {
                   return SizedBox();
                 }
@@ -147,7 +151,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget _buildLoadingWidget() {
+  Widget _loadingWidget() {
     return Center(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -155,7 +159,7 @@ class _SignUpPageState extends State<SignUpPage> {
     ));
   }
 
-  Widget _buildErrorWidget(String error) {
+  Widget _errorWidget(String error) {
     return Center(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -163,7 +167,7 @@ class _SignUpPageState extends State<SignUpPage> {
     ));
   }
 
-  Widget _buildSuccessWidget(String message) {
+  Widget _successWidget(String message) {
     return Center(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,

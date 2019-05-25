@@ -15,7 +15,7 @@ class _LandingPageState extends State<LandingPage> {
       if (onValue) {
         Navigator.pushReplacementNamed(context, Routes.home);
       } else {
-        Navigator.pushReplacementNamed(context, Routes.home);
+        Navigator.pushReplacementNamed(context, Routes.signIn);
       }
     });
   }

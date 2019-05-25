@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/shared/routes.dart';
+import 'package:flutter_boilerplate/shared/widget/ConditionalContent.dart';
 import '../blocs/AuthBloc.dart';
 import 'package:flutter_boilerplate/feature/auth/resource/AuthHelper.dart';
-import 'dart:developer';
-import 'dart:convert';
+import 'package:flutter_boilerplate/shared/helper/FormValidator.dart';
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key key}) : super(key: key);
@@ -55,16 +55,20 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    return _buildInputWidget();
+    return _formUI();
 
-    if (isLoading) {
-      return _buildLoadingWidget();
-    } else {
-      return _buildInputWidget();
-    }
+//    return ConditionalContent(
+//      conditional: isLoading,
+//      truthyBuilder: () {
+//         return _buildLoadingWidget;
+//      },
+//      falsyBuilder: () {
+//        return  _formUI();
+//      },
+//    );
   }
 
-  Widget _buildInputWidget() {
+  Widget _formUI() {
     return Scaffold(
       appBar: AppBar(),
       body: Container(
@@ -77,16 +81,19 @@ class _SignInPageState extends State<SignInPage> {
               style: Theme.of(context).textTheme.title,
             ),
             const SizedBox(height: 30),
-            TextField(
+            TextFormField(
               controller: textEditControllerEmail,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(labelText: 'Email'),
+              validator: FormValidator.validateEmail,
             ),
             const SizedBox(height: 10),
-            TextField(
+            TextFormField(
               controller: textEditControllerPassword,
               obscureText: true,
-              decoration: InputDecoration(labelText: 'Password'),
+              decoration: InputDecoration(
+                  labelText: 'Password', hintText: 'Enter your password'),
+              validator: FormValidator.validatePassword,
             ),
             const SizedBox(height: 25),
             SizedBox(
@@ -119,7 +126,7 @@ class _SignInPageState extends State<SignInPage> {
                   _buildSuccessWidget("");
                 } else if (snapshot.hasError) {
                   return _buildErrorWidget(snapshot.error);
-                }else{
+                } else {
                   return const SizedBox(height: 0);
                 }
                 //return Center(child: CircularProgressIndicator());

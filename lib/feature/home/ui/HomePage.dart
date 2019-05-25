@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: StreamBuilder(
-        stream: bloc.allMovies,
+        stream: bloc.allBooks,
         builder: (context, AsyncSnapshot<List<Book>> snapshot) {
           if (snapshot.hasData) {
             return buildList(snapshot);
