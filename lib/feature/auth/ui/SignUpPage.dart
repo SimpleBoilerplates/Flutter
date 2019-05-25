@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/shared/routes.dart';
+import 'package:flutter_boilerplate/shared/Routes.dart';
 import '../blocs/AuthBloc.dart';
 import 'package:flutter_boilerplate/feature/auth/resource/AuthHelper.dart';
 import 'dart:developer';
@@ -49,7 +49,7 @@ class _SignUpPageState extends State<SignUpPage> {
         textEditControllerPassword.text.trim(),
         textEditControllerName.text.trim());
 
-    bloc.signedIn.listen((value) {
+    bloc.signedUp.listen((value) {
       setState(() {
         isLoading = false;
       });
@@ -134,7 +134,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
             StreamBuilder<Map<String, dynamic>>(
-              stream: bloc.signedIn,
+              stream: bloc.signedUp,
               builder: (context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
                 if (snapshot.hasData) {
                   _successWidget("");

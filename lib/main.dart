@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_boilerplate/shared/routes.dart';
+import 'package:flutter_boilerplate/shared/Routes.dart';
 
 void main() => runApp(MyApp());
+var token = "";
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

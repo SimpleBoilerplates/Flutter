@@ -81,10 +81,14 @@ import 'dart:io';
 //}
 
 class HttpHelper {
-  static Future<Map<String, dynamic>> post(String url, var body) async {
+
+ // var client = new http.Client();
+
+  static Future<Map<String, dynamic>> post(String url, var body,{String token = ""}) async {
     return await http.post(Uri.encodeFull(url), body: body, headers: {
       "content-type": "application/json",
-      "accept": "application/json"
+      "accept": "application/json",
+      "Authorization": "Bearer "+token
     }).then((http.Response response) {
       //      print(response.body);
       final int statusCode = response.statusCode;
@@ -95,10 +99,12 @@ class HttpHelper {
     });
   }
 
-  static Future<Map<String, dynamic>> get(String url, {var query}) async {
+  static Future<Map<String, dynamic>> get(String url, {String token = "",var query}) async {
+    print("token "+token);
     return await http.get(Uri.encodeFull(url), headers: {
       "content-type": "application/json",
-      "accept": "application/json"
+      "accept": "application/json",
+      "Authorization": "Bearer " + token
     }).then((http.Response response) {
       final int statusCode = response.statusCode;
       if (statusCode < 200 || statusCode > 400 || json == null) {
@@ -108,20 +114,5 @@ class HttpHelper {
     });
   }
 
-  void _checkAndThrowError(HttpClientResponse response) {
-    if (response.statusCode == HttpStatus.notFound) {
-      throw new ResourceNotFoundException();
-    } else if (response.statusCode >= 400) {
-      print(response.reasonPhrase);
-      throw new HttpException('Unable to process request');
-    }
-  }
-
-  Stream<Object> _extractJson(HttpClientResponse response) {
-    return response.transform(utf8.decoder).transform(json.decoder);
-  }
 }
 
-class ResourceNotFoundException implements Exception {
-  ResourceNotFoundException();
-}

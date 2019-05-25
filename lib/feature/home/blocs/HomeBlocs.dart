@@ -10,16 +10,15 @@ class HomeBloc {
 
   fetchAllBooks() async {
     final response = await _repository.getBooks();
-    var books;
     if (!response['error']) {
-      books = (response['data'] as List)
+     var books = (response['data'] as List)
           ?.map((e) =>
               e == null ? null : Book.fromJson(e as Map<String, dynamic>))
           ?.toList();
+      _booksFetcher.sink.add(books);
     } else {
-      books = List<Book>();
+
     }
-    _booksFetcher.sink.add(books);
   }
 
   dispose() {

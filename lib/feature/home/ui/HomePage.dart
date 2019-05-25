@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../blocs/HomeBlocs.dart';
 import '../model/Book.dart';
 import '../ui/BookCell.dart';
-import 'package:flutter_boilerplate/shared/routes.dart';
+import 'package:flutter_boilerplate/shared/Routes.dart';
 import 'package:flutter_boilerplate/feature/auth/resource/AuthHelper.dart';
 
 class HomePage extends StatefulWidget {

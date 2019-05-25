@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/shared/routes.dart';
+import 'package:flutter_boilerplate/shared/Routes.dart';
 import 'package:flutter_boilerplate/feature/auth/resource/AuthHelper.dart';
 
 class LandingPage extends StatefulWidget {
