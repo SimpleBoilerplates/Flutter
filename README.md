@@ -13,7 +13,16 @@ This is a very simple Boilerplate application, this has following features.
    - [React Native](https://github.com/SimpleBoilerplates/React-Native) 
    - [NodeJS backend](https://github.com/simpleboilerplates/BooksDemoNode) 
 
- 
+### Tutorial
+   - [Getting Started with Flutter](https://www.raywenderlich.com/116-getting-started-with-flutter) 
+   - [Flutter Institute](https://flutter.institute/) 
+   - [Write your first Flutter app](https://flutter.dev/docs/get-started/codelab) 
+   - [Flutter Layout Cheat Sheet](https://medium.com/flutter-community/flutter-layout-cheat-sheet-5363348d037e) 
+   - [Flutter by Example](https://flutterbyexample.com/) 
+   - [Architect your Flutter project using BLOC pattern](https://medium.com/flutterpub/architecting-your-flutter-project-bd04e144a8f1) 
+   - [Technical Debt and Streams/BLoC](https://www.youtube.com/watch?v=fahC3ky_zW0&t=2s) 
+   - [Keep it Simple, State: Architecture for Flutter Apps](https://www.youtube.com/watch?v=zKXz3pUkw9A) 
+
 
 ### Project 
 
