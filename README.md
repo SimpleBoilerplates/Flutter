@@ -22,6 +22,7 @@ This is a very simple Boilerplate application, this has following features.
    - [Architect your Flutter project using BLOC pattern](https://medium.com/flutterpub/architecting-your-flutter-project-bd04e144a8f1) 
    - [Technical Debt and Streams/BLoC](https://www.youtube.com/watch?v=fahC3ky_zW0&t=2s) 
    - [Keep it Simple, State: Architecture for Flutter Apps](https://www.youtube.com/watch?v=zKXz3pUkw9A) 
+   - [From Zero To Comfortable](https://proandroiddev.com/flutter-from-zero-to-comfortable-6b1d6b2d20e)
 
 
 ### Project 
