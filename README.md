@@ -13,6 +13,10 @@ This is a very simple Boilerplate application, this has following features.
    - [React Native](https://github.com/SimpleBoilerplates/React-Native) 
    - [NodeJS backend](https://github.com/simpleboilerplates/BooksDemoNode) 
 
+### With
+- Bloc
+- RxDart
+
 ### Tutorial
    - [Getting Started with Flutter](https://www.raywenderlich.com/116-getting-started-with-flutter) 
    - [Flutter Institute](https://flutter.institute/) 
