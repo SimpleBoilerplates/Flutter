@@ -36,7 +36,7 @@ This is a very simple Boilerplate application, this has following features.
 * [Summary of book "Clean Architecture" by Robert C. Martin](https://gist.github.com/navi25/336fcd2247ad0d3d22c2a1cc3961dcff)
 
 ### Tools
-- [Code Magic] A free and powerful CI/CD for Flutter apps.
+- [Code Magic](https://codemagic.io) A free and powerful CI/CD for Flutter apps.
 
 ### TODO
 - Updating it on daily basis as much as possible, work in progess[WIP].
