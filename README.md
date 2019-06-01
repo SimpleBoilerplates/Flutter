@@ -35,6 +35,8 @@ This is a very simple Boilerplate application, this has following features.
 * [Uncle Bob's clean architecture approach - what is recommended package structure?](https://stackoverflow.com/questions/46884449/uncle-bobs-clean-architecture-approach-what-is-recommended-package-structure)
 * [Summary of book "Clean Architecture" by Robert C. Martin](https://gist.github.com/navi25/336fcd2247ad0d3d22c2a1cc3961dcff)
 
+### Tools
+- [Code Magic] A free and powerful CI/CD for Flutter apps.
 
 ### TODO
 - Updating it on daily basis as much as possible, work in progess[WIP].
