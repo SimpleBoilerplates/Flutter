@@ -18,8 +18,7 @@ This is a very simple Boilerplate application, this has following features.
 - RxDart
 
 ### Tutorial
-   - [Getting Started with Flutter](https://www.raywenderlich.com/116-getting-started-with-flutter) 
-   - [Flutter Institute](https://flutter.institute/) 
+   - [Flutter Widget of the Week](https://www.youtube.com/playlist?list=PLOU2XLYxmsIL0pH0zWe_ZOHgGhZ7UasUE) 
    - [Write your first Flutter app](https://flutter.dev/docs/get-started/codelab) 
    - [Flutter Layout Cheat Sheet](https://medium.com/flutter-community/flutter-layout-cheat-sheet-5363348d037e) 
    - [Flutter by Example](https://flutterbyexample.com/) 
