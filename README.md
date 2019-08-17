@@ -13,15 +13,19 @@ This is a very simple Boilerplate application, this has following features.
    - [React Native](https://github.com/SimpleBoilerplates/React-Native) 
    - [NodeJS backend](https://github.com/simpleboilerplates/BooksDemoNode) 
 
+### With
+- Bloc
+- RxDart
+
 ### Tutorial
-   - [Getting Started with Flutter](https://www.raywenderlich.com/116-getting-started-with-flutter) 
-   - [Flutter Institute](https://flutter.institute/) 
+   - [Flutter Widget of the Week](https://www.youtube.com/playlist?list=PLOU2XLYxmsIL0pH0zWe_ZOHgGhZ7UasUE) 
    - [Write your first Flutter app](https://flutter.dev/docs/get-started/codelab) 
    - [Flutter Layout Cheat Sheet](https://medium.com/flutter-community/flutter-layout-cheat-sheet-5363348d037e) 
    - [Flutter by Example](https://flutterbyexample.com/) 
    - [Architect your Flutter project using BLOC pattern](https://medium.com/flutterpub/architecting-your-flutter-project-bd04e144a8f1) 
    - [Technical Debt and Streams/BLoC](https://www.youtube.com/watch?v=fahC3ky_zW0&t=2s) 
    - [Keep it Simple, State: Architecture for Flutter Apps](https://www.youtube.com/watch?v=zKXz3pUkw9A) 
+   - [From Zero To Comfortable](https://proandroiddev.com/flutter-from-zero-to-comfortable-6b1d6b2d20e)
 
 
 ### Project 
@@ -30,6 +34,8 @@ This is a very simple Boilerplate application, this has following features.
 * [Uncle Bob's clean architecture approach - what is recommended package structure?](https://stackoverflow.com/questions/46884449/uncle-bobs-clean-architecture-approach-what-is-recommended-package-structure)
 * [Summary of book "Clean Architecture" by Robert C. Martin](https://gist.github.com/navi25/336fcd2247ad0d3d22c2a1cc3961dcff)
 
+### Tools
+- [Code Magic](https://codemagic.io) A free and powerful CI/CD for Flutter apps.
 
 ### TODO
 - Updating it on daily basis as much as possible, work in progess[WIP].
