@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../blocs/HomeBlocs.dart';
 import '../model/Book.dart';
 import '../ui/BookCell.dart';
-import 'package:flutter_boilerplate/shared/Routes.dart';
+import 'package:flutter_boilerplate/shared/constant/Routes.dart';
 import 'package:flutter_boilerplate/feature/auth/resource/AuthHelper.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,6 +13,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  final bloc = HomeBloc();
+
   @override
   void initState() {
     super.initState();
@@ -73,8 +76,8 @@ class _HomePageState extends State<HomePage> {
           );
         });
   }
-
-//  openDetailPage(ItemModel data, int index) {
+//
+//  openBookDetailPage(ItemModel data, int index) {
 //    final page = MovieDetailBlocProvider(
 //      child: MovieDetail(
 //        title: data.results[index].title,

@@ -8,23 +8,23 @@ class AuthBloc {
   Observable<Map<String, dynamic>> get signedIn => _authFetcher.stream;
   Observable<Map<String, dynamic>> get signedUp => _authFetcher.stream;
 
-  signIn(String email, String password) async {
-    dynamic response = await _repository.signIn(email, password);
+  void signIn(String email, String password) async {
+    final response = await _repository.signIn(email, password);
     if (!response['error']) {
       _authFetcher.sink.add(response);
     }
   }
 
-  signUp(String email, String password, String name) async {
-    dynamic response = await _repository.signUp(email, password, name);
+  void signUp(String email, String password, String name) async {
+    final response = await _repository.signUp(email, password, name);
     if (!response['error']) {
       _authFetcher.sink.add(response);
     }
   }
 
-  dispose() {
+  void dispose() {
     _authFetcher.close();
   }
 }
 
-final bloc = AuthBloc();
+final bloc  = AuthBloc();

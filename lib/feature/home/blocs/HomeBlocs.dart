@@ -8,22 +8,19 @@ class HomeBloc {
 
   Observable<List<Book>> get allBooks => _booksFetcher.stream;
 
-  fetchAllBooks() async {
+  void fetchAllBooks() async {
     final response = await _repository.getBooks();
     if (!response['error']) {
-     var books = (response['data'] as List)
+      var books = (response['data'] as List)
           ?.map((e) =>
               e == null ? null : Book.fromJson(e as Map<String, dynamic>))
           ?.toList();
       _booksFetcher.sink.add(books);
-    } else {
-
-    }
+    } else {}
   }
 
-  dispose() {
+ void dispose() {
     _booksFetcher.close();
   }
 }
 
-final bloc = HomeBloc();

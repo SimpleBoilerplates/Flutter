@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/shared/Routes.dart';
+import 'package:flutter_boilerplate/shared/constant/Routes.dart';
 import '../blocs/AuthBloc.dart';
 import 'package:flutter_boilerplate/feature/auth/resource/AuthHelper.dart';
 import 'dart:developer';

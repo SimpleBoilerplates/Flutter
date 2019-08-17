@@ -3,59 +3,59 @@ import 'package:flutter/material.dart';
 
 class BookCell extends StatelessWidget {
   final List<Book> books;
-  final index;
-  Color mainColor = const Color(0xff3C3261);
-  var imageUrl = '';
+  final int index;
+  final Color mainColor = const Color(0xff3C3261);
+  //String imageUrl = '';
   BookCell(this.books, this.index);
 
   @override
   Widget build(BuildContext context) {
-    return new Column(
+    return  Column(
       children: <Widget>[
-        new Row(
+         Row(
           children: <Widget>[
-            new Padding(
+             Padding(
               padding: const EdgeInsets.all(0.0),
-              child: new Container(
+              child:  Container(
                 margin: const EdgeInsets.all(16.0),
 //                                child: new Image.network(image_url+movies[i]['poster_path'],width: 100.0,height: 100.0),
-                child: new Container(
+                child:  Container(
                   width: 70.0,
                   height: 70.0,
                 ),
-                decoration: new BoxDecoration(
-                  borderRadius: new BorderRadius.circular(10.0),
+                decoration:  BoxDecoration(
+                  borderRadius:  BorderRadius.circular(10.0),
                   color: Colors.grey,
-                  image: new DecorationImage(
-                      image: new NetworkImage(books[index].preview),
+                  image:  DecorationImage(
+                      image:  NetworkImage(books[index].preview),
                       fit: BoxFit.cover),
                   boxShadow: [
-                    new BoxShadow(
+                     BoxShadow(
                         color: mainColor,
                         blurRadius: 5.0,
-                        offset: new Offset(2.0, 5.0))
+                        offset:  Offset(2.0, 5.0))
                   ],
                 ),
               ),
             ),
-            new Expanded(
-                child: new Container(
+             Expanded(
+                child:  Container(
               margin: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 0.0),
-              child: new Column(
+              child:  Column(
                 children: [
-                  new Text(
+                   Text(
                     books[index].title,
-                    style: new TextStyle(
+                    style:  TextStyle(
                         fontSize: 20.0,
                         fontFamily: 'Arvo',
                         fontWeight: FontWeight.bold,
                         color: mainColor),
                   ),
-                  new Padding(padding: const EdgeInsets.all(2.0)),
-                  new Text(
+                   Padding(padding: const EdgeInsets.all(2.0)),
+                   Text(
                     books[index].subTitle,
                     maxLines: 3,
-                    style: new TextStyle(
+                    style:  TextStyle(
                         color: const Color(0xff8785A4), fontFamily: 'Arvo'),
                   )
                 ],
@@ -64,7 +64,7 @@ class BookCell extends StatelessWidget {
             )),
           ],
         ),
-        new Container(
+         Container(
           width: 300.0,
           height: 0.5,
           color: const Color(0xD2D2E1ff),
