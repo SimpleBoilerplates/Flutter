@@ -4,6 +4,7 @@ import '../model/Book.dart';
 import '../ui/BookCell.dart';
 import 'package:flutter_boilerplate/shared/constant/Routes.dart';
 import 'package:flutter_boilerplate/feature/auth/resource/AuthHelper.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -36,8 +37,8 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.blueGrey,
         //title: new Text("Title"),
         actions: <Widget>[
-          new IconButton(
-            icon: new Icon(Icons.cancel),
+           IconButton(
+            icon:  Icon(Icons.cancel),
             onPressed: () {
               AuthHelper.logout().then((onValue) {
                 if (onValue) {
@@ -70,7 +71,7 @@ class _HomePageState extends State<HomePage> {
           return Container(
             child: InkResponse(
               enableFeedback: true,
-              child: new BookCell(snapshot.data, index),
+              child:  BookCell(snapshot.data, index),
               // onTap: () => openDetailPage(snapshot.data, index),
             ),
           );

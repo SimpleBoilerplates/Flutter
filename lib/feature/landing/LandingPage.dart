@@ -28,6 +28,6 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     navigateAuth(context);
-    return new Container();
+    return  Container();
   }
 }

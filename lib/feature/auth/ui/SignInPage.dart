@@ -3,7 +3,7 @@ import 'package:flutter_boilerplate/shared/constant/Routes.dart';
 import 'package:flutter_boilerplate/shared/widget/ConditionalContent.dart';
 import '../blocs/AuthBloc.dart';
 import 'package:flutter_boilerplate/feature/auth/resource/AuthHelper.dart';
-import 'package:flutter_boilerplate/shared/helper/FormValidator.dart';
+import 'package:flutter_boilerplate/shared/util//FormValidator.dart';
 
 class SignInPage extends StatefulWidget {
   SignInPage({Key key}) : super(key: key);
@@ -15,9 +15,9 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   bool isLoading = false;
 
-  TextEditingController textEditControllerEmail = new TextEditingController();
+  TextEditingController textEditControllerEmail =  TextEditingController();
   TextEditingController textEditControllerPassword =
-      new TextEditingController();
+       TextEditingController();
 
   @override
   void dispose() {
@@ -45,9 +45,9 @@ class _SignInPageState extends State<SignInPage> {
         isLoading = false;
       });
 
-      if (!value["error"]) {
-        print(value["data"]);
-        AuthHelper.setAccessToken(value["token"]);
+      if (!value['error']) {
+        print(value['data']);
+        AuthHelper.setAccessToken(value['token']);
         Navigator.pushReplacementNamed(context, Routes.home);
       }
     });
@@ -56,16 +56,6 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return _formUI();
-
-//    return ConditionalContent(
-//      conditional: isLoading,
-//      truthyBuilder: () {
-//         return _buildLoadingWidget;
-//      },
-//      falsyBuilder: () {
-//        return  _formUI();
-//      },
-//    );
   }
 
   Widget _formUI() {

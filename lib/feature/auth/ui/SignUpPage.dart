@@ -5,7 +5,7 @@ import '../blocs/AuthBloc.dart';
 import 'package:flutter_boilerplate/feature/auth/resource/AuthHelper.dart';
 import 'dart:developer';
 import 'dart:convert';
-import 'package:flutter_boilerplate/shared/helper/FormValidator.dart';
+import 'package:flutter_boilerplate/shared/util/FormValidator.dart';
 
 class SignUpPage extends StatefulWidget {
   SignUpPage({Key key}) : super(key: key);

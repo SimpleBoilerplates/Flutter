@@ -28,6 +28,8 @@ dependencies:
   rxdart: ^0.22.0
   dio: 2.1.5
   json_annotation: ^2.0.0
+  provider: ^3.0.0
+
 
   #cached_network_image: 0.8.0
   #connectivity: 0.4.3+1
