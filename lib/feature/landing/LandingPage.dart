@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/shared/constant/Routes.dart';
-import 'package:flutter_boilerplate/feature/auth/resource/AuthHelper.dart';
+
+import '../../feature/auth/resource/AuthHelper.dart';
+import '../../shared/constant/Routes.dart';
 
 class LandingPage extends StatefulWidget {
   LandingPage({Key key}) : super(key: key);
@@ -28,6 +29,6 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     navigateAuth(context);
-    return  Container();
+    return Container();
   }
 }

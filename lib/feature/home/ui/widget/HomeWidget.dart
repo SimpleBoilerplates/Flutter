@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import '../blocs/HomeBlocs.dart';
-import '../model/Book.dart';
-import '../ui/BookCell.dart';
-import 'package:flutter_boilerplate/shared/constant/Routes.dart';
 import 'package:flutter_boilerplate/feature/auth/resource/AuthHelper.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_boilerplate/shared/constant/Routes.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+import '../../blocs/HomeBloc.dart';
+import '../../blocs/HomeBlocProvider.dart';
+import '../../model/Book.dart';
+import '../BookCell.dart';
+
+class HomeWidget extends StatefulWidget {
+  HomeWidget({Key key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomeWidgetState createState() => _HomeWidgetState();
 }
 
-class _HomePageState extends State<HomePage> {
-
-  final bloc = HomeBloc();
+class _HomeWidgetState extends State<HomeWidget> {
+  HomeBloc _bloc;
 
   @override
   void initState() {
@@ -23,22 +23,28 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _bloc = HomeBlocProvider.of(context);
+  }
+
+  @override
   void dispose() {
-    bloc.dispose();
+    _bloc.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    bloc.fetchAllBooks();
+    _bloc.fetchAllBooks();
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
         //title: new Text("Title"),
         actions: <Widget>[
-           IconButton(
-            icon:  Icon(Icons.cancel),
+          IconButton(
+            icon: Icon(Icons.cancel),
             onPressed: () {
               AuthHelper.logout().then((onValue) {
                 if (onValue) {
@@ -50,7 +56,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       body: StreamBuilder(
-        stream: bloc.allBooks,
+        stream: _bloc.allBooks,
         builder: (context, AsyncSnapshot<List<Book>> snapshot) {
           if (snapshot.hasData) {
             return buildList(snapshot);
@@ -71,29 +77,10 @@ class _HomePageState extends State<HomePage> {
           return Container(
             child: InkResponse(
               enableFeedback: true,
-              child:  BookCell(snapshot.data, index),
+              child: BookCell(snapshot.data, index),
               // onTap: () => openDetailPage(snapshot.data, index),
             ),
           );
         });
   }
-//
-//  openBookDetailPage(ItemModel data, int index) {
-//    final page = MovieDetailBlocProvider(
-//      child: MovieDetail(
-//        title: data.results[index].title,
-//        posterUrl: data.results[index].backdrop_path,
-//        description: data.results[index].overview,
-//        releaseDate: data.results[index].release_date,
-//        voteAverage: data.results[index].vote_average.toString(),
-//        movieId: data.results[index].id,
-//      ),
-//    );
-//    Navigator.push(
-//      context,
-//      MaterialPageRoute(builder: (context) {
-//        return page;
-//      }),
-//    );
-//  }
 }

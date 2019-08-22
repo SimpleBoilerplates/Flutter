@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter_boilerplate/shared/constant/Routes.dart';
-
+import './shared/constant/Routes.dart';
 void main() {
   //FluroRouter.setupRouter();
   runApp(MyApp());
 }
 
-var token = "";
 
 class MyApp extends StatelessWidget {
   @override
@@ -18,8 +15,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
       ),
       routes: Routes().route,
-       // initialRoute: 'login',
-       // onGenerateRoute: FluroRouter.router.generator
     );
   }
 }

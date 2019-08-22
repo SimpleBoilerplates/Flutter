@@ -18,8 +18,9 @@ class Book {
   Book({this.id, this.title, this.subTitle, this.description, this.preview});
 
   factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);
+
   Map<String, dynamic> toJson() => _$BookToJson(this);
-  //factory List<Book>.fromJsonToList( dynamic json) => _$BooksFromJson(json);
+//factory List<Book>.fromJsonToList( dynamic json) => _$BooksFromJson(json);
 
 }
 

@@ -1,27 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/shared/constant/Routes.dart';
-import 'package:flutter_boilerplate/shared/widget/ConditionalContent.dart';
-import '../blocs/AuthBloc.dart';
-import 'package:flutter_boilerplate/feature/auth/resource/AuthHelper.dart';
-import 'package:flutter_boilerplate/shared/util//FormValidator.dart';
+import 'package:flutter_boilerplate/shared/util/FormValidator.dart';
 
-class SignInPage extends StatefulWidget {
-  SignInPage({Key key}) : super(key: key);
+import '../../blocs/AuthBloc.dart';
+import '../../blocs/AuthBlocProvider.dart';
+import '../../resource/AuthHelper.dart';
+
+class SignInWidget extends StatefulWidget {
+  SignInWidget({Key key}) : super(key: key);
 
   @override
-  _SignInPageState createState() => _SignInPageState();
+  _SignInWidgetState createState() {
+    return _SignInWidgetState();
+  }
 }
 
-class _SignInPageState extends State<SignInPage> {
-  bool isLoading = false;
+class _SignInWidgetState extends State<SignInWidget> {
+  TextEditingController textEditControllerEmail = TextEditingController();
+  TextEditingController textEditControllerPassword = TextEditingController();
 
-  TextEditingController textEditControllerEmail =  TextEditingController();
-  TextEditingController textEditControllerPassword =
-       TextEditingController();
+  AuthBloc _bloc;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _bloc = AuthBlocProvider.of(context);
+  }
 
   @override
   void dispose() {
-    bloc.dispose();
+    _bloc.dispose();
     super.dispose();
   }
 
@@ -34,17 +42,10 @@ class _SignInPageState extends State<SignInPage> {
       return;
     }
 
-    setState(() {
-      isLoading = true;
-    });
-    bloc.signIn(textEditControllerEmail.text.trim(),
+    _bloc.signIn(textEditControllerEmail.text.trim(),
         textEditControllerPassword.text.trim());
 
-    bloc.signedIn.listen((value) {
-      setState(() {
-        isLoading = false;
-      });
-
+    _bloc.signedIn.listen((value) {
       if (!value['error']) {
         print(value['data']);
         AuthHelper.setAccessToken(value['token']);
@@ -55,10 +56,22 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    return _formUI();
+    return StreamBuilder(
+        stream: _bloc.showProgress,
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          if (!snapshot.hasData) {
+            return _formWidget();
+          } else {
+            if (!snapshot.data) {
+              return _formWidget();
+            } else {
+              return _loadingWidget();
+            }
+          }
+        });
   }
 
-  Widget _formUI() {
+  Widget _formWidget() {
     return Scaffold(
       appBar: AppBar(),
       body: Container(
@@ -110,16 +123,15 @@ class _SignInPageState extends State<SignInPage> {
               ),
             ),
             StreamBuilder<Map<String, dynamic>>(
-              stream: bloc.signedIn,
+              stream: _bloc.signedIn,
               builder: (context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
                 if (snapshot.hasData) {
-                  _buildSuccessWidget("");
+                  _successWidget("");
                 } else if (snapshot.hasError) {
-                  return _buildErrorWidget(snapshot.error);
+                  return _errorWidget(snapshot.error);
                 } else {
                   return const SizedBox(height: 0);
                 }
-                //return Center(child: CircularProgressIndicator());
               },
             )
           ],
@@ -128,7 +140,7 @@ class _SignInPageState extends State<SignInPage> {
     );
   }
 
-  Widget _buildLoadingWidget() {
+  Widget _loadingWidget() {
     return Center(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -136,7 +148,7 @@ class _SignInPageState extends State<SignInPage> {
     ));
   }
 
-  Widget _buildErrorWidget(String error) {
+  Widget _errorWidget(String error) {
     return Center(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -144,7 +156,7 @@ class _SignInPageState extends State<SignInPage> {
     ));
   }
 
-  Widget _buildSuccessWidget(String message) {
+  Widget _successWidget(String message) {
     return Center(
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,

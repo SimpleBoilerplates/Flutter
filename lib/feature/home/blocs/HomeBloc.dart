@@ -1,4 +1,5 @@
 import 'package:rxdart/rxdart.dart';
+
 import '../model/Book.dart';
 import '../resource/HomeApiProvider.dart';
 
@@ -19,8 +20,7 @@ class HomeBloc {
     } else {}
   }
 
- void dispose() {
+  void dispose() {
     _booksFetcher.close();
   }
 }
-

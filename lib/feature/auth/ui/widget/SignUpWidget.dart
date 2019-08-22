@@ -1,30 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/shared/constant/Routes.dart';
-import '../blocs/AuthBloc.dart';
-import 'package:flutter_boilerplate/feature/auth/resource/AuthHelper.dart';
-import 'dart:developer';
-import 'dart:convert';
 import 'package:flutter_boilerplate/shared/util/FormValidator.dart';
 
-class SignUpPage extends StatefulWidget {
-  SignUpPage({Key key}) : super(key: key);
+import '../../blocs/AuthBloc.dart';
+import '../../blocs/AuthBlocProvider.dart';
+
+class SignUpWidget extends StatefulWidget {
+  SignUpWidget({Key key}) : super(key: key);
 
   @override
-  _SignUpPageState createState() => _SignUpPageState();
+  _SignUpWidgetState createState() => _SignUpWidgetState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
-  bool isLoading = false;
+class _SignUpWidgetState extends State<SignUpWidget> {
+  AuthBloc _bloc;
 
-  TextEditingController textEditControllerEmail = new TextEditingController();
-  TextEditingController textEditControllerPassword =
-      new TextEditingController();
-  TextEditingController textEditControllerName = new TextEditingController();
+  TextEditingController textEditControllerEmail = TextEditingController();
+  TextEditingController textEditControllerPassword = TextEditingController();
+  TextEditingController textEditControllerName = TextEditingController();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _bloc = AuthBlocProvider.of(context);
+  }
 
   @override
   void dispose() {
-    bloc.dispose();
+    _bloc.dispose();
     super.dispose();
   }
 
@@ -41,19 +44,12 @@ class _SignUpPageState extends State<SignUpPage> {
       return;
     }
 
-    setState(() {
-      isLoading = true;
-    });
-    bloc.signUp(
+    _bloc.signUp(
         textEditControllerEmail.text.trim(),
         textEditControllerPassword.text.trim(),
         textEditControllerName.text.trim());
 
-    bloc.signedUp.listen((value) {
-      setState(() {
-        isLoading = false;
-      });
-
+    _bloc.signedUp.listen((value) {
       if (!value["error"]) {
         //print(value["data"]);
         //AuthHelper.setAccessToken(value["token"]);
@@ -65,13 +61,19 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return _formWidget();
-
-    if (isLoading) {
-      return _loadingWidget();
-    } else {
-      return _formWidget();
-    }
+    return StreamBuilder(
+        stream: _bloc.showProgress,
+        builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
+          if (!snapshot.hasData) {
+            return _formWidget();
+          } else {
+            if (!snapshot.data) {
+              return _formWidget();
+            } else {
+              return _loadingWidget();
+            }
+          }
+        });
   }
 
   Widget _formWidget() {
@@ -134,7 +136,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ),
             ),
             StreamBuilder<Map<String, dynamic>>(
-              stream: bloc.signedUp,
+              stream: _bloc.signedUp,
               builder: (context, AsyncSnapshot<Map<String, dynamic>> snapshot) {
                 if (snapshot.hasData) {
                   _successWidget("");
