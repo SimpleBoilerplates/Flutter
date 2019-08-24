@@ -1,13 +1,14 @@
 class FormValidator {
-  static String validateName(String value) {
+  static bool validateName(String value) {
     if (value.isEmpty) {
-      return 'Name cannot be empty';
+      return false;
     }
+    return true;
   }
 
-  static String validateEmail(String value) {
+  static bool validateEmail(String value) {
     if (value.isEmpty) {
-      return 'Email field cannot be empty!';
+      return false;
     }
     // Regex for email validation
     String p = "[a-zA-Z0-9\+\.\_\%\-\+]{1,256}" +
@@ -19,18 +20,20 @@ class FormValidator {
         ")+";
     RegExp regExp = new RegExp(p);
     if (regExp.hasMatch(value)) {
-      return null;
+      return true;
     }
-    return 'Email provided isn\'t valid.Try another email address';
+    return false;
   }
 
-  static String validatePassword(String value) {
+  static bool validatePassword(String value) {
     if (value.isEmpty) {
-      return 'Password field cannot be empty';
+      return false;
     }
     // Use any password length of your choice here
     if (value.length < 5) {
-      return 'Password length must be greater than 6';
+      return false;
     }
+
+    return true;
   }
 }

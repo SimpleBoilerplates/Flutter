@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../feature/auth/resource/AuthHelper.dart';
+import '../../main/bloc/GlobalBloc.dart';
+import '../../main/bloc/GlobalBlocProvider.dart';
 import '../../shared/constant/Routes.dart';
 
 class LandingPage extends StatefulWidget {
@@ -11,8 +12,24 @@ class LandingPage extends StatefulWidget {
 }
 
 class _LandingPageState extends State<LandingPage> {
-  void navigateAuth(BuildContext context) {
-    AuthHelper.isLoggedIn().then((onValue) {
+  GlobalBloc _globalBloc;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _globalBloc = GlobalBlocProvider.of(context);
+    _globalBloc.handleAuth();
+    _listen();
+  }
+
+  @override
+  void dispose() {
+    _globalBloc.dispose();
+    super.dispose();
+  }
+
+  void _listen() {
+    _globalBloc.isAuthonticated.listen((onValue){
       if (onValue) {
         Navigator.pushReplacementNamed(context, Routes.home);
       } else {
@@ -22,13 +39,9 @@ class _LandingPageState extends State<LandingPage> {
   }
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    navigateAuth(context);
-    return Container();
+    return Scaffold(
+      body:  Container(),
+    );
   }
 }

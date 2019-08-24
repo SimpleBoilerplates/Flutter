@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/feature/auth/resource/AuthHelper.dart';
-import 'package:flutter_boilerplate/shared/constant/Routes.dart';
+import 'package:flutter_boilerplate/feature/home/ui/widget/BooksWidget.dart';
+import 'package:flutter_boilerplate/shared/base/DataState.dart';
 
+import '../../../../main/bloc/GlobalBloc.dart';
+import '../../../../main/bloc/GlobalBlocProvider.dart';
+import '../../../../shared/constant/Routes.dart';
 import '../../blocs/HomeBloc.dart';
 import '../../blocs/HomeBlocProvider.dart';
-import '../../model/Book.dart';
-import '../BookCell.dart';
+import '../widget/BooksWidget.dart';
+import '../widget/EmptyWidget.dart';
+import '../widget/LoadingWidget.dart';
+import '../widget/WidgetError.dart';
 
 class HomeWidget extends StatefulWidget {
   HomeWidget({Key key}) : super(key: key);
@@ -16,20 +21,18 @@ class HomeWidget extends StatefulWidget {
 
 class _HomeWidgetState extends State<HomeWidget> {
   HomeBloc _bloc;
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  GlobalBloc _globalBloc;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _bloc = HomeBlocProvider.of(context);
+    _globalBloc = GlobalBlocProvider.of(context);
   }
 
   @override
   void dispose() {
+    _globalBloc.dispose();
     _bloc.dispose();
     super.dispose();
   }
@@ -44,43 +47,34 @@ class _HomeWidgetState extends State<HomeWidget> {
         //title: new Text("Title"),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.cancel),
+            icon: Icon(Icons.adjust),
             onPressed: () {
-              AuthHelper.logout().then((onValue) {
-                if (onValue) {
-                  Navigator.pushReplacementNamed(context, Routes.signIn);
-                }
-              });
+              _globalBloc.logout();
+              Navigator.pushReplacementNamed(context, Routes.signIn);
             },
           ),
         ],
       ),
       body: StreamBuilder(
-        stream: _bloc.allBooks,
-        builder: (context, AsyncSnapshot<List<Book>> snapshot) {
-          if (snapshot.hasData) {
-            return buildList(snapshot);
-          } else if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
-          }
-          return Center(child: CircularProgressIndicator());
+        stream: _bloc.books,
+        initialData: StateEmpty(),
+        builder: (context, AsyncSnapshot<DataState> snapshot) {
+          return buildBody(snapshot);
         },
       ),
     );
   }
 
-  Widget buildList(AsyncSnapshot<List<Book>> snapshot) {
-    return ListView.builder(
-        itemCount: snapshot.data.length,
-        scrollDirection: Axis.vertical,
-        itemBuilder: (context, index) {
-          return Container(
-            child: InkResponse(
-              enableFeedback: true,
-              child: BookCell(snapshot.data, index),
-              // onTap: () => openDetailPage(snapshot.data, index),
-            ),
-          );
-        });
+  Widget buildBody(AsyncSnapshot<DataState> snapshot) {
+    final state = snapshot.data;
+
+    return Stack(
+      children: <Widget>[
+        EmptyWidget(visible: state is StateEmpty),
+        LoadingWidget(visible: state is StateLoading),
+        WidgetError(visible: state is StateError),
+        BooksWidget(items: state is StateSuccessWithList ? state.result : [])
+      ],
+    );
   }
 }

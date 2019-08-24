@@ -21,6 +21,14 @@ class S implements WidgetsLocalizations {
   @override
   TextDirection get textDirection => TextDirection.ltr;
 
+  String get emailHint => "Email";
+  String get error => "Error";
+  String get nameHint => "Name";
+  String get no_results => "No results";
+  String get passwordHint => "Password";
+  String get please_wait => "Please Wait...";
+  String get sign_in => "Sign In";
+  String get sign_up => "Sign Up";
 }
 
 class $en extends S {

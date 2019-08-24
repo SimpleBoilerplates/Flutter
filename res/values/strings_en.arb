@@ -1,0 +1,10 @@
+{
+  "passwordHint": "Password",
+  "emailHint": "Email",
+  "nameHint": "Name",
+  "sign_up": "Sign Up",
+  "sign_in": "Sign In",
+  "no_results": "No results",
+  "error": "Error",
+  "please_wait": "Please Wait..."
+}

@@ -5,8 +5,6 @@ import '../../feature/auth/ui/screen/SignUpScreen.dart';
 import '../../feature/home/ui/screen/HomeScreen.dart';
 import '../../feature/landing/LandingPage.dart';
 
-//import 'package:fluro/fluro.dart';
-
 class Routes {
   static const landing = '/';
   static const home = '/home';
