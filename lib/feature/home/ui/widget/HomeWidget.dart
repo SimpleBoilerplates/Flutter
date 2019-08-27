@@ -13,7 +13,7 @@ import '../widget/LoadingWidget.dart';
 import '../widget/WidgetError.dart';
 
 class HomeWidget extends StatefulWidget {
-  HomeWidget({Key key}) : super(key: key);
+  const HomeWidget({Key key}) : super(key: key);
 
   @override
   _HomeWidgetState createState() => _HomeWidgetState();

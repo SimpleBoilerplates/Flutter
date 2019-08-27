@@ -5,7 +5,7 @@ import '../../main/bloc/GlobalBlocProvider.dart';
 import '../../shared/constant/Routes.dart';
 
 class LandingPage extends StatefulWidget {
-  LandingPage({Key key}) : super(key: key);
+ const LandingPage({Key key}) : super(key: key);
 
   @override
   _LandingPageState createState() => _LandingPageState();

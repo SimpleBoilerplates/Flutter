@@ -4,7 +4,11 @@ class DataState {}
 
 class StateLoading extends DataState {}
 
-class StateError extends DataState {}
+class StateError extends DataState {
+  final String message;
+
+  StateError(this.message);
+}
 
 class StateInitial extends DataState {}
 

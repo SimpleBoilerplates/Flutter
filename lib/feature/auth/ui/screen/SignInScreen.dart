@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/generated/i18n.dart';
 import 'package:flutter_boilerplate/shared/base/DataState.dart';
+import 'package:flutter_boilerplate/shared/base/DataState.dart' as prefix0;
 import 'package:flutter_boilerplate/shared/constant/Routes.dart';
 
+import 'package:flutter_boilerplate/shared/widget/PopUpAlert.dart';
 import '../../blocs/AuthBloc.dart';
 
 class SignInScreen extends StatefulWidget {
-  SignInScreen({Key key}) : super(key: key);
+  const SignInScreen({Key key}) : super(key: key);
 
   @override
   _SignInScreenState createState() => _SignInScreenState();
@@ -62,9 +64,9 @@ class _SignInScreenState extends State<SignInScreen> {
             return _loadingWidget();
           }
 
-//          if (state is StateSuccessWithMap) {
-//            Navigator.pushReplacementNamed(context, Routes.home);
-//          }
+          if(state is StateError){
+            ackAlert(context, "", state.message);
+          }
 
           return Container();
         });
@@ -152,27 +154,4 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  Widget _loadingWidget() {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text(S.of(context).please_wait), CircularProgressIndicator()],
-    ));
-  }
-
-  Widget _errorWidget(String error) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text(error), CircularProgressIndicator()],
-    ));
-  }
-
-  Widget _successWidget(String message) {
-    return Center(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [Text(message), CircularProgressIndicator()],
-    ));
-  }
 }
