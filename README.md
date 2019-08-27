@@ -16,6 +16,7 @@ This is a very simple Boilerplate application, this has following features.
 ### With
 - Bloc
 - RxDart
+- [Localization i18n](https://flutter.dev/docs/development/accessibility-and-localization/internationalization)
 
 ### Tutorial
    - [Flutter Widget of the Week](https://www.youtube.com/playlist?list=PLOU2XLYxmsIL0pH0zWe_ZOHgGhZ7UasUE) 
@@ -25,7 +26,8 @@ This is a very simple Boilerplate application, this has following features.
    - [Architect your Flutter project using BLOC pattern](https://medium.com/flutterpub/architecting-your-flutter-project-bd04e144a8f1) 
    - [Technical Debt and Streams/BLoC](https://www.youtube.com/watch?v=fahC3ky_zW0&t=2s) 
    - [Keep it Simple, State: Architecture for Flutter Apps](https://www.youtube.com/watch?v=zKXz3pUkw9A) 
-   - [From Zero To Comfortable](https://proandroiddev.com/flutter-from-zero-to-comfortable-6b1d6b2d20e)
+   - [Flutter Architecture - My Provider Implementation Guide](https://www.filledstacks.com/post/flutter-architecture-my-provider-implementation-guide/)
+   - [Codelabs for Flutter](https://codelabs.developers.google.com/?cat=Flutter)
 
 
 ### Project 
