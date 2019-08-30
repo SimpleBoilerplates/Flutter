@@ -1,3 +1,5 @@
+import 'dart:core' ;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/generated/i18n.dart';
 import 'package:flutter_boilerplate/shared/base/DataState.dart';
@@ -38,6 +40,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   void _listen() {
     _bloc.signedIn.listen((value) {
+      print(value);
       if (value is StateSuccessWithMap) {
         Navigator.pushReplacementNamed(context, Routes.home);
       }

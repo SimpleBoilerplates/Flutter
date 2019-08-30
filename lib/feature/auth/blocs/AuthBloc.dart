@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_boilerplate/shared/base/DataState.dart';
+import 'package:flutter_boilerplate/shared/base/DataState.dart' as prefix0;
 import 'package:rxdart/rxdart.dart';
 
 import '../../../shared/util/FormValidator.dart';
@@ -66,10 +67,12 @@ class AuthBloc {
     _signedIn.sink.add(StateLoading());
 
     final response = await _repository.signIn(_email.value, _password.value);
-
+    print(response);
     if (!response['error']) {
       AuthHelper.setAccessToken(response['token']);
       _signedIn.sink.add(StateSuccessWithMap(response));
+    }else{
+      _signedIn.sink.add(StateError(response["message"]));
     }
   }
 
@@ -80,6 +83,8 @@ class AuthBloc {
     if (!response['error']) {
       AuthHelper.setAccessToken(response['token']);
       _signedUp.sink.add(StateSuccessWithMap(response));
+    }else{
+      _signedIn.sink.add(StateError(response["message"]));
     }
   }
 
