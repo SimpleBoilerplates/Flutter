@@ -19,13 +19,20 @@ This is a very simple Boilerplate application, this has following features.
 - [Localization i18n](https://flutter.dev/docs/development/accessibility-and-localization/internationalization)
 
 ### Tutorial
+
+#### Bloc
+  - [Getting Started with the BLoC Pattern](https://www.raywenderlich.com/4074597-getting-started-with-the-bloc-pattern)
+  - [Architect your Flutter project using BLOC pattern](https://medium.com/flutterpub/architecting-your-flutter-project-bd04e144a8f1) 
+  - [Keep it Simple, State: Architecture for Flutter Apps](https://www.youtube.com/watch?v=zKXz3pUkw9A) 
+  - [Flutter BLoC Pattern for Dummies Like Me](https://medium.com/flutter-community/flutter-bloc-pattern-for-dummies-like-me-c22d40f05a56)
+ 
+ #### Others
+   - [Raywenderlich's collection](https://www.raywenderlich.com/library?domain_ids%5B%5D=9)
    - [Flutter Widget of the Week](https://www.youtube.com/playlist?list=PLOU2XLYxmsIL0pH0zWe_ZOHgGhZ7UasUE) 
    - [Write your first Flutter app](https://flutter.dev/docs/get-started/codelab) 
    - [Flutter Layout Cheat Sheet](https://medium.com/flutter-community/flutter-layout-cheat-sheet-5363348d037e) 
    - [Flutter by Example](https://flutterbyexample.com/) 
-   - [Architect your Flutter project using BLOC pattern](https://medium.com/flutterpub/architecting-your-flutter-project-bd04e144a8f1) 
    - [Technical Debt and Streams/BLoC](https://www.youtube.com/watch?v=fahC3ky_zW0&t=2s) 
-   - [Keep it Simple, State: Architecture for Flutter Apps](https://www.youtube.com/watch?v=zKXz3pUkw9A) 
    - [Flutter Architecture - My Provider Implementation Guide](https://www.filledstacks.com/post/flutter-architecture-my-provider-implementation-guide/)
    - [Codelabs for Flutter](https://codelabs.developers.google.com/?cat=Flutter)
 
