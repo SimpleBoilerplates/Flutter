@@ -66,9 +66,6 @@ class AuthBloc {
     _signedIn.sink.add(StateLoading());
 
     final response = await _repository.signIn(_email.value, _password.value);
-    print("signInsignInsignInsignInsignInsignIn");
-    print(response);
-    print("signInsignInsignInsignInsignInsignIn");
 
     if (!response['error']) {
       AuthHelper.setAccessToken(response['token']);

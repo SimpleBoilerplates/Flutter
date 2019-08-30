@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/generated/i18n.dart';
 import 'package:flutter_boilerplate/shared/base/DataState.dart';
-import 'package:flutter_boilerplate/shared/base/DataState.dart' as prefix0;
 import 'package:flutter_boilerplate/shared/constant/Routes.dart';
 
-import 'package:flutter_boilerplate/shared/widget/PopUpAlert.dart';
+import '../../../../shared/widget/LoadingWidget.dart';
+import '../../../../shared/widget/WidgetError.dart';
 import '../../blocs/AuthBloc.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -36,7 +36,6 @@ class _SignInScreenState extends State<SignInScreen> {
     super.dispose();
   }
 
-
   void _listen() {
     _bloc.signedIn.listen((value) {
       if (value is StateSuccessWithMap) {
@@ -44,38 +43,45 @@ class _SignInScreenState extends State<SignInScreen> {
       }
     });
   }
+
   void signIn() {
     _bloc.signIn();
   }
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
+        //title: new Text("Title"),
+      ),
+      body: StreamBuilder(
         stream: _bloc.signedIn,
         initialData: StateInitial(),
-        builder: (BuildContext context, AsyncSnapshot<DataState> snapshot) {
-          final state = snapshot.data;
-
-          if (state is StateInitial) {
-            return _formWidget();
-          }
-
-          if (state is StateLoading) {
-            return _loadingWidget();
-          }
-
-          if(state is StateError){
-            ackAlert(context, "", state.message);
-          }
-
-          return Container();
-        });
+        builder: (context, AsyncSnapshot<DataState> snapshot) {
+          return buildBody(snapshot);
+        },
+      ),
+    );
   }
 
-  Widget _formWidget() {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Container(
+  Widget buildBody(AsyncSnapshot<DataState> snapshot) {
+    final state = snapshot.data;
+
+    return Stack(
+      children: <Widget>[
+        _formWidget(state is StateInitial),
+        LoadingWidget(visible: state is StateLoading),
+        WidgetError(visible: state is StateError),
+      ],
+    );
+  }
+
+  Widget _formWidget(bool visible) {
+    return AnimatedOpacity(
+      duration: Duration(milliseconds: 300),
+      opacity: visible ? 1.0 : 0.0,
+      child: Container(
         margin: EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -85,20 +91,20 @@ class _SignInScreenState extends State<SignInScreen> {
               style: Theme.of(context).textTheme.title,
             ),
             const SizedBox(height: 10),
-            emailField(),
+            _emailField(),
             const SizedBox(height: 10),
-            passwordField(),
+            _passwordField(),
             const SizedBox(height: 25),
-            signInButton(),
+            _signInButton(),
             const SizedBox(height: 10),
-            signUpButton(),
+            _signUpButton(),
           ],
         ),
       ),
     );
   }
 
-  Widget passwordField() {
+  Widget _passwordField() {
     return StreamBuilder(
         stream: _bloc.password,
         builder: (context, AsyncSnapshot<String> snapshot) {
@@ -112,7 +118,7 @@ class _SignInScreenState extends State<SignInScreen> {
         });
   }
 
-  Widget emailField() {
+  Widget _emailField() {
     return StreamBuilder(
         stream: _bloc.email,
         builder: (context, snapshot) {
@@ -124,7 +130,7 @@ class _SignInScreenState extends State<SignInScreen> {
         });
   }
 
-  Widget signInButton() {
+  Widget _signInButton() {
     return SizedBox(
       width: double.infinity,
       height: 45,
@@ -138,7 +144,7 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  Widget signUpButton() {
+  Widget _signUpButton() {
     return SizedBox(
       width: double.infinity,
       height: 45,
@@ -153,5 +159,4 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
     );
   }
-
 }

@@ -5,12 +5,12 @@ import 'package:flutter_boilerplate/shared/base/DataState.dart';
 import '../../../../main/bloc/GlobalBloc.dart';
 import '../../../../main/bloc/GlobalBlocProvider.dart';
 import '../../../../shared/constant/Routes.dart';
+import '../../../../shared/widget/EmptyWidget.dart';
+import '../../../../shared/widget/LoadingWidget.dart';
+import '../../../../shared/widget/WidgetError.dart';
 import '../../blocs/HomeBloc.dart';
 import '../../blocs/HomeBlocProvider.dart';
 import '../widget/BooksWidget.dart';
-import '../widget/EmptyWidget.dart';
-import '../widget/LoadingWidget.dart';
-import '../widget/WidgetError.dart';
 
 class HomeWidget extends StatefulWidget {
   const HomeWidget({Key key}) : super(key: key);

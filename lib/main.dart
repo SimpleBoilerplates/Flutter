@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/generated/i18n.dart';
 
-import './bloc/GlobalBlocProvider.dart';
-import '../shared/constant/Routes.dart';
+import 'main/bloc/GlobalBlocProvider.dart';
+import 'shared/constant/Routes.dart';
 
 void main() {
   //FluroRouter.setupRouter();

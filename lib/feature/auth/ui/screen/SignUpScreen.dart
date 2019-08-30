@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/generated/i18n.dart';
 import 'package:flutter_boilerplate/shared/base/DataState.dart';
 import 'package:flutter_boilerplate/shared/constant/Routes.dart';
-import 'package:flutter_boilerplate/shared/widget/PopUpAlert.dart';
 
+import '../../../../shared/widget/LoadingWidget.dart';
+import '../../../../shared/widget/WidgetError.dart';
 import '../../blocs/AuthBloc.dart';
 
 class SignUpScreen extends StatefulWidget {
- const SignUpScreen({Key key}) : super(key: key);
+  const SignUpScreen({Key key}) : super(key: key);
 
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
@@ -27,7 +28,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.initState();
     _bloc = AuthBloc();
     _listen();
-
   }
 
   @override
@@ -50,32 +50,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blueGrey,
+        //title: new Text("Title"),
+      ),
+      body: StreamBuilder(
         stream: _bloc.signedUp,
         initialData: StateInitial(),
-        builder: (BuildContext context, AsyncSnapshot<DataState> snapshot) {
-          final state = snapshot.data;
-
-          if (state is StateInitial) {
-            return _formWidget();
-          }
-
-          if (state is StateLoading) {
-            return _loadingWidget();
-          }
-
-          if(state is StateError){
-            ackAlert(context, "", state.message);
-          }
-
-          return Container();
-        });
+        builder: (context, AsyncSnapshot<DataState> snapshot) {
+          return buildBody(snapshot);
+        },
+      ),
+    );
   }
 
-  Widget _formWidget() {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Container(
+  Widget buildBody(AsyncSnapshot<DataState> snapshot) {
+    final state = snapshot.data;
+
+    return Stack(
+      children: <Widget>[
+        _formWidget(state is StateInitial),
+        LoadingWidget(visible: state is StateLoading),
+        WidgetError(visible: state is StateError),
+      ],
+    );
+  }
+
+  Widget _formWidget(bool visible) {
+    return AnimatedOpacity(
+      duration: Duration(milliseconds: 300),
+      opacity: visible ? 1.0 : 0.0,
+      child: Container(
         margin: EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -85,22 +91,22 @@ class _SignUpScreenState extends State<SignUpScreen> {
               style: Theme.of(context).textTheme.title,
             ),
             const SizedBox(height: 30),
-            nameField(),
+            _nameField(),
             const SizedBox(height: 10),
-            emailField(),
+            _emailField(),
             const SizedBox(height: 10),
-            passwordField(),
+            _passwordField(),
             const SizedBox(height: 25),
-            signUpButton(),
+            _signUpButton(),
             const SizedBox(height: 10),
-            signInButton()
+            _signInButton()
           ],
         ),
       ),
     );
   }
 
-  Widget nameField() {
+  Widget _nameField() {
     return StreamBuilder(
         stream: _bloc.name,
         builder: (context, AsyncSnapshot<String> snapshot) {
@@ -114,7 +120,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         });
   }
 
-  Widget passwordField() {
+  Widget _passwordField() {
     return StreamBuilder(
         stream: _bloc.password,
         builder: (context, AsyncSnapshot<String> snapshot) {
@@ -128,7 +134,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         });
   }
 
-  Widget emailField() {
+  Widget _emailField() {
     return StreamBuilder(
         stream: _bloc.email,
         builder: (context, snapshot) {
@@ -140,7 +146,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         });
   }
 
-  Widget signUpButton() {
+  Widget _signUpButton() {
     return SizedBox(
       width: double.infinity,
       height: 45,
@@ -157,7 +163,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     );
   }
 
-  Widget signInButton() {
+  Widget _signInButton() {
     return SizedBox(
       width: double.infinity,
       height: 45,
@@ -169,5 +175,4 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
-
 }

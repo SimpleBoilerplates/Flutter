@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/generated/i18n.dart';
 
 Widget WidgetLoading() {
   return Center(

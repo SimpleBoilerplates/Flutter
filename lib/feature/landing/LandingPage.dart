@@ -5,7 +5,7 @@ import '../../main/bloc/GlobalBlocProvider.dart';
 import '../../shared/constant/Routes.dart';
 
 class LandingPage extends StatefulWidget {
- const LandingPage({Key key}) : super(key: key);
+  const LandingPage({Key key}) : super(key: key);
 
   @override
   _LandingPageState createState() => _LandingPageState();
@@ -29,7 +29,7 @@ class _LandingPageState extends State<LandingPage> {
   }
 
   void _listen() {
-    _globalBloc.isAuthonticated.listen((onValue){
+    _globalBloc.isAuthonticated.listen((onValue) {
       if (onValue) {
         Navigator.pushReplacementNamed(context, Routes.home);
       } else {
@@ -41,7 +41,7 @@ class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:  Container(),
+      body: Container(),
     );
   }
 }

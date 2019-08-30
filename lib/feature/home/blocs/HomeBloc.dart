@@ -22,7 +22,7 @@ class HomeBloc {
 
       _books.sink.add(StateSuccessWithList(books));
     } else {
-      _books.sink.add(StateError());
+      _books.sink.add(StateError("Something went wrong"));
     }
   }
 
