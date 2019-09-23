@@ -12,7 +12,7 @@ class LoadingWidget extends StatelessWidget {
       opacity: visible ? 1.0 : 0.0,
       child: Container(
         alignment: FractionalOffset.center,
-        child: CircularProgressIndicator(),
+        child: const CircularProgressIndicator(),
       ),
     );
   }

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter_boilerplate/shared/base/DataState.dart';
-import 'package:flutter_boilerplate/shared/base/DataState.dart' as prefix0;
 import 'package:rxdart/rxdart.dart';
 
 import '../../../shared/util/FormValidator.dart';

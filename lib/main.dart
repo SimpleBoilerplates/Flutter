@@ -5,7 +5,6 @@ import 'main/bloc/GlobalBlocProvider.dart';
 import 'shared/constant/Routes.dart';
 
 void main() {
-  //FluroRouter.setupRouter();
   runApp(App());
 }
 
