@@ -5,6 +5,8 @@ This is a very simple Boilerplate application, this has following features.
   - User can Sign In and Up
   - After signing in he can see a list of items
   
+It was developed as a demo project before developing production application. I wrote a [blog](https://www.sadmansamee.blog/why_embrace_flutter/) about why we wil be using Futter for our project, visit [here](https://www.sadmansamee.blog/why_embrace_flutter/)
+  
   #### I didn't add many functionality and didn't polish UI intentionally, tried to keep it barebone as much as possible 
   
   ### Same implementation in other platforms
