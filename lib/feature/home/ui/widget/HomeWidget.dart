@@ -44,7 +44,7 @@ class _HomeWidgetState extends State<HomeWidget> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
-        //title: new Text("Title"),
+        title: const Text('Books'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.adjust),
@@ -58,7 +58,7 @@ class _HomeWidgetState extends State<HomeWidget> {
       body: StreamBuilder(
         stream: _bloc.books,
         initialData: StateEmpty(),
-        builder: (context, AsyncSnapshot<DataState> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<DataState> snapshot) {
           return buildBody(snapshot);
         },
       ),
@@ -66,7 +66,7 @@ class _HomeWidgetState extends State<HomeWidget> {
   }
 
   Widget buildBody(AsyncSnapshot<DataState> snapshot) {
-    final state = snapshot.data;
+    final DataState state = snapshot.data;
 
     return Stack(
       children: <Widget>[

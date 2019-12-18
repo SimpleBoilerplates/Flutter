@@ -18,7 +18,7 @@ class SharedPreferencesBuilder<T> extends StatelessWidget {
     return FutureBuilder<T>(
         future: _future(),
         builder: (BuildContext context, AsyncSnapshot<T> snapshot) {
-          return this.builder(context, snapshot);
+          return builder(context, snapshot);
         });
   }
 

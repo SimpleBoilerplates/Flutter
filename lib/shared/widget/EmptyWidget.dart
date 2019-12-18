@@ -9,7 +9,7 @@ class EmptyWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       opacity: visible ? 1.0 : 0.0,
       child: Container(
         alignment: FractionalOffset.center,
@@ -22,7 +22,7 @@ class EmptyWidget extends StatelessWidget {
               size: 80.0,
             ),
             Container(
-              padding: EdgeInsets.only(top: 16.0),
+              padding: const EdgeInsets.only(top: 16.0),
               child: Text(
                 S.of(context).no_results,
                 style: TextStyle(color: Colors.blueGrey),

@@ -8,25 +8,25 @@ import '../resource/AuthApiProvider.dart';
 import '../resource/AuthHelper.dart';
 
 class AuthBloc {
-  final _repository = AuthRepository();
+  final AuthRepository _repository = AuthRepository();
 
-  final _email = BehaviorSubject<String>();
-  final _password = BehaviorSubject<String>();
-  final _name = BehaviorSubject<String>();
+  final BehaviorSubject<String> _email = BehaviorSubject<String>();
+  final BehaviorSubject<String> _password = BehaviorSubject<String>();
+  final BehaviorSubject<String> _name = BehaviorSubject<String>();
 
-  final _signedIn = PublishSubject<DataState>();
-  final _signedUp = PublishSubject<DataState>();
+  final PublishSubject<DataState> _signedIn = PublishSubject<DataState>();
+  final PublishSubject<DataState> _signedUp = PublishSubject<DataState>();
 
-  Observable<DataState> get signedIn => _signedIn.stream;
+  Stream<DataState> get signedIn => _signedIn.stream;
 
-  Observable<DataState> get signedUp => _signedUp.stream;
+  Stream<DataState> get signedUp => _signedUp.stream;
 
-  Observable<String> get email => _email.stream.transform(_validateEmail);
+  Stream<String> get email => _email.stream.transform(_validateEmail);
 
-  Observable<String> get password =>
+  Stream<String> get password =>
       _password.stream.transform(_validatePassword);
 
-  Observable<String> get name => _password.stream.transform(_validateName);
+  Stream<String> get name => _password.stream.transform(_validateName);
 
   // Change data
   Function(String) get changeEmail => _email.sink.add;
@@ -35,30 +35,27 @@ class AuthBloc {
 
   Function(String) get changeName => _name.sink.add;
 
-  final _validateEmail =
-      StreamTransformer<String, String>.fromHandlers(handleData: (email, sink) {
+  final StreamTransformer<String, String> _validateEmail =
+      StreamTransformer<String, String>.fromHandlers(
+          handleData: (String email, EventSink<String> sink) {
     if (FormValidator.validateEmail(email)) {
       sink.add(email);
-    } else {
-      // sink.addError(StringConstant.emailValidateMessage);
     }
   });
 
-  final _validatePassword = StreamTransformer<String, String>.fromHandlers(
-      handleData: (password, sink) {
+  final StreamTransformer<String, String> _validatePassword =
+      StreamTransformer<String, String>.fromHandlers(
+          handleData: (String password, EventSink<String> sink) {
     if (FormValidator.validatePassword(password)) {
       sink.add(password);
-    } else {
-      // sink.addError(StringConstant.passwordValidateMessage);
     }
   });
 
-  final _validateName =
-      StreamTransformer<String, String>.fromHandlers(handleData: (name, sink) {
+  final StreamTransformer<String, String> _validateName =
+      StreamTransformer<String, String>.fromHandlers(
+          handleData: (String name, EventSink<String> sink) {
     if (name.length > 3) {
       sink.add(name);
-    } else {
-      // sink.addError(StringConstant.passwordValidateMessage);
     }
   });
 
@@ -70,8 +67,8 @@ class AuthBloc {
     if (!response['error']) {
       AuthHelper.setAccessToken(response['token']);
       _signedIn.sink.add(StateSuccessWithMap(response));
-    }else{
-      _signedIn.sink.add(StateError(response["message"]));
+    } else {
+      _signedIn.sink.add(StateError(response['message']));
     }
   }
 
@@ -82,11 +79,12 @@ class AuthBloc {
     if (!response['error']) {
       AuthHelper.setAccessToken(response['token']);
       _signedUp.sink.add(StateSuccessWithMap(response));
-    }else{
-      _signedIn.sink.add(StateError(response["message"]));
+    } else {
+      _signedIn.sink.add(StateError(response['message']));
     }
   }
 
+  // ignore: avoid_void_async
   void dispose() async {
     _signedIn.close();
     _signedUp.close();

@@ -1,3 +1,3 @@
 class K {
-  static const baseUrl = "https://booksdemo.herokuapp.com";
+  static const String baseUrl = 'https://booksdemo.herokuapp.com';
 }

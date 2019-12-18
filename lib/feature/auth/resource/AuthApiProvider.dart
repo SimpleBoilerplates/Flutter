@@ -6,11 +6,11 @@ import 'package:flutter_boilerplate/shared/constant/K.dart';
 import 'package:flutter_boilerplate/shared/http/HttpClient.dart';
 
 class AuthApiProvider {
-  final _baseUrl = K.baseUrl;
+  final String _baseUrl = K.baseUrl;
 
   Future<Map<String, dynamic>> signIn(String email, String password) async {
     try {
-      var data = json.encode({'email': email, 'password': password});
+      final String data = json.encode({'email': email, 'password': password});
       return HttpClient.post('$_baseUrl/login', data);
     } on Error catch (e) {
       throw Exception('Failed to load post ' + e.toString());
@@ -20,8 +20,8 @@ class AuthApiProvider {
   Future<Map<String, dynamic>> signUp(
       String email, String password, String name) async {
     try {
-      var data =
-          json.encode({"name": name, "email": email, "password": password});
+      final String data =
+          json.encode({'name': name, 'email': email, 'password': password});
       return HttpClient.post('$_baseUrl/signup', data);
     } on Error catch (e) {
       throw Exception('Failed to load post ' + e.toString());
@@ -30,7 +30,7 @@ class AuthApiProvider {
 }
 
 class AuthRepository {
-  final authApiProvider = AuthApiProvider();
+  final AuthApiProvider authApiProvider = AuthApiProvider();
 
   Future<Map<String, dynamic>> signIn(String email, String password) =>
       authApiProvider.signIn(email, password);

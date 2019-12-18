@@ -17,12 +17,6 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   AuthBloc _bloc;
 
-//  @override
-//  void didChangeDependencies() {
-//    super.didChangeDependencies();
-//    _bloc = AuthBlocProvider.of(context);
-//  }
-
   @override
   void initState() {
     super.initState();
@@ -41,7 +35,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void _listen() {
-    _bloc.signedUp.listen((value) {
+    _bloc.signedUp.listen((DataState value) {
       if (value is StateSuccessWithMap) {
         Navigator.pop(context);
       }
@@ -58,7 +52,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: StreamBuilder(
         stream: _bloc.signedUp,
         initialData: StateInitial(),
-        builder: (context, AsyncSnapshot<DataState> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<DataState> snapshot) {
           return buildBody(snapshot);
         },
       ),
@@ -79,10 +73,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   Widget _formWidget(bool visible) {
     return AnimatedOpacity(
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       opacity: visible ? 1.0 : 0.0,
       child: Container(
-        margin: EdgeInsets.all(16),
+        margin: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -109,13 +103,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget _nameField() {
     return StreamBuilder(
         stream: _bloc.name,
-        builder: (context, AsyncSnapshot<String> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
           return TextField(
             onChanged: _bloc.changeName,
-            obscureText: true,
             decoration: InputDecoration(
-                hintText: S.of(context).passwordHint,
-                errorText: snapshot.error),
+                hintText: S.of(context).nameHint, errorText: snapshot.error),
           );
         });
   }
@@ -123,7 +115,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget _passwordField() {
     return StreamBuilder(
         stream: _bloc.password,
-        builder: (context, AsyncSnapshot<String> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
           return TextField(
             onChanged: _bloc.changePassword,
             obscureText: true,
@@ -137,7 +129,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget _emailField() {
     return StreamBuilder(
         stream: _bloc.email,
-        builder: (context, snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
           return TextField(
             onChanged: _bloc.changeEmail,
             decoration: InputDecoration(
@@ -171,7 +163,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         onPressed: () {
           Navigator.pushReplacementNamed(context, Routes.signIn);
         },
-        child: Text(S.of(context).sign_in, style: TextStyle(fontSize: 18)),
+        child:
+            Text(S.of(context).sign_in, style: const TextStyle(fontSize: 18)),
       ),
     );
   }

@@ -6,15 +6,15 @@ import '../../feature/home/ui/screen/HomeScreen.dart';
 import '../../feature/landing/LandingPage.dart';
 
 class Routes {
-  static const landing = '/';
-  static const home = '/home';
-  static const signIn = '/signIn';
-  static const signUp = '/signUp';
+  static const String landing = '/';
+  static const String home = '/home';
+  static const String signIn = '/signIn';
+  static const String signUp = '/signUp';
 
-  final route = <String, WidgetBuilder>{
-    Routes.landing: (_) => LandingPage(),
+  final Map route = <String, WidgetBuilder>{
+    Routes.landing: (_) => const LandingPage(),
     Routes.home: (_) => HomeScreen(),
-    Routes.signIn: (_) => SignInScreen(),
-    Routes.signUp: (_) => SignUpScreen(),
+    Routes.signIn: (_) => const SignInScreen(),
+    Routes.signUp: (_) => const SignUpScreen(),
   };
 }

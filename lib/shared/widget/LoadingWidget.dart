@@ -8,7 +8,7 @@ class LoadingWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       opacity: visible ? 1.0 : 0.0,
       child: Container(
         alignment: FractionalOffset.center,

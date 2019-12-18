@@ -10,8 +10,12 @@ class GlobalBlocProvider extends InheritedWidget {
   bool updateShouldNotify(_) => true;
 
   static GlobalBloc of(BuildContext context) {
-    return (context.inheritFromWidgetOfExactType(GlobalBlocProvider)
-            as GlobalBlocProvider)
+//    return (context.inheritFromWidgetOfExactType(GlobalBlocProvider)
+//            as GlobalBlocProvider)
+//        .bloc;
+
+    return context
+        .dependOnInheritedWidgetOfExactType<GlobalBlocProvider>()
         .bloc;
   }
 }

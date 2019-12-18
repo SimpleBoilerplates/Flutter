@@ -14,17 +14,17 @@ class BooksWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         opacity: visible ? 1.0 : 0.0,
         child: ListView.builder(
             itemCount: items.length,
             scrollDirection: Axis.vertical,
-            itemBuilder: (context, index) {
+            itemBuilder: (BuildContext context, int index) {
               return Container(
                 child: InkResponse(
                   enableFeedback: true,
                   child: BookCell(items, index),
-                  // onTap: () => openDetailPage(snapshot.data, index),
+                  //onTap: () => openDetailPage(snapshot.data, index),
                 ),
               );
             }));

@@ -4,6 +4,6 @@ Widget WidgetLoading() {
   return Center(
       child: Column(
     mainAxisAlignment: MainAxisAlignment.center,
-    children: [Text("Please Wait..."), CircularProgressIndicator()],
+    children: [const Text('Please Wait...'), const CircularProgressIndicator()],
   ));
 }

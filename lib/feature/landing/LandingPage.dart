@@ -29,7 +29,7 @@ class _LandingPageState extends State<LandingPage> {
   }
 
   void _listen() {
-    _globalBloc.isAuthonticated.listen((onValue) {
+    _globalBloc.isAuthenticated.listen((bool onValue) {
       if (onValue) {
         Navigator.pushReplacementNamed(context, Routes.home);
       } else {

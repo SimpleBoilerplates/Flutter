@@ -9,20 +9,19 @@ class HomeBloc {
 
   final _books = PublishSubject<DataState>();
 
-  Observable<DataState> get books => _books.stream;
+  Stream<DataState> get books => _books.stream;
 
   void fetchAllBooks() async {
     _books.sink.add(StateLoading());
-    final response = await _repository.getBooks();
+    final Map response = await _repository.getBooks();
     if (!response['error']) {
-      var books = (response['data'] as List)
-          ?.map((e) =>
-              e == null ? null : Book.fromJson(e as Map<String, dynamic>))
-          ?.toList();
+      final List<Book> books = (response['data'] as List)?.map((e) {
+        return e == null ? null : Book.fromJson(e as Map<String, dynamic>);
+      })?.toList();
 
       _books.sink.add(StateSuccessWithList(books));
     } else {
-      _books.sink.add(StateError(response["message"]));
+      _books.sink.add(StateError(response['message']));
     }
   }
 

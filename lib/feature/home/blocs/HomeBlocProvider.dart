@@ -10,8 +10,6 @@ class HomeBlocProvider extends InheritedWidget {
   bool updateShouldNotify(_) => true;
 
   static HomeBloc of(BuildContext context) {
-    return (context.inheritFromWidgetOfExactType(HomeBlocProvider)
-            as HomeBlocProvider)
-        .bloc;
+    return context.dependOnInheritedWidgetOfExactType<HomeBlocProvider>().bloc;
   }
 }

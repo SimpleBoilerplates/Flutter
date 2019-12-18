@@ -35,7 +35,7 @@ class BookCell extends StatelessWidget {
                     BoxShadow(
                         color: mainColor,
                         blurRadius: 5.0,
-                        offset: Offset(2.0, 5.0))
+                        offset: const Offset(2.0, 5.0))
                   ],
                 ),
               ),
@@ -53,12 +53,12 @@ class BookCell extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: mainColor),
                   ),
-                  Padding(padding: const EdgeInsets.all(2.0)),
+                  const Padding(padding: EdgeInsets.all(2.0)),
                   Text(
                     books[index].subTitle,
                     maxLines: 3,
-                    style: TextStyle(
-                        color: const Color(0xff8785A4), fontFamily: 'Arvo'),
+                    style: const TextStyle(
+                        color: Color(0xff8785A4), fontFamily: 'Arvo'),
                   )
                 ],
                 crossAxisAlignment: CrossAxisAlignment.start,

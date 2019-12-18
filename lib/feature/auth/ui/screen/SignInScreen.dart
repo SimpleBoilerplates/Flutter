@@ -1,4 +1,4 @@
-import 'dart:core' ;
+import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/generated/i18n.dart';
@@ -19,12 +19,6 @@ class SignInScreen extends StatefulWidget {
 class _SignInScreenState extends State<SignInScreen> {
   AuthBloc _bloc;
 
-//  @override
-//  void didChangeDependencies() {
-//    super.didChangeDependencies();
-//    _bloc = AuthBlocProvider.of(context);
-//  }
-
   @override
   void initState() {
     super.initState();
@@ -39,7 +33,7 @@ class _SignInScreenState extends State<SignInScreen> {
   }
 
   void _listen() {
-    _bloc.signedIn.listen((value) {
+    _bloc.signedIn.listen((DataState value) {
       print(value);
       if (value is StateSuccessWithMap) {
         Navigator.pushReplacementNamed(context, Routes.home);
@@ -56,12 +50,11 @@ class _SignInScreenState extends State<SignInScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
-        //title: new Text("Title"),
       ),
       body: StreamBuilder(
         stream: _bloc.signedIn,
         initialData: StateInitial(),
-        builder: (context, AsyncSnapshot<DataState> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<DataState> snapshot) {
           return buildBody(snapshot);
         },
       ),
@@ -82,10 +75,10 @@ class _SignInScreenState extends State<SignInScreen> {
 
   Widget _formWidget(bool visible) {
     return AnimatedOpacity(
-      duration: Duration(milliseconds: 300),
+      duration: const Duration(milliseconds: 300),
       opacity: visible ? 1.0 : 0.0,
       child: Container(
-        margin: EdgeInsets.all(16),
+        margin: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -110,7 +103,7 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget _passwordField() {
     return StreamBuilder(
         stream: _bloc.password,
-        builder: (context, AsyncSnapshot<String> snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
           return TextField(
             onChanged: _bloc.changePassword,
             obscureText: true,
@@ -124,7 +117,7 @@ class _SignInScreenState extends State<SignInScreen> {
   Widget _emailField() {
     return StreamBuilder(
         stream: _bloc.email,
-        builder: (context, snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
           return TextField(
             onChanged: _bloc.changeEmail,
             decoration: InputDecoration(
@@ -142,7 +135,8 @@ class _SignInScreenState extends State<SignInScreen> {
         onPressed: () {
           signIn();
         },
-        child: Text(S.of(context).sign_in, style: TextStyle(fontSize: 18)),
+        child:
+            Text(S.of(context).sign_in, style: const TextStyle(fontSize: 18)),
       ),
     );
   }
