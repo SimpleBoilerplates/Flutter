@@ -15,7 +15,7 @@ class HomeBloc {
     _books.sink.add(StateLoading());
     final Map response = await _repository.getBooks();
     if (!response['error']) {
-      final List<Book> books = (response['data'] as List)?.map((e) {
+      final List<Book> books = (response['data'] as List)?.map((dynamic e) {
         return e == null ? null : Book.fromJson(e as Map<String, dynamic>);
       })?.toList();
 
