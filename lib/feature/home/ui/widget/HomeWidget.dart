@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/common/base/data_state.dart';
 import 'package:flutter_boilerplate/feature/home/ui/widget/BooksWidget.dart';
-import 'package:flutter_boilerplate/shared/base/DataState.dart';
 
-import '../../../../main/bloc/GlobalBloc.dart';
-import '../../../../main/bloc/GlobalBlocProvider.dart';
-import '../../../../shared/constant/Routes.dart';
-import '../../../../shared/widget/EmptyWidget.dart';
-import '../../../../shared/widget/LoadingWidget.dart';
-import '../../../../shared/widget/WidgetError.dart';
-import '../../blocs/HomeBloc.dart';
-import '../../blocs/HomeBlocProvider.dart';
+import '../../../../common/constant/routes.dart';
+import '../../../../common/widget/empty_widget.dart';
+import '../../../../common/widget/loading_widget.dart';
+import '../../../../common/widget/widget_error.dart';
+import '../../blocs/home_bloc.dart';
+import '../../blocs/home_bloc_provider.dart';
 import '../widget/BooksWidget.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -21,18 +19,15 @@ class HomeWidget extends StatefulWidget {
 
 class _HomeWidgetState extends State<HomeWidget> {
   HomeBloc _bloc;
-  GlobalBloc _globalBloc;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _bloc = HomeBlocProvider.of(context);
-    _globalBloc = GlobalBlocProvider.of(context);
   }
 
   @override
   void dispose() {
-    _globalBloc.dispose();
     _bloc.dispose();
     super.dispose();
   }
@@ -49,7 +44,6 @@ class _HomeWidgetState extends State<HomeWidget> {
           IconButton(
             icon: Icon(Icons.adjust),
             onPressed: () {
-              _globalBloc.logout();
               Navigator.pushReplacementNamed(context, Routes.signIn);
             },
           ),
