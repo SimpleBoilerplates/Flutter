@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_boilerplate/feature/authontication/resource/user_repository.dart';
+import 'package:flutter_boilerplate/feature/authentication/resource/user_repository.dart';
 import 'package:meta/meta.dart';
 
 import 'authentication_event.dart';

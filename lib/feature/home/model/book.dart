@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'book.g.dart';
 
 @JsonSerializable()
-class Book {
+class Book extends Equatable {
   @JsonKey(name: 'id')
   final int id;
   @JsonKey(name: 'title')
@@ -20,4 +21,11 @@ class Book {
   factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);
 
   Map<String, dynamic> toJson() => _$BookToJson(this);
+
+  // Equatable
+  @override
+  List<Object> get props => [id, title, subTitle, description, preview];
+
+  @override
+  String toString() => 'Post { id: $id }';
 }

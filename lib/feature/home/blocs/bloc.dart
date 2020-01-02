@@ -1,3 +1,3 @@
-//export 'book_detail_bloc.dart';
-//export 'book_detail_event.dart';
-//export 'book_detail_state.dart';
+export 'book_event.dart';
+export 'book_state.dart';
+export 'books_bloc.dart';

@@ -1,9 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
-
+import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 
 class HttpClient {
+  final http.Client httpClient;
+
+  HttpClient({
+    @required this.httpClient,
+  }) : assert(httpClient != null);
+
   static Future<Map<String, dynamic>> post(String url, dynamic body,
       {String token = ''}) async {
     return await http.post(Uri.encodeFull(url), body: body, headers: {

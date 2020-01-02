@@ -2,7 +2,7 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_boilerplate/feature/authontication/blocs/authentication_bloc.dart';
+import 'package:flutter_boilerplate/feature/authentication/blocs/authentication_bloc.dart';
 import 'package:flutter_boilerplate/feature/signin_signup/blocs/blocs.dart';
 import 'package:flutter_boilerplate/feature/signin_signup/resources/auth_repository.dart';
 import 'package:flutter_boilerplate/feature/signin_signup/ui/signin_form.dart';

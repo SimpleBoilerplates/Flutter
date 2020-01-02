@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../model/book.dart';
+import '../../model/book.dart';
 
 class BookCell extends StatelessWidget {
   final List<Book> books;
@@ -20,7 +20,7 @@ class BookCell extends StatelessWidget {
               padding: const EdgeInsets.all(0.0),
               child: Container(
                 margin: const EdgeInsets.all(16.0),
-//                                child: new Image.network(image_url+movies[i]['poster_path'],width: 100.0,height: 100.0),
+//            child: new Image.network(image_url+movies[i]['poster_path'],width: 100.0,height: 100.0),
                 child: Container(
                   width: 70.0,
                   height: 70.0,

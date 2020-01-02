@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/common/base/data_state.dart';
-import 'package:flutter_boilerplate/common/constant/routes.dart';
+import 'package:flutter_boilerplate/common/route/routes.dart';
 import 'package:flutter_boilerplate/generated/i18n.dart';
+import 'package:flutter_boilerplate/feature/signin_signup/resources/auth_repository.dart';
 
 import '../../../common/widget/loading_widget.dart';
 import '../../../common/widget/widget_error.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({Key key}) : super(key: key);
+  final AuthRepository authRepository;
+
+  SignUpPage({Key key, @required this.authRepository})
+      : assert(authRepository != null),
+        super(key: key);
 
   @override
   _SignUpPageState createState() => _SignUpPageState();

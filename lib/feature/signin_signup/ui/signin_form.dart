@@ -52,6 +52,7 @@ class _SignInFormState extends State<SignInForm> {
                       state is! LoginLoading ? _onLoginButtonPressed : null,
                   child: Text('Login'),
                 ),
+                _signUpButton(),
                 Container(
                   child: state is LoginLoading
                       ? CircularProgressIndicator()
@@ -61,6 +62,20 @@ class _SignInFormState extends State<SignInForm> {
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _signUpButton() {
+    return SizedBox(
+      width: double.infinity,
+      height: 45,
+      child: RaisedButton(
+        color: Colors.white,
+        onPressed: () {
+          //Navigator.pushNamed(context, Routes.signUp, arguments: auth);
+        },
+        child: Text('Sign Up'),
       ),
     );
   }
