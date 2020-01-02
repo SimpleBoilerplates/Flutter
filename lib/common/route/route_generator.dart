@@ -4,8 +4,8 @@ import 'package:flutter_boilerplate/feature/signin_signup/resources/auth_reposit
 import 'package:flutter_boilerplate/feature/signin_signup/ui/sign_in_page.dart';
 import 'package:flutter_boilerplate/feature/signin_signup/ui/sign_up_page.dart';
 
-import '../../feature/home/ui/screen/home_page.dart';
-import '../../feature/landing/landing_page.dart';
+import 'package:flutter_boilerplate/feature/home/ui/screen/home_page.dart';
+import 'package:flutter_boilerplate/feature/landing/landing_page.dart';
 import 'routes.dart';
 
 class RouteGenerator {

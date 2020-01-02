@@ -16,17 +16,17 @@ It was developed as a demo project before developing production application. I w
    - [NodeJS backend](https://github.com/simpleboilerplates/BooksDemoNode) 
 
 ### With
-- Bloc
-- RxDart
+- [Flutter_bloc](https://bloclibrary.dev/#/)
 - [Localization i18n](https://flutter.dev/docs/development/accessibility-and-localization/internationalization)
 
 ### Tutorial
 
 #### Bloc
-  - [Getting Started with the BLoC Pattern](https://www.raywenderlich.com/4074597-getting-started-with-the-bloc-pattern)
+  - [Getting Started with the Flutter Bloc](https://bloclibrary.dev/#/gettingstarted)
   - [Architect your Flutter project using BLOC pattern](https://medium.com/flutterpub/architecting-your-flutter-project-bd04e144a8f1) 
   - [Keep it Simple, State: Architecture for Flutter Apps](https://www.youtube.com/watch?v=zKXz3pUkw9A) 
   - [Flutter BLoC Pattern for Dummies Like Me](https://medium.com/flutter-community/flutter-bloc-pattern-for-dummies-like-me-c22d40f05a56)
+  - [Getting Started With Flutter BLoC](https://dev.to/netguru/getting-started-with-flutter-bloc-1pkm)
  
  #### Others
    - [Raywenderlich's collection](https://www.raywenderlich.com/library?domain_ids%5B%5D=9)
