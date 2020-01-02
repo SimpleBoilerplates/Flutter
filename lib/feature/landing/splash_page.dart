@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/generated/i18n.dart';
 
 class SplashPage extends StatelessWidget {
   @override
@@ -7,7 +6,7 @@ class SplashPage extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.only(top: 16.0),
       child: Text(
-        S.of(context).no_results,
+        "Splash",
         style: TextStyle(color: Colors.blueGrey),
       ),
     );

@@ -15,6 +15,7 @@ class RouteGenerator {
     switch (settings.name) {
       case Routes.landing:
         return MaterialPageRoute<dynamic>(builder: (_) => LandingPage());
+
       case Routes.signIn:
         if (args is AuthRepository) {
           return MaterialPageRoute<dynamic>(
@@ -32,7 +33,12 @@ class RouteGenerator {
         return _errorRoute();
 
       case Routes.home:
-        return MaterialPageRoute<dynamic>(builder: (_) => HomePage());
+        return MaterialPageRoute<dynamic>(
+            builder: (_) => Scaffold(
+                appBar: AppBar(
+                  title: const Text('Books'),
+                ),
+                body: HomePage()));
       default:
         return _errorRoute();
     }

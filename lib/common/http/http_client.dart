@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:meta/meta.dart';
+
 import 'package:http/http.dart' as http;
+import 'package:meta/meta.dart';
 
 class HttpClient {
   final http.Client httpClient;

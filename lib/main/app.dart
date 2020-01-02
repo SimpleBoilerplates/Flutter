@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/common/route/route_generator.dart';
 import 'package:flutter_boilerplate/common/route/routes.dart';
-import 'package:flutter_boilerplate/feature/authentication/resource/user_repository.dart';
 import 'package:flutter_boilerplate/generated/i18n.dart';
 
 class App extends StatelessWidget {

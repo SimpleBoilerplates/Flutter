@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/common/base/data_state.dart';
 import 'package:flutter_boilerplate/common/route/routes.dart';
-import 'package:flutter_boilerplate/generated/i18n.dart';
 import 'package:flutter_boilerplate/feature/signin_signup/resources/auth_repository.dart';
+import 'package:flutter_boilerplate/generated/i18n.dart';
 
 import '../../../common/widget/loading_widget.dart';
 import '../../../common/widget/widget_error.dart';

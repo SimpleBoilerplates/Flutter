@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_boilerplate/feature/home/blocs/bloc.dart';
-import 'package:flutter_boilerplate/feature/home/resource/home_repository.dart';
 import 'package:flutter_boilerplate/feature/home/model/book.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:flutter_boilerplate/feature/home/resource/home_repository.dart';
 import 'package:meta/meta.dart';
+import 'package:rxdart/rxdart.dart';
 
 class BooksBloc extends Bloc<BookEvent, BookState> {
   final HomeRepository homeRepository;
@@ -29,6 +29,7 @@ class BooksBloc extends Bloc<BookEvent, BookState> {
   @override
   Stream<BookState> mapEventToState(BookEvent event) async* {
     final BookState currentState = state;
+
     if (event is Fetch) {
       try {
         if (currentState is BookEmpty) {
@@ -50,8 +51,8 @@ class BooksBloc extends Bloc<BookEvent, BookState> {
   }
 
   Future<List<Book>> _fetchBooks() async {
-    final Map response = await homeRepository.getBooks();
-
+    final Map response = await homeRepository.fetchBooks();
+    print(response);
     if (!response['error']) {
       final List<Book> _books = (response['data'] as List)?.map((dynamic e) {
         return e == null ? null : Book.fromJson(e as Map<String, dynamic>);

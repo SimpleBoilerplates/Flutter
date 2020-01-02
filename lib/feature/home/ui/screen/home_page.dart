@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_boilerplate/feature/authentication/blocs/blocs.dart';
 import 'package:flutter_boilerplate/common/route/routes.dart';
-
-import '../widget/home_widget.dart';
-import 'package:bloc/bloc.dart';
+import 'package:flutter_boilerplate/feature/authentication/blocs/bloc.dart';
 import 'package:flutter_boilerplate/feature/home/blocs/bloc.dart';
 import 'package:flutter_boilerplate/feature/home/resource/home_repository.dart';
+
+import '../widget/home_widget.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -26,9 +25,8 @@ class HomePage extends StatelessWidget {
           ],
         ),
         body: BlocProvider(
-          create: (context) =>
-              BooksBloc(homeRepository: HomeRepository())..add(Fetch()),
-          child: const HomeWidget(),
-        ));
+            create: (context) =>
+                BooksBloc(homeRepository: HomeRepository())..add(Fetch()),
+            child: Container(child: const HomeWidget())));
   }
 }
