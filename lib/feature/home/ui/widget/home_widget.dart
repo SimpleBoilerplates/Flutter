@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_boilerplate/feature/home/blocs/bloc.dart';
+import 'package:flutter_boilerplate/feature/home/bloc/bloc.dart';
 import 'package:flutter_boilerplate/feature/home/ui/widget/book_widget.dart';
 
 class HomeWidget extends StatefulWidget {

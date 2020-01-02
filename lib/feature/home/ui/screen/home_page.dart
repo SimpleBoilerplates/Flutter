@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_boilerplate/common/route/routes.dart';
-import 'package:flutter_boilerplate/feature/authentication/blocs/bloc.dart';
-import 'package:flutter_boilerplate/feature/home/blocs/bloc.dart';
+import 'package:flutter_boilerplate/feature/authentication/bloc/bloc.dart';
+import 'package:flutter_boilerplate/feature/home/bloc/bloc.dart';
 import 'package:flutter_boilerplate/feature/home/resource/home_repository.dart';
-
 import 'package:flutter_boilerplate/feature/home/ui/widget/home_widget.dart';
 
 class HomePage extends StatelessWidget {

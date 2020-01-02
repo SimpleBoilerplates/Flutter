@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_boilerplate/feature/home/blocs/bloc.dart';
+import 'package:flutter_boilerplate/feature/home/bloc/bloc.dart';
 import 'package:flutter_boilerplate/feature/home/model/book.dart';
 import 'package:flutter_boilerplate/feature/home/resource/home_repository.dart';
 import 'package:meta/meta.dart';

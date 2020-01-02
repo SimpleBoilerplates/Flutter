@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_boilerplate/common/widget/loading_widget.dart';
-import 'package:flutter_boilerplate/feature/authentication/blocs/bloc.dart';
+import 'package:flutter_boilerplate/feature/authentication/bloc/bloc.dart';
 import 'package:flutter_boilerplate/feature/home/ui/screen/home_page.dart';
 import 'package:flutter_boilerplate/feature/landing/splash_page.dart';
 import 'package:flutter_boilerplate/feature/signin_signup/resources/auth_repository.dart';
@@ -11,20 +11,20 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthenticationBloc, AuthenticationState>(
-        listener: (context, state) {
-    }, builder: (context, state) {
-      if (state is AuthenticationLoading) {
-        return const LoadingWidget();
-      }
+        listener: (context, state) {},
+        builder: (context, state) {
+          if (state is AuthenticationLoading) {
+            return const LoadingWidget();
+          }
 
-      if (state is AuthenticationAuthenticated) {
-        return HomePage();
-      }
-      if (state is AuthenticationUnauthenticated) {
-        return SignInPage(authRepository: AuthRepository());
-      }
+          if (state is AuthenticationAuthenticated) {
+            return HomePage();
+          }
+          if (state is AuthenticationUnauthenticated) {
+            return SignInPage(authRepository: AuthRepository());
+          }
 
-      return SplashPage();
-    });
+          return SplashPage();
+        });
   }
 }
