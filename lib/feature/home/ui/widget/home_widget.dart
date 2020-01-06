@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_boilerplate/feature/home/bloc/bloc.dart';
+import 'package:flutter_boilerplate/feature/home/bloc/index.dart';
 import 'package:flutter_boilerplate/feature/home/ui/widget/book_widget.dart';
 
 class HomeWidget extends StatefulWidget {
@@ -36,7 +36,7 @@ class _HomeWidgetState extends State<HomeWidget> {
         if (state is BookLoaded) {
           if (state.books.isEmpty) {
             return const Center(
-              child: Text('no posts'),
+              child: Text('no books'),
             );
           }
           return ListView.builder(

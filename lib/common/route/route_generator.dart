@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_boilerplate/feature/home/ui/screen/home_page.dart';
+import 'package:flutter_boilerplate/feature/landing/landing_page.dart';
 import 'package:flutter_boilerplate/feature/signin_signup/resources/auth_repository.dart';
 import 'package:flutter_boilerplate/feature/signin_signup/ui/sign_in_page.dart';
 import 'package:flutter_boilerplate/feature/signin_signup/ui/sign_up_page.dart';
 
-import 'package:flutter_boilerplate/feature/home/ui/screen/home_page.dart';
-import 'package:flutter_boilerplate/feature/landing/landing_page.dart';
 import 'routes.dart';
 
 class RouteGenerator {

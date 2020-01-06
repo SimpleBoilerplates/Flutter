@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_boilerplate/feature/authentication/bloc/bloc.dart';
-import 'package:flutter_boilerplate/feature/signin_signup/blocs/blocs.dart';
+import 'package:flutter_boilerplate/feature/authentication/bloc/index.dart';
+import 'package:flutter_boilerplate/feature/signin_signup/blocs/index.dart';
 import 'package:flutter_boilerplate/feature/signin_signup/resources/auth_repository.dart';
 import 'package:meta/meta.dart';
 

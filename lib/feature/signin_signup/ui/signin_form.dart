@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_boilerplate/feature/signin_signup/blocs/blocs.dart';
+import 'package:flutter_boilerplate/feature/signin_signup/blocs/index.dart';
 
 class SignInForm extends StatefulWidget {
   @override
