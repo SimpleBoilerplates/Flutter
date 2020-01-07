@@ -110,7 +110,7 @@ class _SignUpPageState extends State<SignUpPage> {
       return TextField(
         // onChanged: _bloc.changeName,
         decoration: InputDecoration(
-            hintText: S.of(context).nameHint, errorText: snapshot.error),
+            hintText: S.of(context).name_hint, errorText: snapshot.error),
       );
     });
   }
@@ -123,7 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
         //onChanged: _bloc.changePassword,
         obscureText: true,
         decoration: InputDecoration(
-            hintText: S.of(context).passwordHint, errorText: snapshot.error),
+            hintText: S.of(context).password_hint, errorText: snapshot.error),
       );
     });
   }
@@ -135,7 +135,7 @@ class _SignUpPageState extends State<SignUpPage> {
       return TextField(
         //onChanged: _bloc.changeEmail,
         decoration: InputDecoration(
-            hintText: S.of(context).emailHint, errorText: snapshot.error),
+            hintText: S.of(context).email_hint, errorText: snapshot.error),
       );
     });
   }

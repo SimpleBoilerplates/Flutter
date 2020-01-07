@@ -1,11 +1,13 @@
 {
-  "passwordHint": "Password",
-  "emailHint": "Email",
-  "nameHint": "Name",
+  "password_hint": "Password",
+  "email_hint": "Email",
+  "name_hint": "Name",
   "sign_up": "Sign Up",
   "sign_in": "Sign In",
   "no_results": "No results",
   "error": "Error",
   "please_wait": "Please Wait...",
-  "ok": "Ok"
+  "ok": "Ok",
+  "user_name_hint": "User Name",
+  "already_user" : "Already a user"
 }
