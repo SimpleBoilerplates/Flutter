@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_boilerplate/feature/signin_signup/bloc/index.dart';
 import 'package:flutter_boilerplate/generated/i18n.dart';
-import 'package:flutter_boilerplate/common/route/routes.dart';
-import 'package:flutter_boilerplate/feature/signin_signup/resources/index.dart';
 
-class SignInForm extends StatefulWidget {
+class SignUpForm extends StatefulWidget {
   @override
-  State<SignInForm> createState() => _SignInFormState();
+  State<SignUpForm> createState() => _SignUpFormState();
 }
 
-class _SignInFormState extends State<SignInForm> {
+class _SignUpFormState extends State<SignUpForm> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _emailController = TextEditingController();
 
-  void _onLoginButtonPressed() {
-    BlocProvider.of<SignInBloc>(context).add(
-      SignInButtonPressed(
+  void _onSignUpButtonPressed() {
+    BlocProvider.of<SignUpBloc>(context).add(
+      SignUpButtonPressed(
         username: _usernameController.text,
         password: _passwordController.text,
+        email: _emailController.text,
       ),
     );
   }
@@ -35,6 +35,19 @@ class _SignInFormState extends State<SignInForm> {
             ),
           );
         }
+
+        if(state is SignUpSuccess){
+
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text(S.of(context).signup_success),
+              backgroundColor: Theme.of(context).accentColor,
+            ),
+          );
+
+          Navigator.pop(context);
+        }
+
       },
       child: BlocBuilder<SignInBloc, SignInState>(
         builder: (context, state) {
@@ -44,7 +57,7 @@ class _SignInFormState extends State<SignInForm> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     const SizedBox(height: 150),
-                    Text(S.of(context).sign_in,
+                    Text(S.of(context).sign_up,
                         style: TextStyle(
                             color: Colors.grey[800],
                             fontWeight: FontWeight.bold,
@@ -52,28 +65,38 @@ class _SignInFormState extends State<SignInForm> {
                     Form(
                       child: Column(
                         children: [
+
+                          TextFormField(
+                            decoration: InputDecoration(
+                                labelText: S.of(context).email_hint),
+                                controller: _emailController,
+                                keyboardType: TextInputType.emailAddress
+                          ),
+
                           TextFormField(
                             decoration: InputDecoration(
                                 labelText: S.of(context).user_name_hint),
-                            controller: _usernameController,
+                                controller: _usernameController,
                           ),
                           TextFormField(
                             decoration: InputDecoration(
                                 labelText: S.of(context).password_hint),
-                            controller: _passwordController,
-                            obscureText: true,
+                                controller: _passwordController,
+                                obscureText: true,
                           ),
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: <Widget>[
                                 const SizedBox(height: 30),
-                                _signInButton(state),
+                                _signUpButton(state),
+
                                 const SizedBox(height: 30),
                                 Text(
-                                  S.of(context).new_user,
+                                  S.of(context).already_user,
                                   textAlign: TextAlign.center,
                                 ),
-                                _signUpButton(),
+                                _signInButton(),
+
                               ]),
                           Container(
                             child: state is SignInLoading
@@ -89,24 +112,24 @@ class _SignInFormState extends State<SignInForm> {
     );
   }
 
-  Widget _signInButton(SignInState state) {
-    return SizedBox(
-        width: double.infinity,
-        child: RaisedButton(
-          color: Colors.white,
-          onPressed: state is! SignInLoading ? _onLoginButtonPressed : null,
-          child: Text(S.of(context).sign_in),
-        ));
-  }
-
-  Widget _signUpButton() {
+  Widget _signInButton() {
     return SizedBox(
         width: double.infinity,
         child: RaisedButton(
           color: Colors.white,
           onPressed: () {
-            Navigator.pushNamed(context, Routes.signUp, arguments: RepositoryProvider.of<AuthRepository>(context));
+            Navigator.pop(context);
           },
+          child: Text(S.of(context).sign_in),
+        ));
+  }
+
+  Widget _signUpButton(SignInState state) {
+    return SizedBox(
+        width: double.infinity,
+        child: RaisedButton(
+          color: Colors.white,
+          onPressed:  state is! SignInLoading ? _onSignUpButtonPressed : null,
           child: Text(S.of(context).sign_up),
         ));
   }

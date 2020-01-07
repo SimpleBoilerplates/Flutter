@@ -25,12 +25,14 @@ class S implements WidgetsLocalizations {
   String get email_hint => "Email";
   String get error => "Error";
   String get name_hint => "Name";
+  String get new_user => "A new user?";
   String get no_results => "No results";
   String get ok => "Ok";
   String get password_hint => "Password";
   String get please_wait => "Please Wait...";
   String get sign_in => "Sign In";
   String get sign_up => "Sign Up";
+  String get signup_success => "Successfully signed up, please Sign In";
   String get user_name_hint => "User Name";
 }
 

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
-
 final ThemeData basicTheme = _buildBasicTheme();
-
 
 TextTheme _buildTextTheme(TextTheme base) {
   return base.copyWith(
@@ -32,7 +30,7 @@ ThemeData _buildBasicTheme() {
     //canvasColor: const Color(0xFF202124),
     //scaffoldBackgroundColor: const Color(0xFF202124),
     //backgroundColor: const Color(0xFF202124),
-    errorColor:  Colors.red,
+    errorColor: Colors.red,
     buttonTheme: ButtonThemeData(
       colorScheme: colorScheme,
       textTheme: ButtonTextTheme.primary,

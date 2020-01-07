@@ -6,35 +6,36 @@ import 'package:flutter_boilerplate/feature/signin_signup/bloc/index.dart';
 import 'package:flutter_boilerplate/feature/signin_signup/resources/auth_repository.dart';
 import 'package:meta/meta.dart';
 
-class SignInBloc extends Bloc<SignInEvent, SignInState> {
+class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
   final AuthRepository authRepository;
   final AuthenticationBloc authenticationBloc;
 
-  SignInBloc({
+  SignUpBloc({
     @required this.authRepository,
     @required this.authenticationBloc,
   })  : assert(authRepository != null),
         assert(authenticationBloc != null);
 
   @override
-  SignInState get initialState => SignInInitial();
+  SignUpState get initialState => SignUpInitial();
 
   @override
-  Stream<SignInState> mapEventToState(SignInEvent event) async* {
-    if (event is SignInButtonPressed) {
-      yield SignInLoading();
+  Stream<SignUpState> mapEventToState(SignUpEvent event) async* {
+    if (event is SignUpButtonPressed) {
+      yield SignUpLoading();
 
       try {
         final response =
-            await authRepository.signIn(event.username, event.password);
+        await authRepository.signUp(event.email,event.username, event.password);
         if (!response['error']) {
-          authenticationBloc.add(LoggedIn(token: response["token"]));
-          yield SignInSuccess();
+          yield SignUpSuccess();
+          //authenticationBloc.add(LoggedIn(token: response["token"]));
         }else{
-          yield SignInInitial();
+          yield SignUpInitial();
+
         }
       } catch (error) {
-        yield SignInFailure(error: error.toString());
+        yield SignUpFailure(error: error.toString());
       }
     }
   }

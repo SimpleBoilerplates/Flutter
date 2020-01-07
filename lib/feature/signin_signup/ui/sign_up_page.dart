@@ -3,9 +3,41 @@ import 'package:flutter_boilerplate/common/base/data_state.dart';
 import 'package:flutter_boilerplate/common/route/routes.dart';
 import 'package:flutter_boilerplate/common/widget/loading_widget.dart';
 import 'package:flutter_boilerplate/common/widget/widget_error.dart';
-import 'package:flutter_boilerplate/feature/signin_signup/resources/auth_repository.dart';
+import 'package:flutter_boilerplate/feature/signin_signup/resources/index.dart';
 import 'package:flutter_boilerplate/generated/i18n.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_boilerplate/feature/signin_signup/bloc/index.dart';
+import 'package:flutter_boilerplate/feature/authentication/bloc/index.dart';
+import 'signup_form.dart';
 
+
+class SignUpPage extends StatelessWidget {
+  final AuthRepository authRepository;
+
+  SignUpPage({Key key, @required this.authRepository})
+      : assert(authRepository != null),
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(S.of(context).sign_in),
+      ),
+      body: BlocProvider(
+        create: (context) {
+          return SignInBloc(
+            authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
+            authRepository: authRepository,
+          );
+        },
+        child: SignUpForm(),
+      ),
+    );
+  }
+}
+
+/*
 class SignUpPage extends StatefulWidget {
   final AuthRepository authRepository;
 
@@ -171,3 +203,4 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 }
+*/

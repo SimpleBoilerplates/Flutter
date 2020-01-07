@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/common/route/route_generator.dart';
 import 'package:flutter_boilerplate/common/route/routes.dart';
 import 'package:flutter_boilerplate/generated/i18n.dart';
+
 import 'theme.dart';
 
 class App extends StatelessWidget {
@@ -24,7 +25,5 @@ class App extends StatelessWidget {
       onGenerateRoute: RouteGenerator.generateRoute,
       initialRoute: Routes.landing,
     );
-
-
   }
 }
