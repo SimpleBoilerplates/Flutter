@@ -25,14 +25,13 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       yield SignUpLoading();
 
       try {
-        final response =
-        await authRepository.signUp(event.email,event.username, event.password);
+        final response = await authRepository.signUp(
+            event.email, event.username, event.password);
         if (!response['error']) {
           yield SignUpSuccess();
           //authenticationBloc.add(LoggedIn(token: response["token"]));
-        }else{
+        } else {
           yield SignUpInitial();
-
         }
       } catch (error) {
         yield SignUpFailure(error: error.toString());

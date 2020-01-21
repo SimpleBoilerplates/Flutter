@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_boilerplate/feature/signin_signup/bloc/index.dart';
-import 'package:flutter_boilerplate/generated/i18n.dart';
 import 'package:flutter_boilerplate/common/route/routes.dart';
+import 'package:flutter_boilerplate/feature/signin_signup/bloc/index.dart';
 import 'package:flutter_boilerplate/feature/signin_signup/resources/index.dart';
+import 'package:flutter_boilerplate/generated/i18n.dart';
 
 class SignInForm extends StatefulWidget {
   @override
@@ -105,7 +105,8 @@ class _SignInFormState extends State<SignInForm> {
         child: RaisedButton(
           color: Colors.white,
           onPressed: () {
-            Navigator.pushNamed(context, Routes.signUp, arguments: RepositoryProvider.of<AuthRepository>(context));
+            Navigator.pushNamed(context, Routes.signUp,
+                arguments: RepositoryProvider.of<AuthRepository>(context));
           },
           child: Text(S.of(context).sign_up),
         ));

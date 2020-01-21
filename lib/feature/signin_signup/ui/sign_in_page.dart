@@ -18,21 +18,21 @@ class SignInPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(S.of(context).sign_in),
-      ),
-      body: RepositoryProvider(
-        create: (context) => authRepository,
-        child:  BlocProvider(
-          create: (context) {
-            return SignInBloc(
-              authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
-              authRepository: authRepository,
-            );
-          },
-          child: SignInForm(),
+        appBar: AppBar(
+          title: Text(S.of(context).sign_in),
         ),
-      )
-    );
+        body: RepositoryProvider(
+          create: (context) => authRepository,
+          child: BlocProvider(
+            create: (context) {
+              return SignInBloc(
+                authenticationBloc:
+                    BlocProvider.of<AuthenticationBloc>(context),
+                authRepository: authRepository,
+              );
+            },
+            child: SignInForm(),
+          ),
+        ));
   }
 }

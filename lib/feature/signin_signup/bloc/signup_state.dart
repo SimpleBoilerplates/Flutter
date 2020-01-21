@@ -11,6 +11,7 @@ abstract class SignUpState extends Equatable {
 class SignUpInitial extends SignUpState {}
 
 class SignUpLoading extends SignUpState {}
+
 class SignUpSuccess extends SignUpState {}
 
 class SignUpFailure extends SignUpState {

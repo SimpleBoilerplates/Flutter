@@ -36,8 +36,7 @@ class _SignUpFormState extends State<SignUpForm> {
           );
         }
 
-        if(state is SignUpSuccess){
-
+        if (state is SignUpSuccess) {
           Scaffold.of(context).showSnackBar(
             SnackBar(
               content: Text(S.of(context).signup_success),
@@ -47,7 +46,6 @@ class _SignUpFormState extends State<SignUpForm> {
 
           Navigator.pop(context);
         }
-
       },
       child: BlocBuilder<SignInBloc, SignInState>(
         builder: (context, state) {
@@ -65,38 +63,33 @@ class _SignUpFormState extends State<SignUpForm> {
                     Form(
                       child: Column(
                         children: [
-
                           TextFormField(
-                            decoration: InputDecoration(
-                                labelText: S.of(context).email_hint),
-                                controller: _emailController,
-                                keyboardType: TextInputType.emailAddress
-                          ),
-
+                              decoration: InputDecoration(
+                                  labelText: S.of(context).email_hint),
+                              controller: _emailController,
+                              keyboardType: TextInputType.emailAddress),
                           TextFormField(
                             decoration: InputDecoration(
                                 labelText: S.of(context).user_name_hint),
-                                controller: _usernameController,
+                            controller: _usernameController,
                           ),
                           TextFormField(
                             decoration: InputDecoration(
                                 labelText: S.of(context).password_hint),
-                                controller: _passwordController,
-                                obscureText: true,
+                            controller: _passwordController,
+                            obscureText: true,
                           ),
                           Column(
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: <Widget>[
                                 const SizedBox(height: 30),
                                 _signUpButton(state),
-
                                 const SizedBox(height: 30),
                                 Text(
                                   S.of(context).already_user,
                                   textAlign: TextAlign.center,
                                 ),
                                 _signInButton(),
-
                               ]),
                           Container(
                             child: state is SignInLoading
@@ -129,7 +122,7 @@ class _SignUpFormState extends State<SignUpForm> {
         width: double.infinity,
         child: RaisedButton(
           color: Colors.white,
-          onPressed:  state is! SignInLoading ? _onSignUpButtonPressed : null,
+          onPressed: state is! SignInLoading ? _onSignUpButtonPressed : null,
           child: Text(S.of(context).sign_up),
         ));
   }

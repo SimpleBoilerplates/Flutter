@@ -30,7 +30,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         if (!response['error']) {
           authenticationBloc.add(LoggedIn(token: response["token"]));
           yield SignInSuccess();
-        }else{
+        } else {
           yield SignInInitial();
         }
       } catch (error) {
