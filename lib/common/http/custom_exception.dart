@@ -1,8 +1,9 @@
 class CustomException implements Exception {
-  dynamic _message;
-  dynamic _prefix;
 
   CustomException([this._message, this._prefix]);
+
+  final dynamic _message;
+  final dynamic _prefix;
 
   String toString() {
     return "$_prefix$_message";

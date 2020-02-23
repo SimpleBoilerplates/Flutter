@@ -19,7 +19,7 @@ class AuthenticationBloc
   Stream<AuthenticationState> mapEventToState(
     AuthenticationEvent event,
   ) async* {
-    if (event is AppStarted) {
+    if (event is AuthStarted) {
       final bool hasToken = await userRepository.hasToken();
 
       if (hasToken) {

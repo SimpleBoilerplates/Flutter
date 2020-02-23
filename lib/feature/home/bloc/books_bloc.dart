@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_boilerplate/common/http/response.dart';
 import 'package:flutter_boilerplate/feature/home/bloc/index.dart';
 import 'package:flutter_boilerplate/feature/home/model/book.dart';
 import 'package:flutter_boilerplate/feature/home/resource/home_repository.dart';
@@ -51,15 +52,10 @@ class BooksBloc extends Bloc<BookEvent, BookState> {
   }
 
   Future<List<Book>> _fetchBooks() async {
-    final Map response = await homeRepository.fetchBooks();
-    print(response);
-    if (!response['error']) {
-      final List<Book> _books = (response['data'] as List)?.map((dynamic e) {
-        return e == null ? null : Book.fromJson(e as Map<String, dynamic>);
-      })?.toList();
-      return _books;
-    } else {
-      throw Exception('error fetching posts');
+    final books = await homeRepository.fetchBooks();
+    if(books.status == Status.ConnectivityError){
+      //Internet problem
     }
+    return books.data;
   }
 }

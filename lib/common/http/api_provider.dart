@@ -3,16 +3,16 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+
 import 'custom_exception.dart';
 
 class ApiProvider {
-
-   Future<Map<String, dynamic>> post(String url, dynamic body,
+  Future<Map<String, dynamic>> post(String url, dynamic body,
       {String token = ''}) async {
-
-     dynamic responseJson ;
+    dynamic responseJson;
     try {
-      final dynamic response = await http.post(Uri.encodeFull(url), body: body, headers: {
+      final dynamic response =
+          await http.post(Uri.encodeFull(url), body: body, headers: {
         'content-type': 'application/json',
         'accept': 'application/json',
         'Authorization': 'Bearer ' + token
@@ -24,9 +24,7 @@ class ApiProvider {
     return responseJson;
   }
 
-
-  Future<dynamic> get(String url,
-      {String token = '', dynamic query}) async {
+  Future<dynamic> get(String url, {String token = '', dynamic query}) async {
     dynamic responseJson;
     try {
       final dynamic response = await http.get(Uri.encodeFull(url), headers: {
@@ -44,7 +42,7 @@ class ApiProvider {
   dynamic _response(http.Response response) {
     switch (response.statusCode) {
       case 200:
-       final dynamic responseJson = json.decode(response.body.toString());
+        final dynamic responseJson = json.decode(response.body.toString());
         print(responseJson);
         return responseJson;
       case 400:
@@ -60,6 +58,4 @@ class ApiProvider {
             'Error occured while Communication with Server with StatusCode : ${response.statusCode}');
     }
   }
-
-
 }
