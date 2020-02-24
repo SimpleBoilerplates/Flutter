@@ -52,10 +52,14 @@ class BooksBloc extends Bloc<BookEvent, BookState> {
   }
 
   Future<List<Book>> _fetchBooks() async {
-    final books = await homeRepository.fetchBooks();
-    if(books.status == Status.ConnectivityError){
+    final response = await homeRepository.fetchBooks();
+    if(response.status == Status.ConnectivityError){
       //Internet problem
     }
-    return books.data;
+    if(response.status == Status.Success) {
+      return response.data;
+    }
+
+    return [];
   }
 }

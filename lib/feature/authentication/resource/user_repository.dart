@@ -1,56 +1,62 @@
 import 'dart:async';
 
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class UserRepository {
   static const String _token = 'token';
 
-  Future<void> deleteToken() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool saved = false;
+  Future<void> deleteAll() async {
+    const FlutterSecureStorage storage =  FlutterSecureStorage();
     try {
-      prefs.remove(_token);
-      saved = true;
+      await storage.deleteAll();
+      return true;
     } on Exception catch (e) {
       print('custom exception is been obtained');
     }
-    return saved;
+    return false;
+  }
+
+  Future<void> deleteToken() async {
+    const FlutterSecureStorage storage =  FlutterSecureStorage();
+    try {
+     await storage.delete(key: _token);
+     return true;
+    } on Exception catch (e) {
+      print('custom exception is been obtained');
+    }
+    return false;
   }
 
   Future<void> persistToken(String token) async {
-    /// write to keystore/keychain
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool saved = false;
+    const FlutterSecureStorage storage =  FlutterSecureStorage();
     try {
-      prefs.setString(_token, token);
-      saved = true;
+      await storage.write(key: _token, value: token);
+      return true;
+
     } on Exception catch (e) {
       print('custom exception is been obtained');
     }
-    return saved;
+    return false;
   }
 
   Future<bool> hasToken() async {
-    /// read from keystore/keychain
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool loggedIn = false;
+    const FlutterSecureStorage storage =  FlutterSecureStorage();
     try {
-      final String token = prefs.getString(_token);
+      String token = await storage.read(key: _token);
       if (token != null) {
-        loggedIn = true;
-        return loggedIn;
+        return true;
       }
     } on Exception catch (e) {
       print('custom exception is been obtained');
     }
-    return Future<bool>.value(loggedIn);
+    return false;
   }
 
-  Future<String> accessToken() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+  Future<String> fetchToken() async {
+    const FlutterSecureStorage storage =  FlutterSecureStorage();
     String token = '';
     try {
-      token = prefs.getString(_token);
+       token = await storage.read(key: _token);
     } on Exception catch (e) {
       print('custom exception is been obtained');
     }

@@ -1,4 +1,5 @@
 import 'package:flutter_boilerplate/common/http/api_provider.dart';
+import 'package:flutter_boilerplate/common/http/response.dart';
 import 'package:flutter_boilerplate/common/util/internet_check.dart';
 import 'package:meta/meta.dart';
 
@@ -13,8 +14,23 @@ class AuthRepository {
     authApiProvider = AuthApiProvider(apiProvider: apiProvider);
   }
 
-  Future<Map<String, dynamic>> signIn(String email, String password) {
-    return authApiProvider.signIn(email, password);
+  Future<DataResponse<String>> signIn(String email, String password) async{
+
+    final response = await authApiProvider.signIn(email, password);
+    if(response == null) {
+      return DataResponse.connectivityError();
+    }
+
+    if (!response['error']) {
+      final String token = response["token"];
+      apiProvider.setToken(token);
+      return DataResponse.success(token);
+    } else {
+      return DataResponse.error("Error");
+    }
+
+
+
   }
   Future<Map<String, dynamic>> signUp(
           String email, String password, String name) {
