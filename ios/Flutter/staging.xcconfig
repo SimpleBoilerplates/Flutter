@@ -1,0 +1,13 @@
+//
+//  staging.xcconfig
+//  Runner
+//
+//  Created by sadman samee on 2/24/20.
+//  Copyright © 2020 The Chromium Authors. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+#include "Generated.xcconfig"
+
+FLUTTER_TARGET=lib/main_staging.dart

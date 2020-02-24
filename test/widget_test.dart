@@ -6,7 +6,7 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/main.dart';
+import 'package:flutter_boilerplate/main_staging.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_boilerplate/app/app.dart';
 
