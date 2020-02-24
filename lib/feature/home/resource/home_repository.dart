@@ -15,11 +15,10 @@ class HomeRepository {
     homeApiProvider = HomeApiProvider(apiProvider: apiProvider);
   }
 
-  Future<DataResponse<List<Book>>> fetchBooks() async{
-
+  Future<DataResponse<List<Book>>> fetchBooks() async {
     final response = await homeApiProvider.fetchBooks();
 
-    if(response == null) {
+    if (response == null) {
       return DataResponse.connectivityError();
     }
 

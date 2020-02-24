@@ -6,7 +6,7 @@ class UserRepository {
   static const String _token = 'token';
 
   Future<void> deleteAll() async {
-    const FlutterSecureStorage storage =  FlutterSecureStorage();
+    const FlutterSecureStorage storage = FlutterSecureStorage();
     try {
       await storage.deleteAll();
       return true;
@@ -17,10 +17,10 @@ class UserRepository {
   }
 
   Future<void> deleteToken() async {
-    const FlutterSecureStorage storage =  FlutterSecureStorage();
+    const FlutterSecureStorage storage = FlutterSecureStorage();
     try {
-     await storage.delete(key: _token);
-     return true;
+      await storage.delete(key: _token);
+      return true;
     } on Exception catch (e) {
       print('custom exception is been obtained');
     }
@@ -28,11 +28,10 @@ class UserRepository {
   }
 
   Future<void> persistToken(String token) async {
-    const FlutterSecureStorage storage =  FlutterSecureStorage();
+    const FlutterSecureStorage storage = FlutterSecureStorage();
     try {
       await storage.write(key: _token, value: token);
       return true;
-
     } on Exception catch (e) {
       print('custom exception is been obtained');
     }
@@ -40,7 +39,7 @@ class UserRepository {
   }
 
   Future<bool> hasToken() async {
-    const FlutterSecureStorage storage =  FlutterSecureStorage();
+    const FlutterSecureStorage storage = FlutterSecureStorage();
     try {
       String token = await storage.read(key: _token);
       if (token != null) {
@@ -53,10 +52,10 @@ class UserRepository {
   }
 
   Future<String> fetchToken() async {
-    const FlutterSecureStorage storage =  FlutterSecureStorage();
+    const FlutterSecureStorage storage = FlutterSecureStorage();
     String token = '';
     try {
-       token = await storage.read(key: _token);
+      token = await storage.read(key: _token);
     } on Exception catch (e) {
       print('custom exception is been obtained');
     }

@@ -8,6 +8,7 @@ class DataResponse<T> {
   DataResponse.success(this.data) : status = Status.Success;
 
   DataResponse.error(this.message) : status = Status.Error;
+
   DataResponse.connectivityError() : status = Status.ConnectivityError;
 
   @override
@@ -16,4 +17,4 @@ class DataResponse<T> {
   }
 }
 
-enum Status { Loading, Success, Error,ConnectivityError }
+enum Status { Loading, Success, Error, ConnectivityError }

@@ -7,10 +7,9 @@ import 'package:http/http.dart' as http;
 import 'custom_exception.dart';
 
 class ApiProvider {
-
   String token = '';
 
-  void setToken(String token){
+  void setToken(String token) {
     this.token = token;
   }
 

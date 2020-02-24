@@ -28,14 +28,14 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
       try {
         final response =
             await authRepository.signIn(event.username, event.password);
-        if(response.status == Status.ConnectivityError){
+        if (response.status == Status.ConnectivityError) {
           //Internet problem
           yield const SignInFailure(error: "");
         }
-        if(response.status == Status.Success){
+        if (response.status == Status.Success) {
           authenticationBloc.add(LoggedIn(token: response.data));
           yield SignInSuccess();
-        }else{
+        } else {
           yield SignInFailure(error: response.message);
         }
       } catch (error) {

@@ -14,10 +14,9 @@ class AuthRepository {
     authApiProvider = AuthApiProvider(apiProvider: apiProvider);
   }
 
-  Future<DataResponse<String>> signIn(String email, String password) async{
-
+  Future<DataResponse<String>> signIn(String email, String password) async {
     final response = await authApiProvider.signIn(email, password);
-    if(response == null) {
+    if (response == null) {
       return DataResponse.connectivityError();
     }
 
@@ -28,12 +27,10 @@ class AuthRepository {
     } else {
       return DataResponse.error("Error");
     }
-
-
-
   }
+
   Future<Map<String, dynamic>> signUp(
-          String email, String password, String name) {
+      String email, String password, String name) {
     return authApiProvider.signUp(email, password, name);
   }
 }

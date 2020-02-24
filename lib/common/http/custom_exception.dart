@@ -1,5 +1,4 @@
 class CustomException implements Exception {
-
   CustomException([this._message, this._prefix]);
 
   final dynamic _message;

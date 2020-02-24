@@ -14,12 +14,10 @@ void main() {
 
   runApp(MultiRepositoryProvider(
       providers: [
-
         RepositoryProvider<InternetCheck>(
           create: (context) => InternetCheck(),
           lazy: true,
         ),
-
         RepositoryProvider<UserRepository>(
           create: (context) => UserRepository(),
           lazy: true,
@@ -31,13 +29,11 @@ void main() {
       ],
       child: MultiBlocProvider(
         providers: [
-
           BlocProvider<ConnectivityBloc>(
             create: (context) {
               return ConnectivityBloc();
             },
           ),
-
           BlocProvider<AuthenticationBloc>(
             create: (context) {
               return AuthenticationBloc(
