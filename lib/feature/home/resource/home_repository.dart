@@ -1,3 +1,4 @@
+import 'package:flutter_boilerplate/common/constant/env.dart';
 import 'package:flutter_boilerplate/common/http/api_provider.dart';
 import 'package:flutter_boilerplate/common/http/response.dart';
 import 'package:flutter_boilerplate/common/util/internet_check.dart';
@@ -10,9 +11,14 @@ class HomeRepository {
   ApiProvider apiProvider;
   HomeApiProvider homeApiProvider;
   InternetCheck internetCheck;
+  Env env;
 
-  HomeRepository({@required this.apiProvider, @required this.internetCheck}) {
-    homeApiProvider = HomeApiProvider(apiProvider: apiProvider);
+  HomeRepository(
+      {@required this.env,
+      @required this.apiProvider,
+      @required this.internetCheck}) {
+    homeApiProvider =
+        HomeApiProvider(baseUrl: env.baseUrl, apiProvider: apiProvider);
   }
 
   Future<DataResponse<List<Book>>> fetchBooks() async {

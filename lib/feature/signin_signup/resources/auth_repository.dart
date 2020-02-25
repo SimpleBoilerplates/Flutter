@@ -1,3 +1,4 @@
+import 'package:flutter_boilerplate/common/constant/env.dart';
 import 'package:flutter_boilerplate/common/http/api_provider.dart';
 import 'package:flutter_boilerplate/common/http/response.dart';
 import 'package:flutter_boilerplate/common/util/internet_check.dart';
@@ -9,9 +10,14 @@ class AuthRepository {
   final ApiProvider apiProvider;
   AuthApiProvider authApiProvider;
   InternetCheck internetCheck;
+  Env env;
 
-  AuthRepository({@required this.apiProvider, @required this.internetCheck}) {
-    authApiProvider = AuthApiProvider(apiProvider: apiProvider);
+  AuthRepository(
+      {@required this.env,
+      @required this.apiProvider,
+      @required this.internetCheck}) {
+    authApiProvider =
+        AuthApiProvider(baseUrl: env.baseUrl, apiProvider: apiProvider);
   }
 
   Future<DataResponse<String>> signIn(String email, String password) async {

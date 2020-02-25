@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_boilerplate/common/constant/env.dart';
+import 'package:flutter_boilerplate/common/http/api_provider.dart';
 import 'package:flutter_boilerplate/common/route/routes.dart';
+import 'package:flutter_boilerplate/common/util/internet_check.dart';
 import 'package:flutter_boilerplate/feature/authentication/bloc/index.dart';
 import 'package:flutter_boilerplate/feature/home/bloc/index.dart';
 import 'package:flutter_boilerplate/feature/home/resource/home_repository.dart';
@@ -24,8 +27,13 @@ class HomePage extends StatelessWidget {
           ],
         ),
         body: BlocProvider(
-            create: (context) =>
-                BooksBloc(homeRepository: HomeRepository())..add(Fetch()),
+            create: (context) => BooksBloc(
+                homeRepository: HomeRepository(
+                    env: RepositoryProvider.of<Env>(context),
+                    apiProvider: RepositoryProvider.of<ApiProvider>(context),
+                    internetCheck:
+                        RepositoryProvider.of<InternetCheck>(context)))
+              ..add(Fetch()),
             child: Container(child: const HomeWidget())));
   }
 }
