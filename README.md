@@ -7,9 +7,28 @@ This is a very simple Boilerplate application, this has following features.
   
 It was developed as a demo project before developing production application. I wrote a [blog](https://www.sadmansamee.blog/why_embrace_flutter/) about why we wil be using Futter for our project, visit [here](https://www.sadmansamee.blog/why_embrace_flutter/)
   
-  #### I didn't add many functionality and didn't polish UI intentionally, tried to keep it barebone as much as possible 
+
+#### I didn't add many functionality and didn't polish UI intentionally, tried to keep it barebone as much as possible 
+
+For development flavor, run
+
+``
+flutter run -t lib/main_development.dart
+``
+
+For staging flavor, run
+
+``
+flutter run -t lib/main_staging.dart
+``
+
+For production flavor, run
+
+``
+flutter run -t lib/main_production.dart
+``
   
-  ### Same implementation in other platforms
+### Same implementation in other platforms
    - [iOS](https://github.com/simpleboilerplates/BooksDemoiOS) 
    - [Android](https://github.com/SimpleBoilerplates/Android) 
    - [React Native](https://github.com/SimpleBoilerplates/React-Native) 
