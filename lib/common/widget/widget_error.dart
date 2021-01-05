@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/generated/i18n.dart';
+import 'package:flutter_boilerplate/generated/l10n.dart';
 
 class WidgetError extends StatelessWidget {
   final bool visible;

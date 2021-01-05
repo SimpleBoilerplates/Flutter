@@ -9,21 +9,18 @@ import 'package:rxdart/rxdart.dart';
 class BooksBloc extends Bloc<BookEvent, BookState> {
   final HomeRepository homeRepository;
 
-  BooksBloc({@required this.homeRepository}) : assert(homeRepository != null);
+  BooksBloc({@required this.homeRepository})
+      : assert(homeRepository != null),
+        super(BookEmpty());
 
   @override
-  BookState get initialState => BookEmpty();
-
-  @override
-  Stream<BookState> transformEvents(
+  Stream<Transition<BookEvent, BookState>> transformEvents(
     Stream<BookEvent> events,
-    Stream<BookState> Function(BookEvent event) next,
+    TransitionFunction<BookEvent, BookState> transitionFn,
   ) {
     return super.transformEvents(
-      events.debounceTime(
-        const Duration(milliseconds: 500),
-      ),
-      next,
+      events.debounceTime(const Duration(milliseconds: 500)),
+      transitionFn,
     );
   }
 

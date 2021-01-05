@@ -14,33 +14,45 @@ description: A new Flutter application.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.6.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^0.1.3
-  shared_preferences: ^0.5.6
-  http: ^0.12.0+4
-  rxdart: ^0.23.1
-  json_annotation: ^3.0.1
-  connectivity: 0.4.8+1
-  flutter_secure_storage: 3.3.1+1
+  cupertino_icons: 1.0.0
+  shared_preferences: ^0.5.12+4
+  http: 0.12.2
+  rxdart: ^0.25.0
+  json_annotation: ^3.1.1
+  connectivity: 2.0.2
+  flutter_secure_storage: 3.3.5
 
-  bloc: ^3.0.0
-  flutter_bloc: ^3.2.0
-  meta: ^1.1.8
-  equatable: ^1.0.1
+  bloc: ^6.1.1
+  flutter_bloc: 6.1.1
+  meta: ^1.2.4
+  equatable: 1.2.5
+  responsive_framework: ^0.0.14
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^1.0.0
-  json_serializable: ^3.2.3
+  lint: ^1.3.0
+  linter: ^0.1.116
+  json_serializable: ^3.4.1
+  build_runner:
+  pedantic: null
+  flutter_launcher_icons: ^0.8.1
+  flutter_native_splash: ^0.1.9
+  flutter_rename_app: 1.0.0
+  logger:
+  effective_dart: ^1.3.0
+
 
 # For information on the generic Dart part of this file, see the
 # following ui: https://www.dartlang.org/tools/pub/pubspec
@@ -83,3 +95,36 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+flutter_intl:
+  enabled: true # Required. Must be set to true to activate the plugin. Default: false
+  class_name: s # Optional. Sets the name for the generated localization class. Default: S
+  main_locale: en # Optional. Sets the main locale used for generating localization files. Provided value should comply with ISO-639-1 and ISO-3166-1 (e.g. "en", "en_GB"). Default: en
+
+flutter_native_splash:
+  image: assets/icons/dh_logo.png
+  color: "FFFFFF"
+  android_disable_fullscreen: true
+
+flutter_icons:
+  image_path: 'assets/images/app/app_icon.png'
+  android: true
+  ios: true
+
+flutter_rename_app:
+  application_name: Flutter Boilerplate
+  dart_package_name: flutter_boilerplate
+  application_id: sadmansamee.flutter_boilerplate
+  bundle_id: sadmansamee.flutter_boilerplate
+  android_package_name: sadmansamee.flutter_boilerplate
+
+#flutter pub run flutter_rename_app
+include: package:pedantic/analysis_options.yaml
+analyzer:
+  exclude:
+    - "lib/presentation/localization/**"
+  errors:
+    missing_required_param: error
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false

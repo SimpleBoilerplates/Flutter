@@ -15,10 +15,8 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     @required this.authRepository,
     @required this.authenticationBloc,
   })  : assert(authRepository != null),
-        assert(authenticationBloc != null);
-
-  @override
-  SignInState get initialState => SignInInitial();
+        assert(authenticationBloc != null),
+        super(SignInInitial());
 
   @override
   Stream<SignInState> mapEventToState(SignInEvent event) async* {
