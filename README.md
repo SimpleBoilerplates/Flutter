@@ -27,7 +27,9 @@ For production flavor, run
 ``
 flutter run -t lib/main_production.dart
 ``
-  
+
+For localization better install this [plugin](https://plugins.jetbrains.com/plugin/13666-flutter-intl)
+ 
 ### Same implementation in other platforms
    - [iOS](https://github.com/simpleboilerplates/BooksDemoiOS) 
    - [Android](https://github.com/SimpleBoilerplates/Android) 
