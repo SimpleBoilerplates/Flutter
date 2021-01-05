@@ -6,7 +6,7 @@ import 'package:flutter_boilerplate/feature/authentication/bloc/index.dart';
 import 'package:flutter_boilerplate/feature/signin_signup/bloc/index.dart';
 import 'package:flutter_boilerplate/feature/signin_signup/resources/index.dart';
 import 'package:flutter_boilerplate/feature/signin_signup/ui/signin_form.dart';
-import 'package:flutter_boilerplate/generated/i18n.dart';
+import 'package:flutter_boilerplate/generated/l10n.dart';
 
 class SignInPage extends StatelessWidget {
   final AuthRepository authRepository;

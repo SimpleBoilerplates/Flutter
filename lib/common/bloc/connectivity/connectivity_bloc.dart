@@ -9,8 +9,7 @@ import 'package:rxdart/rxdart.dart';
 class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
   StreamSubscription subscription;
 
-  @override
-  ConnectivityState get initialState => AppStarted();
+  ConnectivityBloc() : super(AppStarted());
 
   @override
   Future<void> close() {
@@ -19,15 +18,13 @@ class ConnectivityBloc extends Bloc<ConnectivityEvent, ConnectivityState> {
   }
 
   @override
-  Stream<ConnectivityState> transformEvents(
+  Stream<Transition<ConnectivityEvent, ConnectivityState>> transformEvents(
     Stream<ConnectivityEvent> events,
-    Stream<ConnectivityState> Function(ConnectivityEvent event) next,
+    TransitionFunction<ConnectivityEvent, ConnectivityState> transitionFn,
   ) {
     return super.transformEvents(
-      events.debounceTime(
-        const Duration(milliseconds: 500),
-      ),
-      next,
+      events.debounceTime(const Duration(milliseconds: 500)),
+      transitionFn,
     );
   }
 

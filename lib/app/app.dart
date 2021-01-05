@@ -8,7 +8,8 @@ import 'package:flutter_boilerplate/common/route/routes.dart';
 import 'package:flutter_boilerplate/common/util/internet_check.dart';
 import 'package:flutter_boilerplate/feature/authentication/bloc/index.dart';
 import 'package:flutter_boilerplate/feature/authentication/resource/user_repository.dart';
-import 'package:flutter_boilerplate/generated/i18n.dart';
+import 'package:flutter_boilerplate/generated/l10n.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'theme.dart';
 
@@ -55,15 +56,13 @@ class App extends StatelessWidget {
             ),
           ],
           child: MaterialApp(
-            localizationsDelegates: const <
-                LocalizationsDelegate<WidgetsLocalizations>>[
+            localizationsDelegates: [
               S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: S.delegate.supportedLocales,
-            localeResolutionCallback:
-                S.delegate.resolution(fallback: const Locale('en', '')),
-            localeListResolutionCallback:
-                S.delegate.listResolution(fallback: const Locale('en', '')),
             title: 'Flutter Demo',
             theme: basicTheme,
             onGenerateRoute: RouteGenerator.generateRoute,

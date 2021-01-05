@@ -14,10 +14,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     @required this.authRepository,
     @required this.authenticationBloc,
   })  : assert(authRepository != null),
-        assert(authenticationBloc != null);
-
-  @override
-  SignUpState get initialState => SignUpInitial();
+        assert(authenticationBloc != null),
+        super(SignUpInitial());
 
   @override
   Stream<SignUpState> mapEventToState(SignUpEvent event) async* {
