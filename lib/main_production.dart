@@ -9,10 +9,9 @@ import 'package:flutter_boilerplate/common/constant/env.dart';
 
 void main() {
   Bloc.observer = SimpleBlocDelegate();
-
   WidgetsFlutterBinding.ensureInitialized();
 
   runZonedGuarded(() {
-    runApp(App(env: EnvValue.staging));
+    runApp(App(env: EnvValue.production));
   }, (error, stackTrace) async {});
 }
