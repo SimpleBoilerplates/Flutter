@@ -120,9 +120,13 @@ app.*.map.json
 !**/ios/**/default.perspectivev3
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/dev/ci/**/Gemfile.lock
-!.vscode/extensions.json
 !.vscode/launch.json
 !.idea/codeStyles/
 !.idea/dictionaries/
 !.idea/runConfigurations/
-.flutter-plugins-dependencies
+lib/generated/l10n.dart
+lib/generated/intl/messages_en.dart
+lib/generated/intl/messages_bn.dart
+lib/generated/intl/messages_all.dart
+
+*.aab
