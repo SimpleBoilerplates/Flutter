@@ -10,6 +10,8 @@ This is a very simple Boilerplate application, this has following features.
 
   - User can Sign In and Up
   - After signing in he can see a list of items
+
+It uses a mock json server which doesn't store or validate, so for sign in/up any email, password will simply work.
   
 ## Getting Started 🚀
 
