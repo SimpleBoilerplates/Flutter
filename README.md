@@ -1,73 +1,187 @@
-# Boilerplates
+# Flutter Boilerplate
+
+![coverage][coverage_badge]
+[![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
+[![License: MIT][license_badge]][license_link]
+
+---
 
 This is a very simple Boilerplate application, this has following features.
 
   - User can Sign In and Up
   - After signing in he can see a list of items
   
-It was developed as a demo project before developing production application. I wrote a [blog](https://www.sadmansamee.blog/why_embrace_flutter/) about why we wil be using Futter for our project, visit [here](https://www.sadmansamee.blog/why_embrace_flutter/)
-  
+## Getting Started 🚀
 
-#### I didn't add many functionality and didn't polish UI intentionally, tried to keep it barebone as much as possible 
+You can go through this [Flutter Starter Pack](https://sadmansamee.github.io/flutter_starter_pack).
 
-For development flavor, run
+This project contains 3 flavors:
 
-``
-flutter run -t lib/main_development.dart
-``
+- development
+- staging
+- production
 
-For staging flavor, run
+To run the desired flavor either use the launch configuration in VSCode/Android Studio or use the following commands:
 
-``
-flutter run -t lib/main_staging.dart
-``
+```sh
+# Development
+$ flutter run --flavor development --target lib/main_development.dart
 
-For production flavor, run
+# Staging
+$ flutter run --flavor staging --target lib/main_staging.dart
 
-``
-flutter run -t lib/main_production.dart
-``
+# Production
+$ flutter run --flavor production --target lib/main_production.dart
+```
 
-For localization better install this [plugin](https://plugins.jetbrains.com/plugin/13666-flutter-intl)
- 
+_\*Flutter Boilerplate works on iOS, Android, and Web._
+
+---
+
+## Running Tests 🧪
+
+To run all unit and widget tests use the following command:
+
+```sh
+$ flutter test --coverage --test-randomize-ordering-seed random
+```
+
+To view the generated coverage report you can use [lcov](https://github.com/linux-test-project/lcov).
+
+```sh
+# Generate Coverage Report
+$ genhtml coverage/lcov.info -o coverage/
+
+# Open Coverage Report
+$ open coverage/index.html
+```
+
+---
+
+## Avoid writing scripts with Derry
+
+You can run all these scripts manually or could use [Derry](https://pub.dev/packages/derry) and maintain a yaml file, where you can define all those scripts and run with derry in a very convinient way. All the scripts for this project is defined [here]()
+
+Example: 
+
+instead of running 
+
+```sh
+flutter pub run build_runner watch --delete-conflicting-outputs
+``` 
+you could simply use `derry watch`
+
+or use `build_apk_dev` instead of 
+
+```sh
+flutter build apk --flavor development -t lib/main_development.dart 
+``` 
+
+
+## Working with Translations 🌐
+
+This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization guide for Flutter][internationalization_link].
+
+### Adding Strings
+
+1. To add a new localizable string, open the `app_en.arb` file at `lib/l10n/arb/app_en.arb`.
+
+```arb
+{
+    "@@locale": "en",
+    "counterAppBarTitle": "Counter",
+    "@counterAppBarTitle": {
+        "description": "Text shown in the AppBar of the Counter Page"
+    }
+}
+```
+
+2. Then add a new key/value and description
+
+```arb
+{
+    "@@locale": "en",
+    "counterAppBarTitle": "Counter",
+    "@counterAppBarTitle": {
+        "description": "Text shown in the AppBar of the Counter Page"
+    },
+    "helloWorld": "Hello World",
+    "@helloWorld": {
+        "description": "Hello World Text"
+    }
+}
+```
+
+3. Use the new string
+
+```dart
+import 'package:flutter_boilerplate/l10n/l10n.dart';
+
+@override
+Widget build(BuildContext context) {
+  final l10n = context.l10n;
+  return Text(l10n.helloWorld);
+}
+```
+
+### Adding Supported Locales
+
+Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info.plist` to include the new locale.
+
+```xml
+    ...
+
+    <key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+		<string>es</string>
+	</array>
+
+    ...
+```
+
+### Adding Translations
+
+1. For each supported locale, add a new ARB file in `lib/l10n/arb`.
+
+```
+├── l10n
+│   ├── arb
+│   │   ├── app_en.arb
+│   │   └── app_es.arb
+```
+
+2. Add the translated strings to each `.arb` file:
+
+`app_en.arb`
+
+```arb
+{
+    "@@locale": "en",
+    "counterAppBarTitle": "Counter",
+    "@counterAppBarTitle": {
+        "description": "Text shown in the AppBar of the Counter Page"
+    }
+}
+```
+
+`app_es.arb`
+
+```arb
+{
+    "@@locale": "es",
+    "counterAppBarTitle": "Contador",
+    "@counterAppBarTitle": {
+        "description": "Texto mostrado en la AppBar de la página del contador"
+    }
+}
+```
+
 ### Same implementation in other platforms
    - [iOS](https://github.com/simpleboilerplates/BooksDemoiOS) 
    - [Android](https://github.com/SimpleBoilerplates/Android) 
    - [React Native](https://github.com/SimpleBoilerplates/React-Native) 
-   - [NodeJS backend](https://github.com/simpleboilerplates/BooksDemoNode) 
-
-### With
-- [Flutter_bloc](https://bloclibrary.dev/#/)
-- [Localization i18n](https://flutter.dev/docs/development/accessibility-and-localization/internationalization)
-
-### Tutorial
-
-#### Bloc
-  - [Getting Started with the Flutter Bloc](https://bloclibrary.dev/#/gettingstarted)
-  - [Architect your Flutter project using BLOC pattern](https://medium.com/flutterpub/architecting-your-flutter-project-bd04e144a8f1) 
-  - [Keep it Simple, State: Architecture for Flutter Apps](https://www.youtube.com/watch?v=zKXz3pUkw9A) 
-  - [Flutter BLoC Pattern for Dummies Like Me](https://medium.com/flutter-community/flutter-bloc-pattern-for-dummies-like-me-c22d40f05a56)
-  - [Getting Started With Flutter BLoC](https://dev.to/netguru/getting-started-with-flutter-bloc-1pkm)
- 
- #### Others
-   - [Raywenderlich's collection](https://www.raywenderlich.com/library?domain_ids%5B%5D=9)
-   - [Flutter Widget of the Week](https://www.youtube.com/playlist?list=PLOU2XLYxmsIL0pH0zWe_ZOHgGhZ7UasUE) 
-   - [Write your first Flutter app](https://flutter.dev/docs/get-started/codelab) 
-   - [Flutter Layout Cheat Sheet](https://medium.com/flutter-community/flutter-layout-cheat-sheet-5363348d037e) 
-   - [Flutter by Example](https://flutterbyexample.com/) 
-   - [Technical Debt and Streams/BLoC](https://www.youtube.com/watch?v=fahC3ky_zW0&t=2s) 
-   - [Flutter Architecture - My Provider Implementation Guide](https://www.filledstacks.com/post/flutter-architecture-my-provider-implementation-guide/)
-   - [Codelabs for Flutter](https://codelabs.developers.google.com/?cat=Flutter)
-
-
-### Project 
-
-* [Is package by feature approach good?](https://stackoverflow.com/questions/11733267/is-package-by-feature-approach-good)
-* [Uncle Bob's clean architecture approach - what is recommended package structure?](https://stackoverflow.com/questions/46884449/uncle-bobs-clean-architecture-approach-what-is-recommended-package-structure)
-* [Summary of book "Clean Architecture" by Robert C. Martin](https://gist.github.com/navi25/336fcd2247ad0d3d22c2a1cc3961dcff)
-
-### Tools
-- [Code Magic](https://codemagic.io) A free and powerful CI/CD for Flutter apps.
+   - [NodeJS backend](https://github.com/simpleboilerplates/BooksDemoNode)
 
 ### TODO
 - Updating it on daily basis as much as possible, work in progess[WIP].
@@ -75,19 +189,21 @@ For localization better install this [plugin](https://plugins.jetbrains.com/plug
 ### Found this project useful :heart:
 * Support by clicking the :star: button on the upper right of this page. :v:
 
-### Contact - Let's become friend
+### Let's become friend
 - [LinkedIn](https://www.linkedin.com/in/sadmansamee/)
 - [Github](https://github.com/Sadmansamee)
-- [Dev.To](https://dev.to/sadmansamee)
-- [Medium](https://medium.com/@sadmansamee)
-- [Facebook](https://www.facebook.com/sameesadman)
+- [Blog](https://sadmansamee.github.io/)
 - [Twitter](https://twitter.com/SameeSadman)
-
 
 ## License
 [![CC0](http://mirrors.creativecommons.org/presskit/buttons/88x31/svg/cc-zero.svg)](https://creativecommons.org/publicdomain/zero/1.0/)
 
 
-## Contributing
-
-Your contributions are always welcome! Just follow the following format: `[reference name](link) - Description.` If you like it , give a star to this project
+[coverage_badge]: coverage_badge.svg
+[flutter_localizations_link]: https://api.flutter.dev/flutter/flutter_localizations/flutter_localizations-library.html
+[internationalization_link]: https://flutter.dev/docs/development/accessibility-and-localization/internationalization
+[license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
+[license_link]: https://opensource.org/licenses/MIT
+[very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
+[very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
+[very_good_cli_link]: https://github.com/VeryGoodOpenSource/very_good_cli

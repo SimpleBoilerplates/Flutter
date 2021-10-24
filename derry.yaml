@@ -1,0 +1,62 @@
+format:
+  - dart format lib .
+  - flutter pub run import_sorter:main
+  - flutter format lib
+
+build_once: flutter pub run build_runner build --delete-conflicting-outputs
+# Run whenever start working. It will generate Freezed classes
+watch: flutter pub run build_runner watch --delete-conflicting-outputs
+
+gen:
+  - flutter pub get
+  - flutter packages pub run build_runner build
+
+build_apk_dev:
+  - flutter clean
+  - flutter pub get
+  - flutter build apk --flavor development -t lib/main_development.dart
+
+build_apk_stg:
+  - flutter clean
+  - flutter pub get
+  - flutter build apk --flavor staging -t lib/main_staging.dart
+
+build_apk_prod:
+  - flutter clean
+  - flutter pub get
+  - flutter build apk --flavor production -t lib/main_production.dart
+
+build_ios_staging:
+  - flutter clean
+  - flutter pub get
+  - flutter build ipa --export-options-plist --flavor staging -t lib/main_staging.dart
+
+build_ios_production:
+    - flutter clean
+    - flutter pub get
+    - flutter build ipa --flavor staging -t lib/main_staging.dart
+
+start_ios:
+  - xcrun simctl list
+  - open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/
+
+clean:
+  - flutter clean
+  - flutter pub get
+
+purge:
+  - pod deintegrate
+  #- rm Flutter/Flutter.podspec
+  - flutter clean
+  - flutter pub get
+  #- pod install
+  #- flutter run
+
+purge_all:
+  - pod deintegrate
+  - rm Flutter/Flutter.podspec
+  - flutter clean
+  - flutter pub cache repair
+  - flutter pub get
+  #- pod install
+  - flutter run
