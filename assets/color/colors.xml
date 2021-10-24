@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#139960</color>
+    <color name="mlDarkGrey">#75787b</color>
+    <color name="mlMediumGrey">#a7a8aa</color>
+    <color name="lightGrey">#F7FAF9</color>
+    <color name="black">#212121</color>
+    <color name="error">#D80000</color>
+    <color name="inProgressYellow">#CC9233</color>
+
+</resources>

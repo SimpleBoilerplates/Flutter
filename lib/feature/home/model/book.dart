@@ -1,31 +1,25 @@
-import 'package:equatable/equatable.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'dart:convert';
 
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'book.freezed.dart';
 part 'book.g.dart';
 
-@JsonSerializable()
-class Book extends Equatable {
-  @JsonKey(name: 'id')
-  final int id;
-  @JsonKey(name: 'title')
-  final String title;
-  @JsonKey(name: 'subTitle')
-  final String subTitle;
-  @JsonKey(name: 'description')
-  final String description;
-  @JsonKey(name: 'preview')
-  final String preview;
+List<Book> booksFromJson(List<dynamic> data) =>
+    List<Book>.from(data.map((x) => Book.fromJson(x)));
 
-  Book({this.id, this.title, this.subTitle, this.description, this.preview});
+Book bookFromJson(String str) => Book.fromJson(json.decode(str));
+
+@freezed
+class Book with _$Book {
+  const Book._();
+  const factory Book({
+    required int id,
+    String? title,
+    String? subTitle,
+    String? description,
+    String? preview,
+  }) = _Book;
 
   factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);
-
-  Map<String, dynamic> toJson() => _$BookToJson(this);
-
-  // Equatable
-  @override
-  List<Object> get props => [id, title, subTitle, description, preview];
-
-  @override
-  String toString() => 'Post { id: $id }';
 }
