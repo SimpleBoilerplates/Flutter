@@ -1,6 +1,6 @@
 import 'package:flutter_boilerplate/app/state/app_start_state.dart';
-import 'package:flutter_boilerplate/feature/auth/model/login_state.dart';
-import 'package:flutter_boilerplate/feature/auth/provider/login_provider.dart';
+import 'package:flutter_boilerplate/feature/auth/model/auth_state.dart';
+import 'package:flutter_boilerplate/feature/auth/provider/auth_provider.dart';
 import 'package:flutter_boilerplate/feature/home/provider/home_provider.dart';
 import 'package:flutter_boilerplate/feature/home/state/home_state.dart';
 import 'package:flutter_boilerplate/shared/repository/token_repository.dart';
@@ -8,7 +8,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final appStartProvider =
     StateNotifierProvider<AppStartNotifier, AppStartState>((ref) {
-  final loginState = ref.watch(loginProvider);
+  final loginState = ref.watch(authProvider);
   final homeState = ref.watch(homeProvider);
 
   late AppStartState appStartState;
@@ -21,11 +21,11 @@ final appStartProvider =
 
 class AppStartNotifier extends StateNotifier<AppStartState> {
   late TokenRepository _tokenRepository;
-  final LoginState loginState;
+  final AuthState authState;
   final HomeState homeState;
 
   AppStartNotifier(AppStartState appStartState, ProviderRefBase ref,
-      this.loginState, this.homeState)
+      this.authState, this.homeState)
       : super(appStartState) {
     _tokenRepository = ref.read(tokenRepositoryProvider);
     //state = const AppStartState.authenticated();
@@ -33,7 +33,7 @@ class AppStartNotifier extends StateNotifier<AppStartState> {
   }
 
   void _init() async {
-    loginState.maybeWhen(
+    authState.maybeWhen(
         loggedIn: () {
           state = const AppStartState.authenticated();
         },

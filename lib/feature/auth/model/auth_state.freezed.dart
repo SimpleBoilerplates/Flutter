@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'login_state.dart';
+part of 'auth_state.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,8 +14,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$LoginStateTearOff {
-  const _$LoginStateTearOff();
+class _$AuthStateTearOff {
+  const _$AuthStateTearOff();
 
   _Initial initial() {
     return const _Initial();
@@ -37,10 +37,10 @@ class _$LoginStateTearOff {
 }
 
 /// @nodoc
-const $LoginState = _$LoginStateTearOff();
+const $AuthState = _$AuthStateTearOff();
 
 /// @nodoc
-mixin _$LoginState {
+mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -94,19 +94,18 @@ mixin _$LoginState {
 }
 
 /// @nodoc
-abstract class $LoginStateCopyWith<$Res> {
-  factory $LoginStateCopyWith(
-          LoginState value, $Res Function(LoginState) then) =
-      _$LoginStateCopyWithImpl<$Res>;
+abstract class $AuthStateCopyWith<$Res> {
+  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
+      _$AuthStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoginStateCopyWithImpl<$Res> implements $LoginStateCopyWith<$Res> {
-  _$LoginStateCopyWithImpl(this._value, this._then);
+class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
+  _$AuthStateCopyWithImpl(this._value, this._then);
 
-  final LoginState _value;
+  final AuthState _value;
   // ignore: unused_field
-  final $Res Function(LoginState) _then;
+  final $Res Function(AuthState) _then;
 }
 
 /// @nodoc
@@ -116,7 +115,7 @@ abstract class _$InitialCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+class __$InitialCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     implements _$InitialCopyWith<$Res> {
   __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
       : super(_value, (v) => _then(v as _Initial));
@@ -132,7 +131,7 @@ class _$_Initial implements _Initial {
 
   @override
   String toString() {
-    return 'LoginState.initial()';
+    return 'AuthState.initial()';
   }
 
   @override
@@ -219,7 +218,7 @@ class _$_Initial implements _Initial {
   }
 }
 
-abstract class _Initial implements LoginState {
+abstract class _Initial implements AuthState {
   const factory _Initial() = _$_Initial;
 }
 
@@ -230,7 +229,7 @@ abstract class _$LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$LoadingCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+class __$LoadingCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     implements _$LoadingCopyWith<$Res> {
   __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
       : super(_value, (v) => _then(v as _Loading));
@@ -246,7 +245,7 @@ class _$_Loading implements _Loading {
 
   @override
   String toString() {
-    return 'LoginState.loading()';
+    return 'AuthState.loading()';
   }
 
   @override
@@ -333,7 +332,7 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements LoginState {
+abstract class _Loading implements AuthState {
   const factory _Loading() = _$_Loading;
 }
 
@@ -344,7 +343,7 @@ abstract class _$LoggedInCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$LoggedInCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+class __$LoggedInCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     implements _$LoggedInCopyWith<$Res> {
   __$LoggedInCopyWithImpl(_LoggedIn _value, $Res Function(_LoggedIn) _then)
       : super(_value, (v) => _then(v as _LoggedIn));
@@ -360,7 +359,7 @@ class _$_LoggedIn implements _LoggedIn {
 
   @override
   String toString() {
-    return 'LoginState.loggedIn()';
+    return 'AuthState.loggedIn()';
   }
 
   @override
@@ -447,7 +446,7 @@ class _$_LoggedIn implements _LoggedIn {
   }
 }
 
-abstract class _LoggedIn implements LoginState {
+abstract class _LoggedIn implements AuthState {
   const factory _LoggedIn() = _$_LoggedIn;
 }
 
@@ -461,7 +460,7 @@ abstract class _$ErrorCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$ErrorCopyWithImpl<$Res> extends _$LoginStateCopyWithImpl<$Res>
+class __$ErrorCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
     implements _$ErrorCopyWith<$Res> {
   __$ErrorCopyWithImpl(_Error _value, $Res Function(_Error) _then)
       : super(_value, (v) => _then(v as _Error));
@@ -499,7 +498,7 @@ class _$_Error implements _Error {
 
   @override
   String toString() {
-    return 'LoginState.error(error: $error)';
+    return 'AuthState.error(error: $error)';
   }
 
   @override
@@ -593,7 +592,7 @@ class _$_Error implements _Error {
   }
 }
 
-abstract class _Error implements LoginState {
+abstract class _Error implements AuthState {
   const factory _Error(AppException error) = _$_Error;
 
   AppException get error;

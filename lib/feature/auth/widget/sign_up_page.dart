@@ -1,16 +1,29 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/feature/auth/provider/login_provider.dart';
+import 'package:flutter_boilerplate/feature/auth/model/auth_state.dart';
+import 'package:flutter_boilerplate/feature/auth/provider/auth_provider.dart';
 import 'package:flutter_boilerplate/l10n/l10n.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SignInWidget extends ConsumerWidget {
+class SignUpPage extends ConsumerWidget {
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  SignInWidget({Key? key}) : super(key: key);
+  SignUpPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(authProvider, (value) {
+      if (value is AuthState) {
+        value.maybeWhen(loggedIn: () {
+          context.router.popUntilRoot();
+        }, orElse: () {
+          {}
+        });
+      }
+    });
+
     return Scaffold(
         body: Container(
             margin: const EdgeInsets.only(left: 20.0, right: 20.0),
@@ -18,7 +31,7 @@ class SignInWidget extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   const SizedBox(height: 150),
-                  Text(context.l10n.sign_in,
+                  Text(context.l10n.sign_up,
                       style: TextStyle(
                           color: Colors.grey[800],
                           fontWeight: FontWeight.bold,
@@ -26,6 +39,11 @@ class SignInWidget extends ConsumerWidget {
                   Form(
                     child: Column(
                       children: [
+                        TextFormField(
+                          decoration: InputDecoration(
+                              labelText: context.l10n.name_hint),
+                          controller: _nameController,
+                        ),
                         TextFormField(
                           decoration: InputDecoration(
                               labelText: context.l10n.email_hint),
@@ -41,13 +59,13 @@ class SignInWidget extends ConsumerWidget {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: <Widget>[
                               const SizedBox(height: 30),
-                              _widgetSignInButton(context, ref),
+                              _widgetSignUpButton(context, ref),
                               const SizedBox(height: 30),
                               Text(
-                                context.l10n.new_user,
+                                context.l10n.already_user,
                                 textAlign: TextAlign.center,
                               ),
-                              _widgetSignUpButton(context),
+                              _widgetSignInButton(context, ref),
                             ]),
                       ],
                     ),
@@ -60,19 +78,20 @@ class SignInWidget extends ConsumerWidget {
         width: double.infinity,
         child: ElevatedButton(
           onPressed: () {
-            ref
-                .read(loginProvider.notifier)
-                .login(_emailController.text, _passwordController.text);
+            context.router.pop();
           },
           child: Text(context.l10n.sign_in),
         ));
   }
 
-  Widget _widgetSignUpButton(BuildContext context) {
+  Widget _widgetSignUpButton(BuildContext context, WidgetRef ref) {
     return SizedBox(
         width: double.infinity,
         child: ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            ref.read(authProvider.notifier).signUp(_nameController.text,
+                _emailController.text, _passwordController.text);
+          },
           child: Text(context.l10n.sign_up),
         ));
   }

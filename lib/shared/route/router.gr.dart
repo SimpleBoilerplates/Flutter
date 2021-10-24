@@ -8,45 +8,90 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-import 'package:auto_route/auto_route.dart' as _i3;
-import 'package:flutter/material.dart' as _i4;
-import 'package:flutter_boilerplate/app/widget/app_start_widget.dart' as _i1;
-import 'package:flutter_boilerplate/feature/home/widget/home_widget.dart'
-    as _i2;
+import 'package:auto_route/auto_route.dart' as _i5;
+import 'package:flutter/material.dart' as _i6;
+import 'package:flutter_boilerplate/app/widget/app_start_page.dart' as _i1;
+import 'package:flutter_boilerplate/feature/auth/widget/sign_in_page.dart'
+    as _i3;
+import 'package:flutter_boilerplate/feature/auth/widget/sign_up_page.dart'
+    as _i4;
+import 'package:flutter_boilerplate/feature/home/widget/home_page.dart' as _i2;
 
-class AppRouter extends _i3.RootStackRouter {
-  AppRouter([_i4.GlobalKey<_i4.NavigatorState>? navigatorKey])
+class AppRouter extends _i5.RootStackRouter {
+  AppRouter([_i6.GlobalKey<_i6.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i3.PageFactory> pagesMap = {
-    AppStartWidget.name: (routeData) {
-      return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i1.AppStartWidget());
+  final Map<String, _i5.PageFactory> pagesMap = {
+    AppStartRoute.name: (routeData) {
+      return _i5.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i1.AppStartPage());
     },
-    HomeWidget.name: (routeData) {
-      return _i3.AdaptivePage<dynamic>(
-          routeData: routeData, child: const _i2.HomeWidget());
+    HomeRoute.name: (routeData) {
+      return _i5.AdaptivePage<dynamic>(
+          routeData: routeData, child: const _i2.HomePage());
+    },
+    SignInRoute.name: (routeData) {
+      final args = routeData.argsAs<SignInRouteArgs>(
+          orElse: () => const SignInRouteArgs());
+      return _i5.AdaptivePage<dynamic>(
+          routeData: routeData, child: _i3.SignInPage(key: args.key));
+    },
+    SignUpRoute.name: (routeData) {
+      final args = routeData.argsAs<SignUpRouteArgs>(
+          orElse: () => const SignUpRouteArgs());
+      return _i5.AdaptivePage<dynamic>(
+          routeData: routeData, child: _i4.SignUpPage(key: args.key));
     }
   };
 
   @override
-  List<_i3.RouteConfig> get routes => [
-        _i3.RouteConfig(AppStartWidget.name, path: '/'),
-        _i3.RouteConfig(HomeWidget.name, path: '/home-widget')
+  List<_i5.RouteConfig> get routes => [
+        _i5.RouteConfig(AppStartRoute.name, path: '/'),
+        _i5.RouteConfig(HomeRoute.name, path: '/home'),
+        _i5.RouteConfig(SignInRoute.name, path: '/signIn'),
+        _i5.RouteConfig(SignUpRoute.name, path: '/signUp')
       ];
 }
 
-/// generated route for [_i1.AppStartWidget]
-class AppStartWidget extends _i3.PageRouteInfo<void> {
-  const AppStartWidget() : super(name, path: '/');
+/// generated route for [_i1.AppStartPage]
+class AppStartRoute extends _i5.PageRouteInfo<void> {
+  const AppStartRoute() : super(name, path: '/');
 
-  static const String name = 'AppStartWidget';
+  static const String name = 'AppStartRoute';
 }
 
-/// generated route for [_i2.HomeWidget]
-class HomeWidget extends _i3.PageRouteInfo<void> {
-  const HomeWidget() : super(name, path: '/home-widget');
+/// generated route for [_i2.HomePage]
+class HomeRoute extends _i5.PageRouteInfo<void> {
+  const HomeRoute() : super(name, path: '/home');
 
-  static const String name = 'HomeWidget';
+  static const String name = 'HomeRoute';
+}
+
+/// generated route for [_i3.SignInPage]
+class SignInRoute extends _i5.PageRouteInfo<SignInRouteArgs> {
+  SignInRoute({_i6.Key? key})
+      : super(name, path: '/signIn', args: SignInRouteArgs(key: key));
+
+  static const String name = 'SignInRoute';
+}
+
+class SignInRouteArgs {
+  const SignInRouteArgs({this.key});
+
+  final _i6.Key? key;
+}
+
+/// generated route for [_i4.SignUpPage]
+class SignUpRoute extends _i5.PageRouteInfo<SignUpRouteArgs> {
+  SignUpRoute({_i6.Key? key})
+      : super(name, path: '/signUp', args: SignUpRouteArgs(key: key));
+
+  static const String name = 'SignUpRoute';
+}
+
+class SignUpRouteArgs {
+  const SignUpRouteArgs({this.key});
+
+  final _i6.Key? key;
 }
