@@ -12,10 +12,8 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_bloc: ^7.3.0
-  bloc: ^7.2.0
   flutter_riverpod: ^1.0.0-dev.7
-  auto_route: 3.0.1
+  auto_route: 3.0.3
   intl: ^0.17.0
   meta: ^1.7.0
   dio: ^4.0.0
@@ -29,7 +27,6 @@ dependencies:
   flutter_dotenv: ^5.0.2
 
 dev_dependencies:
-  bloc_test: ^8.3.0
   flutter_test:
     sdk: flutter
   mocktail: ^0.1.1

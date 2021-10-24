@@ -6,8 +6,8 @@ import 'package:flutter_boilerplate/l10n/l10n.dart';
 import 'package:flutter_boilerplate/shared/http/app_exception.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomeWidget extends ConsumerWidget {
-  const HomeWidget({Key? key}) : super(key: key);
+class HomePage extends ConsumerWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

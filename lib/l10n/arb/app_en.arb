@@ -10,6 +10,6 @@
     "new_user" : "A new user?",
     "password_hint": "Password",
     "email_hint": "Email",
-    "name_hint": "Name",
+    "name_hint": "Full Name",
     "books" : "Books"
 }
