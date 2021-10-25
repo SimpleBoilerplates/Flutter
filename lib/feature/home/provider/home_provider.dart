@@ -1,19 +1,18 @@
-import 'package:flutter_boilerplate/app/provider/app_start_provider.dart';
 import 'package:flutter_boilerplate/feature/home/state/home_state.dart';
 import 'package:flutter_boilerplate/shared/repository/token_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final homeProvider = StateNotifierProvider<HomeProvider, HomeState>((ref) {
-  return HomeProvider(ref);
+  return HomeProvider(ref.read);
 });
 
 class HomeProvider extends StateNotifier<HomeState> {
-  HomeProvider(ProviderRefBase ref) : super(const HomeState.loading()) {
-    _tokenRepository = ref.read(tokenRepositoryProvider);
+  HomeProvider(this._reader) : super(const HomeState.loading()) {
     _init();
   }
-
-  late TokenRepository _tokenRepository;
+  final Reader _reader;
+  late final TokenRepository _tokenRepository =
+      _reader(tokenRepositoryProvider);
 
   _init() async {}
 

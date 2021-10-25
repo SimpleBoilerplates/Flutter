@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_boilerplate/shared/http/http_override.dart';
 import 'package:flutter_boilerplate/shared/util/logger.dart';
 import 'package:flutter_boilerplate/shared/util/platform_type.dart';
@@ -21,14 +20,11 @@ void start() async {
 
   final platformType = detectPlatformType();
 
-    runApp(ProviderScope(
-      overrides: [
-        // prefServiceProvider
-        //     .overrideWithValue(PrefService(sharedPreferences)),
-        platformTypeProvider.overrideWithValue(platformType),
-      ],
-      observers: [Logger()],
-      child: App(),
-    ));
-
+  runApp(ProviderScope(
+    overrides: [
+      platformTypeProvider.overrideWithValue(platformType),
+    ],
+    observers: [Logger()],
+    child: App(),
+  ));
 }

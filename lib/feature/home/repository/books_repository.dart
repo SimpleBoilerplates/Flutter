@@ -5,18 +5,21 @@ import 'package:flutter_boilerplate/shared/http/api_response.dart';
 import 'package:flutter_boilerplate/shared/http/app_exception.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final booksRepositoryProvider = Provider((ref) => BooksRepository(ref: ref));
+abstract class BooksRepositoryProtocol {
+  Future<BooksState> fetchBooks();
+}
 
-class BooksRepository {
-  BooksRepository({required this.ref}) {
-    api = ref.read(apiProvider);
-  }
+final booksRepositoryProvider = Provider((ref) => BooksRepository(ref.read));
 
-  late ApiProvider api;
-  final ProviderRefBase ref;
+class BooksRepository implements BooksRepositoryProtocol {
+  BooksRepository(this._reader) {}
 
+  late final ApiProvider _api = _reader(apiProvider);
+  final Reader _reader;
+
+  @override
   Future<BooksState> fetchBooks() async {
-    final response = await api.get('books');
+    final response = await _api.get('books');
 
     response.when(
         success: (success) {},

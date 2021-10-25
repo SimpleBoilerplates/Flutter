@@ -16,30 +16,30 @@ final appStartProvider =
       ? const AppStartState.authenticated()
       : const AppStartState.initial();
 
-  return AppStartNotifier(appStartState, ref, loginState, homeState);
+  return AppStartNotifier(appStartState, ref.read, loginState, homeState);
 });
 
 class AppStartNotifier extends StateNotifier<AppStartState> {
-  late TokenRepository _tokenRepository;
-  final AuthState authState;
-  final HomeState homeState;
+  late final TokenRepository _tokenRepository =
+      _reader(tokenRepositoryProvider);
+  final AuthState _authState;
+  final HomeState _homeState;
+  final Reader _reader;
 
-  AppStartNotifier(AppStartState appStartState, ProviderRefBase ref,
-      this.authState, this.homeState)
+  AppStartNotifier(AppStartState appStartState, this._reader, this._authState,
+      this._homeState)
       : super(appStartState) {
-    _tokenRepository = ref.read(tokenRepositoryProvider);
-    //state = const AppStartState.authenticated();
     _init();
   }
 
   void _init() async {
-    authState.maybeWhen(
+    _authState.maybeWhen(
         loggedIn: () {
           state = const AppStartState.authenticated();
         },
         orElse: () {});
 
-    homeState.maybeWhen(
+    _homeState.maybeWhen(
         loggedOut: () {
           state = const AppStartState.unauthenticated();
         },
