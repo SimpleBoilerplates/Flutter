@@ -11,7 +11,6 @@ List<Book> booksFromJson(List<dynamic> data) =>
 Book bookFromJson(String str) => Book.fromJson(json.decode(str));
 
 @freezed
-@JsonSerializable(explicitToJson: true)
 class Book with _$Book {
   const Book._();
   const factory Book({

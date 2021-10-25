@@ -61,7 +61,7 @@ class AuthRepository implements AuthRepositoryProtocol {
           AppException.errorWithMessage('Please enter a valid email address'));
     }
     final params = {
-      'name': name ?? '',
+      'name': name,
       'email': email,
       'password': password,
     };
