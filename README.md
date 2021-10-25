@@ -13,7 +13,7 @@ This is a very simple Boilerplate application, this has following features.
 
 It uses a mock json server which doesn't store or validate, so for sign in/up any email, password will simply work.
 
-[RiverPod](https://riverpod.dev/) was used for state management, but there's an old implementation with Flutter bloc as well, you may check out [bloc](https://github.com/SimpleBoilerplates/Flutter/tree/bloc) branch, though that branch doesn't have many imporvements that latest changes have.
+[RiverPod](https://riverpod.dev/) was used for state management, but there's an old implementation with [Flutter bloc](https://bloclibrary.dev/#/) as well, you may check out [bloc](https://github.com/SimpleBoilerplates/Flutter/tree/bloc) branch, though that branch doesn't have many imporvements that latest changes have.
   
 ## Getting Started 🚀
 
