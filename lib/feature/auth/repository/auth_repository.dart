@@ -8,14 +8,20 @@ import 'package:flutter_boilerplate/shared/repository/token_repository.dart';
 import 'package:flutter_boilerplate/shared/util/validator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AuthRepository {
-  AuthRepository({required this.ref}) {
-    api = ref.read(apiProvider);
-  }
+abstract class AuthRepositoryProtocol {
+  Future<AuthState> login(String email, String password);
+  Future<AuthState> signUp(String name, String email, String password);
+}
 
-  late ApiProvider api;
-  final ProviderRefBase ref;
+final authRepositoryProvider = Provider((ref) => AuthRepository(ref.read));
 
+class AuthRepository implements AuthRepositoryProtocol {
+  AuthRepository(this._reader) {}
+
+  late final ApiProvider _api = _reader(apiProvider);
+  final Reader _reader;
+
+  @override
   Future<AuthState> login(String email, String password) async {
     if (!Validator.isValidPassWord(password)) {
       return const AuthState.error(
@@ -29,10 +35,10 @@ class AuthRepository {
       'email': email,
       'password': password,
     };
-    final loginResponse = await api.post('login', jsonEncode(params));
+    final loginResponse = await _api.post('login', jsonEncode(params));
 
     return loginResponse.when(success: (success) async {
-      final tokenRepository = ref.read(tokenRepositoryProvider);
+      final tokenRepository = _reader(tokenRepositoryProvider);
 
       final token = Token.fromJson(success);
 
@@ -44,6 +50,7 @@ class AuthRepository {
     });
   }
 
+  @override
   Future<AuthState> signUp(String name, String email, String password) async {
     if (!Validator.isValidPassWord(password)) {
       return const AuthState.error(
@@ -54,14 +61,14 @@ class AuthRepository {
           AppException.errorWithMessage('Please enter a valid email address'));
     }
     final params = {
-      'name': name ?? '',
+      'name': name,
       'email': email,
       'password': password,
     };
-    final loginResponse = await api.post('sign_up', jsonEncode(params));
+    final loginResponse = await _api.post('sign_up', jsonEncode(params));
 
     return loginResponse.when(success: (success) async {
-      final tokenRepository = ref.read(tokenRepositoryProvider);
+      final tokenRepository = _reader(tokenRepositoryProvider);
 
       final token = Token.fromJson(success);
 

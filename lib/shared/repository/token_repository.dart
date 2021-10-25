@@ -5,26 +5,31 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+abstract class TokenRepositoryProtocol {
+  Future<void> remove();
+  Future<void> saveToken(Token token);
+  Future<Token?> fetchToken();
+}
+
 final tokenRepositoryProvider = Provider<TokenRepository>((ref) {
-  return TokenRepository(ref: ref);
+  return TokenRepository(ref.read);
 });
 
-class TokenRepository {
-  TokenRepository({required this.ref}) {
-    platform = ref.read(platformTypeProvider);
-  }
+class TokenRepository implements TokenRepositoryProtocol {
+  TokenRepository(this._reader) {}
 
-  late PlatformType platform;
-  final ProviderRefBase ref;
+  late final PlatformType _platform = _reader(platformTypeProvider);
+  final Reader _reader;
   Token? _token;
 
+  @override
   Future<void> remove() async {
     _token = null;
     final prefs = await SharedPreferences.getInstance();
 
-    if (platform == PlatformType.iOS ||
-        platform == PlatformType.Android ||
-        platform == PlatformType.Linux) {
+    if (_platform == PlatformType.iOS ||
+        _platform == PlatformType.Android ||
+        _platform == PlatformType.Linux) {
       const storage = FlutterSecureStorage();
       try {
         await storage.delete(key: StoreKey.token.toString());
@@ -36,12 +41,13 @@ class TokenRepository {
     await prefs.remove(StoreKey.user.toString());
   }
 
+  @override
   Future<void> saveToken(Token token) async {
     final prefs = await SharedPreferences.getInstance();
     _token = token;
-    if (platform == PlatformType.iOS ||
-        platform == PlatformType.Android ||
-        platform == PlatformType.Linux) {
+    if (_platform == PlatformType.iOS ||
+        _platform == PlatformType.Android ||
+        _platform == PlatformType.Linux) {
       const storage = FlutterSecureStorage();
       try {
         await storage.write(
@@ -52,6 +58,7 @@ class TokenRepository {
     }
   }
 
+  @override
   Future<Token?> fetchToken() async {
     // if (_token != null) {
     //   return _token;
@@ -59,9 +66,9 @@ class TokenRepository {
 
     String? tokenValue;
 
-    if (platform == PlatformType.iOS ||
-        platform == PlatformType.Android ||
-        platform == PlatformType.Linux) {
+    if (_platform == PlatformType.iOS ||
+        _platform == PlatformType.Android ||
+        _platform == PlatformType.Linux) {
       const storage = FlutterSecureStorage();
       tokenValue = await storage.read(key: StoreKey.token.toString());
     } else {
