@@ -1,5 +1,7 @@
 # Boilerplates
 
+[![style: effective dart](https://img.shields.io/badge/style-effective_dart-40c4ff.svg)](https://pub.dev/packages/effective_dart)
+
 This is a very simple Boilerplate application, this has following features.
 
   - User can Sign In and Up
