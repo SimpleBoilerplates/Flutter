@@ -6,6 +6,9 @@
 <a href="http://fluttersamples.com"><img src="https://img.shields.io/badge/flutter-samples-teal.svg?longCache=true" alt="Flutter Samples"></a>
 [![License: MIT][license_badge]][license_link]
 
+A boilerplate project for Flutter using [RiverPod](https://riverpod.dev/), [Dio](https://pub.dev/packages/dio), [auto_route](https://pub.dev/packages/auto_route), [Freezed](https://pub.dev/packages/freezed) and generated with [very_good_cli](https://github.com/VeryGoodOpenSource/very_good_cli).
+
+
 ---
 
 This is a very simple Boilerplate application, this has following features.
