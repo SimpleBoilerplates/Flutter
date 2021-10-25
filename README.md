@@ -2,7 +2,12 @@
 
 ![coverage][coverage_badge]
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
+<a href="https://github.com/tenhobi/effective_dart"><img src="https://img.shields.io/badge/style-effective_dart-40c4ff.svg" alt="style: effective dart"></a>
+<a href="http://fluttersamples.com"><img src="https://img.shields.io/badge/flutter-samples-teal.svg?longCache=true" alt="Flutter Samples"></a>
 [![License: MIT][license_badge]][license_link]
+
+A boilerplate project for Flutter using [RiverPod](https://riverpod.dev/), [Dio](https://pub.dev/packages/dio), [auto_route](https://pub.dev/packages/auto_route), [Freezed](https://pub.dev/packages/freezed) and generated with [very_good_cli](https://github.com/VeryGoodOpenSource/very_good_cli).
+
 
 ---
 
@@ -10,6 +15,12 @@ This is a very simple Boilerplate application, this has following features.
 
   - User can Sign In and Up
   - After signing in he can see a list of items
+
+> It uses a mock json server which doesn't store or validate anything, so for signing in/up any email, password will simply work.
+
+[RiverPod](https://riverpod.dev/) was used for state management, but there's an old implementation with [Flutter bloc](https://bloclibrary.dev/#/) as well, you may check out [bloc](https://github.com/SimpleBoilerplates/Flutter/tree/bloc) branch, though that branch doesn't have many of the latest changes.
+
+**I am available for hire for Flutter position**
   
 ## Getting Started 🚀
 
@@ -60,7 +71,7 @@ $ open coverage/index.html
 
 ## Avoid writing scripts with Derry
 
-You can run all these scripts manually or could use [Derry](https://pub.dev/packages/derry) and maintain a yaml file, where you can define all those scripts and run with derry in a very convinient way. All the scripts for this project is defined [here]()
+You can run all these scripts manually or could use [Derry](https://pub.dev/packages/derry) and maintain a yaml file, where you can define all those scripts and run with derry in a very convinient way. All the scripts for this project is defined [here](https://github.com/SimpleBoilerplates/Flutter/blob/master/derry.yaml)
 
 Example: 
 
