@@ -79,7 +79,7 @@ run `derry watch` instead of running
 flutter pub run build_runner watch --delete-conflicting-outputs
 ``` 
 
-run `build_apk_dev` instead of 
+run `derry build_apk_dev` instead of 
 
 ```sh
 flutter build apk --flavor development -t lib/main_development.dart 
