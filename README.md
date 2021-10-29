@@ -90,6 +90,12 @@ and so on. Check out this [file](https://github.com/SimpleBoilerplates/Flutter/b
 
 This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization guide for Flutter][internationalization_link].
 
+If you face trouble after with translations, then run 
+
+```
+flutter gen-l10n --template-arb-file=arb/app_en.arb
+```
+
 ### Adding Strings
 
 1. To add a new localizable string, open the `app_en.arb` file at `lib/l10n/arb/app_en.arb`.
