@@ -19,8 +19,6 @@ This is a very simple Boilerplate application, this has following features.
 > It uses a mock json server which doesn't store or validate anything, so for signing in/up any email, password will simply work.
 
 [RiverPod](https://riverpod.dev/) was used for state management, but there's an old implementation with [Flutter bloc](https://bloclibrary.dev/#/) as well, you may check out [bloc](https://github.com/SimpleBoilerplates/Flutter/tree/bloc) branch, though that branch doesn't have many of the latest changes.
-
-**I am available for hire for Flutter position**
   
 ## Getting Started 🚀
 
@@ -69,29 +67,36 @@ $ open coverage/index.html
 
 ---
 
-## Avoid writing scripts with MakeFile / Derry
+
+## Use MakeFile / Derry to avoid writing your own scripts
+
 
 You can run all these scripts manually or could use  [MakeFile](https://github.com/SimpleBoilerplates/Flutter/blob/master/makefile) / [Derry](https://pub.dev/packages/derry) and maintain a file, where you can define all those scripts and run in a very convinient way. All the scripts for this project is defined here [derry scripts](https://github.com/SimpleBoilerplates/Flutter/blob/master/derry.yaml) and [makefile scripts](https://github.com/SimpleBoilerplates/Flutter/blob/master/makefile)
 
 Example: 
 
-instead of running 
+run `make watch` or `derry watch` instead of running 
 
 ```sh
 flutter pub run build_runner watch --delete-conflicting-outputs
 ``` 
-you could simply use `make watch` or `derry watch`
 
-or use `derry build_apk_dev` or `make build_apk_dev` instead of 
+run `derry build_apk_dev` or `make build_apk_dev` instead of 
 
 ```sh
 flutter build apk --flavor development -t lib/main_development.dart 
 ``` 
-
+and so on. Check out this [makefile](https://github.com/SimpleBoilerplates/Flutter/blob/master/makefile) or [derry scripts](https://github.com/SimpleBoilerplates/Flutter/blob/master/derry.yaml).
 
 ## Working with Translations 🌐
 
 This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization guide for Flutter][internationalization_link].
+
+If you face trouble after with translations, then run 
+
+```
+flutter gen-l10n --template-arb-file=arb/app_en.arb
+```
 
 ### Adding Strings
 
