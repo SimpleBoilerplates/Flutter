@@ -26,16 +26,6 @@ build_apk_prod:
   - flutter pub get
   - flutter build apk --flavor production -t lib/main_production.dart
 
-build_ios_staging:
-  - flutter clean
-  - flutter pub get
-  - flutter build ipa --export-options-plist --flavor staging -t lib/main_staging.dart
-
-build_ios_production:
-    - flutter clean
-    - flutter pub get
-    - flutter build ipa --flavor staging -t lib/main_staging.dart
-
 start_ios:
   - xcrun simctl list
   - open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/

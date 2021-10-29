@@ -7,7 +7,6 @@ environment:
   sdk: ">=2.13.0 <3.0.0"
 
 dependencies:
-
   flutter:
     sdk: flutter
   flutter_localizations:
@@ -42,7 +41,6 @@ dev_dependencies:
   logger:
   import_sorter: ^4.6.0
   flutter_lints: ^1.0.4
-
 
 ## Install derry from https://pub.dev/packages/derry and run derry build, derry watch, derry gen
 scripts: derry.yaml
