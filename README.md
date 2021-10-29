@@ -67,7 +67,7 @@ $ open coverage/index.html
 
 ---
 
-## Avoid writing scripts with Derry
+## Use Derry to avoid writing your own scripts
 
 You can run all these scripts manually or could use [Derry](https://pub.dev/packages/derry) and maintain a yaml file, where you can define all those scripts and run with derry in a very convinient way. All the scripts for this project is defined [here](https://github.com/SimpleBoilerplates/Flutter/blob/master/derry.yaml)
 
