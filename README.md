@@ -73,19 +73,18 @@ You can run all these scripts manually or could use [Derry](https://pub.dev/pack
 
 Example: 
 
-instead of running 
+run `derry watch` instead of running 
 
 ```sh
 flutter pub run build_runner watch --delete-conflicting-outputs
 ``` 
-you could simply use `derry watch`
 
-or use `build_apk_dev` instead of 
+run `build_apk_dev` instead of 
 
 ```sh
 flutter build apk --flavor development -t lib/main_development.dart 
 ``` 
-
+and so on. Check out this [file](https://github.com/SimpleBoilerplates/Flutter/blob/master/derry.yaml).
 
 ## Working with Translations 🌐
 
