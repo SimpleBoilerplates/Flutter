@@ -55,14 +55,14 @@ You can run all these scripts manually or could use  [MakeFile](https://github.c
 
 Example: 
 
-instead of running 
+run `make watch` or `derry watch` instead of
 
 ```sh
 flutter pub run build_runner watch --delete-conflicting-outputs
 ``` 
-you could simply use `make watch` or `derry watch`
 
-or use `derry build_apk_dev` or `make build_apk_dev` instead of 
+
+or run `make build_apk_dev` or `derry build_apk_dev` instead of 
 
 ```sh
 flutter build apk --flavor development -t lib/main_development.dart 
