@@ -23,8 +23,9 @@ final apiProvider = Provider<ApiProvider>(
 class ApiProvider {
   ApiProvider(this._reader) {
     _dio = Dio();
-    _dio.options.connectTimeout = 180000;
-    _dio.options.receiveTimeout = 180000;
+    _dio.options.sendTimeout = 30000;
+    _dio.options.connectTimeout = 30000;
+    _dio.options.receiveTimeout = 30000;
     _dio.interceptors.add(
       RetryOnConnectionChangeInterceptor(
         requestRetrier: DioConnectivityRequestRetrier(
@@ -33,6 +34,8 @@ class ApiProvider {
         ),
       ),
     );
+
+    _dio.httpClientAdapter = DefaultHttpClientAdapter();
 
     (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (HttpClient client) {

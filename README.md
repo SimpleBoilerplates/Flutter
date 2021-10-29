@@ -69,9 +69,9 @@ $ open coverage/index.html
 
 ---
 
-## Avoid writing scripts with Derry
+## Avoid writing scripts with MakeFile / Derry
 
-You can run all these scripts manually or could use [Derry](https://pub.dev/packages/derry) and maintain a yaml file, where you can define all those scripts and run with derry in a very convinient way. All the scripts for this project is defined [here](https://github.com/SimpleBoilerplates/Flutter/blob/master/derry.yaml)
+You can run all these scripts manually or could use  [MakeFile](https://github.com/SimpleBoilerplates/Flutter/blob/master/makefile) / [Derry](https://pub.dev/packages/derry) and maintain a file, where you can define all those scripts and run in a very convinient way. All the scripts for this project is defined here [derry scripts](https://github.com/SimpleBoilerplates/Flutter/blob/master/derry.yaml) and [makefile scripts](https://github.com/SimpleBoilerplates/Flutter/blob/master/makefile)
 
 Example: 
 
@@ -80,9 +80,9 @@ instead of running
 ```sh
 flutter pub run build_runner watch --delete-conflicting-outputs
 ``` 
-you could simply use `derry watch`
+you could simply use `make watch` or `derry watch`
 
-or use `build_apk_dev` instead of 
+or use `derry build_apk_dev` or `make build_apk_dev` instead of 
 
 ```sh
 flutter build apk --flavor development -t lib/main_development.dart 
