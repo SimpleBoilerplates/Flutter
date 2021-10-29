@@ -49,7 +49,7 @@ _\*Flutter Boilerplate works on iOS, Android, and Web._
 ---
 
 
-## Avoid writing scripts with MakeFile / Derry
+## Use MakeFile / Derry to avoid writing your own scripts.
 
 You can run all these scripts manually or could use  [MakeFile](https://github.com/SimpleBoilerplates/Flutter/blob/master/makefile) / [Derry](https://pub.dev/packages/derry) and maintain a file, where you can define all those scripts and run in a very convinient way. All the scripts for this project is defined here [derry scripts](https://github.com/SimpleBoilerplates/Flutter/blob/master/derry.yaml) and [makefile scripts](https://github.com/SimpleBoilerplates/Flutter/blob/master/makefile)
 
