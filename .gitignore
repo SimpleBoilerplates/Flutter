@@ -130,3 +130,4 @@ lib/generated/intl/messages_bn.dart
 lib/generated/intl/messages_all.dart
 
 *.aab
+.idea/dictionaries/sadmansamee.xml

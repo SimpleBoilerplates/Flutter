@@ -30,11 +30,13 @@ class EmailValidator {
     if (c.codeUnitAt(0) < 128) {
       if (_isLetter(c) || c == '-') {
         _domainType = type.Alphabetic;
+
         return true;
       }
 
       if (_isDigit(c)) {
         _domainType = type.Numeric;
+
         return true;
       }
 
@@ -43,6 +45,7 @@ class EmailValidator {
 
     if (allowInternational) {
       _domainType = type.Alphabetic;
+
       return true;
     }
 
@@ -53,11 +56,13 @@ class EmailValidator {
     if (c.codeUnitAt(0) < 128) {
       if (_isLetter(c)) {
         _domainType = type.Alphabetic;
+
         return true;
       }
 
       if (_isDigit(c)) {
         _domainType = type.Numeric;
+
         return true;
       }
 
@@ -68,6 +73,7 @@ class EmailValidator {
 
     if (allowInternational) {
       _domainType = type.Alphabetic;
+
       return true;
     }
 
@@ -196,6 +202,7 @@ class EmailValidator {
 
   static bool _isHexDigit(String str) {
     final c = str.codeUnitAt(0);
+
     return (c >= 65 && c <= 70) ||
         (c >= 97 && c <= 102) ||
         (c >= 48 && c <= 57);

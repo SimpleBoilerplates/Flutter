@@ -14,63 +14,69 @@ class SignUpPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(authProvider, (value) {
-      if (value is AuthState) {
-        value.maybeWhen(loggedIn: () {
-          context.router.popUntilRoot();
-        }, orElse: () {
-          {}
-        });
+    ref.listen(authProvider, (previous, next) {
+      if (next is AuthState) {
+        next.maybeWhen(
+          loggedIn: () {
+            context.router.popUntilRoot();
+          },
+          orElse: () {
+            {}
+          },
+        );
       }
     });
 
     return Scaffold(
         body: Container(
-            margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  const SizedBox(height: 150),
-                  Text(context.l10n.sign_up,
-                      style: TextStyle(
-                          color: Colors.grey[800],
-                          fontWeight: FontWeight.bold,
-                          fontSize: 40)),
-                  Form(
-                    child: Column(
-                      children: [
-                        TextFormField(
-                          decoration: InputDecoration(
-                              labelText: context.l10n.name_hint),
-                          controller: _nameController,
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                              labelText: context.l10n.email_hint),
-                          controller: _emailController,
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                              labelText: context.l10n.password_hint),
-                          controller: _passwordController,
-                          obscureText: true,
-                        ),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: <Widget>[
-                              const SizedBox(height: 30),
-                              _widgetSignUpButton(context, ref),
-                              const SizedBox(height: 30),
-                              Text(
-                                context.l10n.already_user,
-                                textAlign: TextAlign.center,
-                              ),
-                              _widgetSignInButton(context, ref),
-                            ]),
-                      ],
+            margin: const EdgeInsets.only(left: 20, right: 20),
+            child: Column(children: <Widget>[
+              const SizedBox(height: 150),
+              Text(
+                context.l10n.sign_up,
+                style: TextStyle(
+                    color: Colors.grey[800],
+                    fontWeight: FontWeight.bold,
+                    fontSize: 40),
+              ),
+              Form(
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: context.l10n.name_hint,
+                      ),
+                      controller: _nameController,
                     ),
-                  )
-                ])));
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: context.l10n.email_hint,
+                      ),
+                      controller: _emailController,
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        labelText: context.l10n.password_hint,
+                      ),
+                      controller: _passwordController,
+                      obscureText: true,
+                    ),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          const SizedBox(height: 30),
+                          _widgetSignUpButton(context, ref),
+                          const SizedBox(height: 30),
+                          Text(
+                            context.l10n.already_user,
+                            textAlign: TextAlign.center,
+                          ),
+                          _widgetSignInButton(context, ref),
+                        ]),
+                  ],
+                ),
+              )
+            ])));
   }
 
   Widget _widgetSignInButton(BuildContext context, WidgetRef ref) {

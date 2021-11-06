@@ -20,19 +20,19 @@ final appStartProvider =
 });
 
 class AppStartNotifier extends StateNotifier<AppStartState> {
-  late final TokenRepository _tokenRepository =
-      _reader(tokenRepositoryProvider);
-  final AuthState _authState;
-  final HomeState _homeState;
-  final Reader _reader;
-
   AppStartNotifier(AppStartState appStartState, this._reader, this._authState,
       this._homeState)
       : super(appStartState) {
     _init();
   }
 
-  void _init() async {
+  late final TokenRepository _tokenRepository =
+      _reader(tokenRepositoryProvider);
+  final AuthState _authState;
+  final HomeState _homeState;
+  final Reader _reader;
+
+  Future<void> _init() async {
     _authState.maybeWhen(
         loggedIn: () {
           state = const AppStartState.authenticated();

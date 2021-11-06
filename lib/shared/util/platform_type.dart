@@ -6,28 +6,28 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final platformTypeProvider =
     Provider<PlatformType>((ref) => throw UnimplementedError());
 
-enum PlatformType { iOS, Android, Windows, Web, Fuchsia, Linux, MacOS, Others }
+enum PlatformType { iOS, android, windows, web, fuchsia, linux, macOS, other }
 
 PlatformType detectPlatformType() {
   PlatformType platformType;
 
   if (kIsWeb) {
-    platformType = PlatformType.Web;
+    platformType = PlatformType.web;
   } else {
     if (Platform.isAndroid) {
-      platformType = PlatformType.Android;
+      platformType = PlatformType.android;
     } else if (Platform.isIOS) {
       platformType = PlatformType.iOS;
     } else if (Platform.isMacOS) {
-      platformType = PlatformType.MacOS;
+      platformType = PlatformType.macOS;
     } else if (Platform.isWindows) {
-      platformType = PlatformType.Windows;
+      platformType = PlatformType.windows;
     } else if (Platform.isLinux) {
-      platformType = PlatformType.Linux;
+      platformType = PlatformType.linux;
     } else if (Platform.isFuchsia) {
-      platformType = PlatformType.Fuchsia;
+      platformType = PlatformType.fuchsia;
     } else {
-      platformType = PlatformType.Android;
+      platformType = PlatformType.android;
     }
   }
 

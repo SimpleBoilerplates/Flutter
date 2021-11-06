@@ -12,7 +12,7 @@ abstract class BooksRepositoryProtocol {
 final booksRepositoryProvider = Provider((ref) => BooksRepository(ref.read));
 
 class BooksRepository implements BooksRepositoryProtocol {
-  BooksRepository(this._reader) {}
+  BooksRepository(this._reader);
 
   late final ApiProvider _api = _reader(apiProvider);
   final Reader _reader;
@@ -30,7 +30,8 @@ class BooksRepository implements BooksRepositoryProtocol {
     if (response is APISuccess) {
       final value = response.value;
       try {
-        final List<Book> _books = booksFromJson(value);
+        final _books = booksFromJson(value);
+
         return BooksState.booksLoaded(_books);
       } catch (e) {
         return BooksState.error(AppException.errorWithMessage(e.toString()));

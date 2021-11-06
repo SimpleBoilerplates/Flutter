@@ -7,14 +7,10 @@ final homeProvider = StateNotifierProvider<HomeProvider, HomeState>((ref) {
 });
 
 class HomeProvider extends StateNotifier<HomeState> {
-  HomeProvider(this._reader) : super(const HomeState.loading()) {
-    _init();
-  }
+  HomeProvider(this._reader) : super(const HomeState.loading()) {}
   final Reader _reader;
   late final TokenRepository _tokenRepository =
       _reader(tokenRepositoryProvider);
-
-  _init() async {}
 
   Future<void> logout() async {
     await _tokenRepository.remove();

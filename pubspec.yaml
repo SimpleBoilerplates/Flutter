@@ -11,11 +11,11 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_riverpod: ^1.0.0-dev.7
-  auto_route: 3.0.3
+  flutter_riverpod: 1.0.0
+  auto_route: 3.0.4
   intl: ^0.17.0
   meta: ^1.7.0
-  dio: ^4.0.0
+  dio: ^4.0.1
   json_annotation: ^4.3.0
   pretty_dio_logger: ^1.1.1
   flutter_secure_storage: ^4.2.1
@@ -25,12 +25,13 @@ dependencies:
   shared_preferences: ^2.0.8
   flutter_dotenv: ^5.0.2
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
   mocktail: ^0.1.1
   very_good_analysis: ^2.4.0
-  dart_code_metrics: ^4.4.0
+  dart_code_metrics: ^4.6.0
   very_good_performance: ^0.0.4
   dependency_validator: ^3.1.0
   json_serializable:
@@ -40,7 +41,6 @@ dev_dependencies:
   auto_route_generator: 3.0.1
   logger:
   import_sorter: ^4.6.0
-  flutter_lints: ^1.0.4
 
 ## Install derry from https://pub.dev/packages/derry and run derry build, derry watch, derry gen
 scripts: derry.yaml

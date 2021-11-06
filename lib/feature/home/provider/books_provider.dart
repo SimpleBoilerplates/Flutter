@@ -11,17 +11,17 @@ final booksProvider = StateNotifierProvider<BooksProvider, BooksState>((ref) {
 });
 
 class BooksProvider extends StateNotifier<BooksState> {
-  final Reader _reader;
-  final AppStartState _appStartState;
-
-  late final BooksRepository _repository = _reader(booksRepositoryProvider);
-
   BooksProvider(this._reader, this._appStartState)
       : super(const BooksState.loading()) {
     _init();
   }
 
-  _init() async {
+  final Reader _reader;
+  final AppStartState _appStartState;
+
+  late final BooksRepository _repository = _reader(booksRepositoryProvider);
+
+  Future<void> _init() async {
     _appStartState.maybeWhen(
         authenticated: () {
           _fetchBooks();
@@ -29,7 +29,7 @@ class BooksProvider extends StateNotifier<BooksState> {
         orElse: () {});
   }
 
-  _fetchBooks() async {
+  Future<void> _fetchBooks() async {
     final response = await _repository.fetchBooks();
     if (mounted) {
       state = response;

@@ -9,7 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app/app.dart';
 
-void start() async {
+Future<void> start() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   HttpOverrides.global = MyHttpOverrides();
@@ -20,11 +20,13 @@ void start() async {
 
   final platformType = detectPlatformType();
 
-  runApp(ProviderScope(
-    overrides: [
-      platformTypeProvider.overrideWithValue(platformType),
-    ],
-    observers: [Logger()],
-    child: App(),
-  ));
+  runApp(
+    ProviderScope(
+      overrides: [
+        platformTypeProvider.overrideWithValue(platformType),
+      ],
+      observers: [Logger()],
+      child: App(),
+    ),
+  );
 }

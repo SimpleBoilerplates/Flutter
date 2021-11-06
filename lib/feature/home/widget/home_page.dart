@@ -35,17 +35,20 @@ class HomePage extends ConsumerWidget {
   Widget _widgetContent(BuildContext context, WidgetRef ref) {
     final state = ref.watch(booksProvider);
 
-    return state.when(loading: () {
-      return _widgetShimmer(context, ref);
-    }, booksLoaded: (books) {
-      return ListView.builder(
-          scrollDirection: Axis.vertical,
-          itemCount: books.length,
-          itemBuilder: (BuildContext context, int index) {
-            return RowBookWidget(book: books[index]);
-          });
-    }, error: (AppException error) {
-      return _widgetShimmer(context, ref);
-    });
+    return state.when(
+      loading: () {
+        return _widgetShimmer(context, ref);
+      },
+      booksLoaded: (books) {
+        return ListView.builder(
+            itemCount: books.length,
+            itemBuilder: (BuildContext context, int index) {
+              return RowBookWidget(book: books[index]);
+            });
+      },
+      error: (AppException error) {
+        return _widgetShimmer(context, ref);
+      },
+    );
   }
 }

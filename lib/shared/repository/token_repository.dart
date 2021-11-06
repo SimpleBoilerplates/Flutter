@@ -28,8 +28,8 @@ class TokenRepository implements TokenRepositoryProtocol {
     final prefs = await SharedPreferences.getInstance();
 
     if (_platform == PlatformType.iOS ||
-        _platform == PlatformType.Android ||
-        _platform == PlatformType.Linux) {
+        _platform == PlatformType.android ||
+        _platform == PlatformType.linux) {
       const storage = FlutterSecureStorage();
       try {
         await storage.delete(key: StoreKey.token.toString());
@@ -46,8 +46,8 @@ class TokenRepository implements TokenRepositoryProtocol {
     final prefs = await SharedPreferences.getInstance();
     _token = token;
     if (_platform == PlatformType.iOS ||
-        _platform == PlatformType.Android ||
-        _platform == PlatformType.Linux) {
+        _platform == PlatformType.android ||
+        _platform == PlatformType.linux) {
       const storage = FlutterSecureStorage();
       try {
         await storage.write(
@@ -67,8 +67,8 @@ class TokenRepository implements TokenRepositoryProtocol {
     String? tokenValue;
 
     if (_platform == PlatformType.iOS ||
-        _platform == PlatformType.Android ||
-        _platform == PlatformType.Linux) {
+        _platform == PlatformType.android ||
+        _platform == PlatformType.linux) {
       const storage = FlutterSecureStorage();
       tokenValue = await storage.read(key: StoreKey.token.toString());
     } else {

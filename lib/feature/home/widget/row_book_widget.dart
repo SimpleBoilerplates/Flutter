@@ -9,16 +9,16 @@ class RowBookWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkResponse(
-        enableFeedback: true,
-        child: ListTile(
-          leading: Text(
-            '${book.id}',
-            style: const TextStyle(fontSize: 10.0),
-          ),
-          title: Text(book.title ?? ""),
-          isThreeLine: true,
-          subtitle: Text(book.subTitle ?? ""),
-          dense: true,
-        ));
+      child: ListTile(
+        leading: Text(
+          '${book.id}',
+          style: const TextStyle(fontSize: 10),
+        ),
+        title: Text(book.title ?? ''),
+        isThreeLine: true,
+        subtitle: Text(book.subTitle ?? ''),
+        dense: true,
+      ),
+    );
   }
 }
