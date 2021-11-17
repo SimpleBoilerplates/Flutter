@@ -80,6 +80,11 @@ class SignInRouteArgs {
   const SignInRouteArgs({this.key});
 
   final _i6.Key? key;
+
+  @override
+  String toString() {
+    return 'SignInRouteArgs{key: $key}';
+  }
 }
 
 /// generated route for [_i4.SignUpPage]
@@ -94,4 +99,9 @@ class SignUpRouteArgs {
   const SignUpRouteArgs({this.key});
 
   final _i6.Key? key;
+
+  @override
+  String toString() {
+    return 'SignUpRouteArgs{key: $key}';
+  }
 }
