@@ -30,7 +30,7 @@ class BooksRepository implements BooksRepositoryProtocol {
     if (response is APISuccess) {
       final value = response.value;
       try {
-        final _books = booksFromJson(value);
+        final _books = booksFromJson(value as List<dynamic>);
 
         return BooksState.booksLoaded(_books);
       } catch (e) {

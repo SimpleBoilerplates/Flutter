@@ -7,7 +7,10 @@
 // **************************************************************************
 // AutoRouteGenerator
 // **************************************************************************
+//
+// ignore_for_file: type=lint
 
+// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i5;
 import 'package:flutter/material.dart' as _i6;
 import 'package:flutter_boilerplate/app/widget/app_start_page.dart' as _i1;
@@ -54,24 +57,28 @@ class AppRouter extends _i5.RootStackRouter {
       ];
 }
 
-/// generated route for [_i1.AppStartPage]
+/// generated route for
+/// [_i1.AppStartPage]
 class AppStartRoute extends _i5.PageRouteInfo<void> {
-  const AppStartRoute() : super(name, path: '/');
+  const AppStartRoute() : super(AppStartRoute.name, path: '/');
 
   static const String name = 'AppStartRoute';
 }
 
-/// generated route for [_i2.HomePage]
+/// generated route for
+/// [_i2.HomePage]
 class HomeRoute extends _i5.PageRouteInfo<void> {
-  const HomeRoute() : super(name, path: '/home');
+  const HomeRoute() : super(HomeRoute.name, path: '/home');
 
   static const String name = 'HomeRoute';
 }
 
-/// generated route for [_i3.SignInPage]
+/// generated route for
+/// [_i3.SignInPage]
 class SignInRoute extends _i5.PageRouteInfo<SignInRouteArgs> {
   SignInRoute({_i6.Key? key})
-      : super(name, path: '/signIn', args: SignInRouteArgs(key: key));
+      : super(SignInRoute.name,
+            path: '/signIn', args: SignInRouteArgs(key: key));
 
   static const String name = 'SignInRoute';
 }
@@ -87,10 +94,12 @@ class SignInRouteArgs {
   }
 }
 
-/// generated route for [_i4.SignUpPage]
+/// generated route for
+/// [_i4.SignUpPage]
 class SignUpRoute extends _i5.PageRouteInfo<SignUpRouteArgs> {
   SignUpRoute({_i6.Key? key})
-      : super(name, path: '/signUp', args: SignUpRouteArgs(key: key));
+      : super(SignUpRoute.name,
+            path: '/signUp', args: SignUpRouteArgs(key: key));
 
   static const String name = 'SignUpRoute';
 }

@@ -40,7 +40,7 @@ class AuthRepository implements AuthRepositoryProtocol {
     return loginResponse.when(success: (success) async {
       final tokenRepository = _reader(tokenRepositoryProvider);
 
-      final token = Token.fromJson(success);
+      final token = Token.fromJson(success as Map<String, dynamic>);
 
       await tokenRepository.saveToken(token);
 
@@ -72,7 +72,7 @@ class AuthRepository implements AuthRepositoryProtocol {
     return loginResponse.when(success: (success) async {
       final tokenRepository = _reader(tokenRepositoryProvider);
 
-      final token = Token.fromJson(success);
+      final token = Token.fromJson(success as Map<String, dynamic>);
 
       await tokenRepository.saveToken(token);
 

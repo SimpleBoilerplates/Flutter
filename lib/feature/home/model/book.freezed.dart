@@ -1,5 +1,6 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'book.dart';
@@ -11,38 +12,11 @@ part of 'book.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 Book _$BookFromJson(Map<String, dynamic> json) {
   return _Book.fromJson(json);
 }
-
-/// @nodoc
-class _$BookTearOff {
-  const _$BookTearOff();
-
-  _Book call(
-      {required int id,
-      String? title,
-      String? subTitle,
-      String? description,
-      String? preview}) {
-    return _Book(
-      id: id,
-      title: title,
-      subTitle: subTitle,
-      description: description,
-      preview: preview,
-    );
-  }
-
-  Book fromJson(Map<String, Object?> json) {
-    return Book.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Book = _$BookTearOff();
 
 /// @nodoc
 mixin _$Book {
@@ -111,9 +85,9 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$BookCopyWith<$Res> implements $BookCopyWith<$Res> {
-  factory _$BookCopyWith(_Book value, $Res Function(_Book) then) =
-      __$BookCopyWithImpl<$Res>;
+abstract class _$$_BookCopyWith<$Res> implements $BookCopyWith<$Res> {
+  factory _$$_BookCopyWith(_$_Book value, $Res Function(_$_Book) then) =
+      __$$_BookCopyWithImpl<$Res>;
   @override
   $Res call(
       {int id,
@@ -124,13 +98,13 @@ abstract class _$BookCopyWith<$Res> implements $BookCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
-    implements _$BookCopyWith<$Res> {
-  __$BookCopyWithImpl(_Book _value, $Res Function(_Book) _then)
-      : super(_value, (v) => _then(v as _Book));
+class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
+    implements _$$_BookCopyWith<$Res> {
+  __$$_BookCopyWithImpl(_$_Book _value, $Res Function(_$_Book) _then)
+      : super(_value, (v) => _then(v as _$_Book));
 
   @override
-  _Book get _value => super._value as _Book;
+  _$_Book get _value => super._value as _$_Book;
 
   @override
   $Res call({
@@ -140,7 +114,7 @@ class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
     Object? description = freezed,
     Object? preview = freezed,
   }) {
-    return _then(_Book(
+    return _then(_$_Book(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -198,38 +172,45 @@ class _$_Book extends _Book {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Book &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.subTitle, subTitle) ||
-                other.subTitle == subTitle) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.preview, preview) || other.preview == preview));
+            other is _$_Book &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.title, title) &&
+            const DeepCollectionEquality().equals(other.subTitle, subTitle) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.preview, preview));
   }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, title, subTitle, description, preview);
 
   @JsonKey(ignore: true)
   @override
-  _$BookCopyWith<_Book> get copyWith =>
-      __$BookCopyWithImpl<_Book>(this, _$identity);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(title),
+      const DeepCollectionEquality().hash(subTitle),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(preview));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_BookCopyWith<_$_Book> get copyWith =>
+      __$$_BookCopyWithImpl<_$_Book>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BookToJson(this);
+    return _$$_BookToJson(
+      this,
+    );
   }
 }
 
 abstract class _Book extends Book {
   const factory _Book(
-      {required int id,
-      String? title,
-      String? subTitle,
-      String? description,
-      String? preview}) = _$_Book;
+      {required final int id,
+      final String? title,
+      final String? subTitle,
+      final String? description,
+      final String? preview}) = _$_Book;
   const _Book._() : super._();
 
   factory _Book.fromJson(Map<String, dynamic> json) = _$_Book.fromJson;
@@ -246,5 +227,5 @@ abstract class _Book extends Book {
   String? get preview;
   @override
   @JsonKey(ignore: true)
-  _$BookCopyWith<_Book> get copyWith => throw _privateConstructorUsedError;
+  _$$_BookCopyWith<_$_Book> get copyWith => throw _privateConstructorUsedError;
 }

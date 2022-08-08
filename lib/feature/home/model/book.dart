@@ -6,9 +6,10 @@ part 'book.freezed.dart';
 part 'book.g.dart';
 
 List<Book> booksFromJson(List<dynamic> data) =>
-    List<Book>.from(data.map((x) => Book.fromJson(x)));
+    List<Book>.from(data.map((x) => Book.fromJson(x as Map<String, dynamic>)));
 
-Book bookFromJson(String str) => Book.fromJson(json.decode(str));
+Book bookFromJson(String str) =>
+    Book.fromJson(json.decode(str) as Map<String, dynamic>);
 
 @freezed
 class Book with _$Book {

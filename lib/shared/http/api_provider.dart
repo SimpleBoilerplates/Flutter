@@ -126,8 +126,8 @@ class ApiProvider {
           return const APIResponse.error(AppException.error());
         } else {
           if (response.data['message'] != null) {
-            return APIResponse.error(
-                AppException.errorWithMessage(response.data['message'] ?? ''));
+            return APIResponse.error(AppException.errorWithMessage(
+                response.data['message'] as String ?? ''));
           } else {
             return const APIResponse.error(AppException.error());
           }
@@ -145,8 +145,8 @@ class ApiProvider {
 
       if (e.response != null) {
         if (e.response!.data['message'] != null) {
-          return APIResponse.error(
-              AppException.errorWithMessage(e.response!.data['message']));
+          return APIResponse.error(AppException.errorWithMessage(
+              e.response!.data['message'] as String));
         }
       }
       return APIResponse.error(AppException.errorWithMessage(e.message));
@@ -214,8 +214,8 @@ class ApiProvider {
           return const APIResponse.error(AppException.error());
         } else {
           if (response.data['error'] != null) {
-            return APIResponse.error(
-                AppException.errorWithMessage(response.data['error'] ?? ''));
+            return APIResponse.error(AppException.errorWithMessage(
+                response.data['error'] as String ?? ''));
           } else {
             return const APIResponse.error(AppException.error());
           }
