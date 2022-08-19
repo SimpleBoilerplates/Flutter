@@ -5,23 +5,24 @@ publish_to: none
 
 environment:
   sdk: ">=2.17.6 <3.0.0"
+  flutter: ">=2.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_riverpod: 1.0.4
-  auto_route: 4.2.1
+  flutter_riverpod: ^2.0.0-dev.9
+  auto_route: 5.0.0
   intl: ^0.17.0
   meta: ^1.7.0
   dio: ^4.0.6
   json_annotation: ^4.6.0
   pretty_dio_logger: ^1.1.1
-  flutter_secure_storage: 5.1.0
+  flutter_secure_storage: 6.0.0
   google_fonts: ^3.0.1
   lottie: ^1.4.1
-  connectivity_plus: ^2.3.6
+  connectivity_plus: ^2.3.6+1
   shared_preferences: ^2.0.15
   flutter_dotenv: ^5.0.2
 
@@ -31,14 +32,14 @@ dev_dependencies:
     #sdk: flutter
   mocktail: ^0.3.0
   very_good_analysis: ^3.0.1
-  dart_code_metrics: ^4.17.0
+  dart_code_metrics: 4.17.1
   very_good_performance: ^0.0.4
   dependency_validator: ^3.2.2
   json_serializable:
   build_runner:
   flutter_gen_runner:
   freezed: ^2.1.0+1
-  auto_route_generator: 4.2.1
+  auto_route_generator: 5.0.0
   logger:
   import_sorter: ^4.6.0
 
