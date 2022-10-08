@@ -17,11 +17,11 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 enum ContentType { urlEncoded, json }
 
 final apiProvider = Provider<ApiProvider>(
-  (ref) => ApiProvider(ref.read),
+  (ref) => ApiProvider(ref),
 );
 
 class ApiProvider {
-  ApiProvider(this._reader) {
+  ApiProvider(this._ref) {
     _dio = Dio();
     _dio.options.sendTimeout = 30000;
     _dio.options.connectTimeout = 30000;
@@ -52,12 +52,12 @@ class ApiProvider {
     }
   }
 
-  final Reader _reader;
+  final Ref _ref;
 
   late Dio _dio;
 
   late final TokenRepository _tokenRepository =
-      _reader(tokenRepositoryProvider);
+      _ref.read(tokenRepositoryProvider);
 
   late String _baseUrl;
 

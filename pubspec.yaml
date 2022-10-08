@@ -12,17 +12,17 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_riverpod: ^2.0.0-dev.9
+  flutter_riverpod: ^2.0.2
   auto_route: 5.0.1
   intl: ^0.17.0
-  meta: ^1.7.0
+  meta: ^1.8.0
   dio: ^4.0.6
-  json_annotation: ^4.6.0
+  json_annotation: ^4.7.0
   pretty_dio_logger: ^1.1.1
   flutter_secure_storage: 6.0.0
   google_fonts: ^3.0.1
   lottie: ^1.4.3
-  connectivity_plus: ^2.3.7
+  connectivity_plus: ^2.3.9
   shared_preferences: ^2.0.15
   flutter_dotenv: ^5.0.2
 
@@ -31,8 +31,8 @@ dev_dependencies:
   #flutter_test:
     #sdk: flutter
   mocktail: ^0.3.0
-  very_good_analysis: ^3.0.2
-  dart_code_metrics: 4.18.3
+  very_good_analysis: ^3.1.0
+  dart_code_metrics: 4.19.1
   very_good_performance: ^0.0.4
   dependency_validator: ^3.2.2
   json_serializable:

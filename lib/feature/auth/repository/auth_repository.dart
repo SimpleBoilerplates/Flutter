@@ -13,13 +13,13 @@ abstract class AuthRepositoryProtocol {
   Future<AuthState> signUp(String name, String email, String password);
 }
 
-final authRepositoryProvider = Provider((ref) => AuthRepository(ref.read));
+final authRepositoryProvider = Provider((ref) => AuthRepository(ref));
 
 class AuthRepository implements AuthRepositoryProtocol {
-  AuthRepository(this._reader) {}
+  AuthRepository(this._ref) {}
 
-  late final ApiProvider _api = _reader(apiProvider);
-  final Reader _reader;
+  late final ApiProvider _api = _ref.read(apiProvider);
+  final Ref _ref;
 
   @override
   Future<AuthState> login(String email, String password) async {
@@ -38,7 +38,7 @@ class AuthRepository implements AuthRepositoryProtocol {
     final loginResponse = await _api.post('login', jsonEncode(params));
 
     return loginResponse.when(success: (success) async {
-      final tokenRepository = _reader(tokenRepositoryProvider);
+      final tokenRepository = _ref.read(tokenRepositoryProvider);
 
       final token = Token.fromJson(success as Map<String, dynamic>);
 
@@ -70,7 +70,7 @@ class AuthRepository implements AuthRepositoryProtocol {
     final loginResponse = await _api.post('sign_up', jsonEncode(params));
 
     return loginResponse.when(success: (success) async {
-      final tokenRepository = _reader(tokenRepositoryProvider);
+      final tokenRepository = _ref.read(tokenRepositoryProvider);
 
       final token = Token.fromJson(success as Map<String, dynamic>);
 

@@ -12,14 +12,14 @@ abstract class TokenRepositoryProtocol {
 }
 
 final tokenRepositoryProvider = Provider<TokenRepository>((ref) {
-  return TokenRepository(ref.read);
+  return TokenRepository(ref);
 });
 
 class TokenRepository implements TokenRepositoryProtocol {
-  TokenRepository(this._reader) {}
+  TokenRepository(this._ref) {}
 
-  late final PlatformType _platform = _reader(platformTypeProvider);
-  final Reader _reader;
+  late final PlatformType _platform = _ref.read(platformTypeProvider);
+  final Ref _ref;
   Token? _token;
 
   @override

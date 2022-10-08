@@ -9,13 +9,13 @@ abstract class BooksRepositoryProtocol {
   Future<BooksState> fetchBooks();
 }
 
-final booksRepositoryProvider = Provider((ref) => BooksRepository(ref.read));
+final booksRepositoryProvider = Provider(BooksRepository.new);
 
 class BooksRepository implements BooksRepositoryProtocol {
-  BooksRepository(this._reader);
+  BooksRepository(this._ref);
 
-  late final ApiProvider _api = _reader(apiProvider);
-  final Reader _reader;
+  late final ApiProvider _api = _ref.read(apiProvider);
+  final Ref _ref;
 
   @override
   Future<BooksState> fetchBooks() async {

@@ -7,19 +7,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 final booksProvider = StateNotifierProvider<BooksProvider, BooksState>((ref) {
   final appStartState = ref.watch(appStartProvider);
 
-  return BooksProvider(ref.read, appStartState);
+  return BooksProvider(ref, appStartState);
 });
 
 class BooksProvider extends StateNotifier<BooksState> {
-  BooksProvider(this._reader, this._appStartState)
+  BooksProvider(this._ref, this._appStartState)
       : super(const BooksState.loading()) {
     _init();
   }
 
-  final Reader _reader;
+  final Ref _ref;
   final AppStartState _appStartState;
 
-  late final BooksRepository _repository = _reader(booksRepositoryProvider);
+  late final BooksRepository _repository = _ref.read(booksRepositoryProvider);
 
   Future<void> _init() async {
     _appStartState.maybeWhen(
