@@ -1,25 +1,26 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/feature/home/provider/books_provider.dart';
-import 'package:flutter_boilerplate/feature/home/provider/home_provider.dart';
-import 'package:flutter_boilerplate/feature/home/widget/row_book_widget.dart';
-import 'package:flutter_boilerplate/l10n/l10n.dart';
-import 'package:flutter_boilerplate/shared/http/app_exception.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_boilerplate/feature/home/provider/books_provider.dart';
+import 'package:flutter_boilerplate/feature/home/widget/row_book_widget.dart';
+import 'package:flutter_boilerplate/shared/http/app_exception.dart';
+import 'package:flutter_boilerplate/shared/route/app_router.dart';
 
 class HomePage extends ConsumerWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
-        title: Text(context.l10n.books),
+        title: Text("home".tr()),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.adjust),
             onPressed: () {
-              ref.read(homeProvider.notifier).logout();
+              ref.read(routerProvider).go(SignInRoute.path);
+              //ref.read(authNotifierProvider.notifier).logout();
             },
           ),
         ],
@@ -28,16 +29,18 @@ class HomePage extends ConsumerWidget {
     );
   }
 
-  Widget _widgetShimmer(BuildContext context, WidgetRef ref) {
-    return Container();
+  Widget _widgetLoading(BuildContext context, WidgetRef ref) {
+    return Center(
+      child: Text('loading'.tr()),
+    );
   }
 
   Widget _widgetContent(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(booksProvider);
+    final state = ref.watch(booksNotifierProvider);
 
     return state.when(
       loading: () {
-        return _widgetShimmer(context, ref);
+        return _widgetLoading(context, ref);
       },
       booksLoaded: (books) {
         return ListView.builder(
@@ -47,7 +50,7 @@ class HomePage extends ConsumerWidget {
             });
       },
       error: (AppException error) {
-        return _widgetShimmer(context, ref);
+        return _widgetLoading(context, ref);
       },
     );
   }

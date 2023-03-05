@@ -2,30 +2,34 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_boilerplate/feature/auth/repository/token_repository.dart';
 import 'package:flutter_boilerplate/shared/http/api_response.dart';
 import 'package:flutter_boilerplate/shared/http/app_exception.dart';
 import 'package:flutter_boilerplate/shared/http/interceptor/dio_connectivity_request_retrier.dart';
 import 'package:flutter_boilerplate/shared/http/interceptor/retry_interceptor.dart';
-import 'package:flutter_boilerplate/shared/repository/token_repository.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+
+//part 'api_provider.g.dart';
 
 enum ContentType { urlEncoded, json }
 
-final apiProvider = Provider<ApiProvider>(
-  (ref) => ApiProvider(ref),
-);
+// @riverpod
+// ApiProvider apiProvider(ApiProviderRef ref) {
+//   return ApiProvider(ref);
+// }
+
+final apiProvider = Provider<ApiProvider>(ApiProvider.new);
 
 class ApiProvider {
   ApiProvider(this._ref) {
     _dio = Dio();
-    _dio.options.sendTimeout = 30000;
-    _dio.options.connectTimeout = 30000;
-    _dio.options.receiveTimeout = 30000;
+    _dio.options.sendTimeout = const Duration(seconds: 5);
+    _dio.options.connectTimeout = const Duration(seconds: 5);
+    _dio.options.receiveTimeout = const Duration(seconds: 5);
     _dio.interceptors.add(
       RetryOnConnectionChangeInterceptor(
         requestRetrier: DioConnectivityRequestRetrier(
@@ -34,14 +38,6 @@ class ApiProvider {
         ),
       ),
     );
-
-    _dio.httpClientAdapter = DefaultHttpClientAdapter();
-
-    (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
-        (HttpClient client) {
-      client.badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-    };
 
     if (kDebugMode) {
       _dio.interceptors.add(PrettyDioLogger(requestBody: true));
@@ -137,7 +133,7 @@ class ApiProvider {
       if (e.error is SocketException) {
         return const APIResponse.error(AppException.connectivity());
       }
-      if (e.type == DioErrorType.connectTimeout ||
+      if (e.type == DioErrorType.connectionTimeout ||
           e.type == DioErrorType.receiveTimeout ||
           e.type == DioErrorType.sendTimeout) {
         return const APIResponse.error(AppException.connectivity());
@@ -149,7 +145,7 @@ class ApiProvider {
               e.response!.data['message'] as String));
         }
       }
-      return APIResponse.error(AppException.errorWithMessage(e.message));
+      return APIResponse.error(AppException.errorWithMessage(e.message ?? ''));
     } on Error catch (e) {
       return APIResponse.error(
           AppException.errorWithMessage(e.stackTrace.toString()));
@@ -225,7 +221,7 @@ class ApiProvider {
       if (e.error is SocketException) {
         return const APIResponse.error(AppException.connectivity());
       }
-      if (e.type == DioErrorType.connectTimeout ||
+      if (e.type == DioErrorType.connectionTimeout ||
           e.type == DioErrorType.receiveTimeout ||
           e.type == DioErrorType.sendTimeout) {
         return const APIResponse.error(AppException.connectivity());

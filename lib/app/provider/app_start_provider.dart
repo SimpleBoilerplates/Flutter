@@ -1,59 +1,36 @@
-import 'package:flutter_boilerplate/app/state/app_start_state.dart';
-import 'package:flutter_boilerplate/feature/auth/model/auth_state.dart';
 import 'package:flutter_boilerplate/feature/auth/provider/auth_provider.dart';
-import 'package:flutter_boilerplate/feature/home/provider/home_provider.dart';
-import 'package:flutter_boilerplate/feature/home/state/home_state.dart';
-import 'package:flutter_boilerplate/shared/repository/token_repository.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_boilerplate/feature/auth/repository/token_repository.dart';
+import 'package:flutter_boilerplate/feature/auth/state/auth_state.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-final appStartProvider =
-    StateNotifierProvider<AppStartNotifier, AppStartState>((ref) {
-  final loginState = ref.watch(authProvider);
-  final homeState = ref.watch(homeProvider);
+import '../state/app_start_state.dart';
 
-  late AppStartState appStartState;
-  appStartState = loginState is AppAuthenticated
-      ? const AppStartState.authenticated()
-      : const AppStartState.initial();
+part 'app_start_provider.g.dart';
 
-  return AppStartNotifier(appStartState, ref, loginState, homeState);
-});
-
-class AppStartNotifier extends StateNotifier<AppStartState> {
-  AppStartNotifier(
-      AppStartState appStartState, this._ref, this._authState, this._homeState)
-      : super(appStartState) {
-    _init();
-  }
-
+@riverpod
+class AppStartNotifier extends _$AppStartNotifier {
   late final TokenRepository _tokenRepository =
-      _ref.read(tokenRepositoryProvider);
-  final AuthState _authState;
-  final HomeState _homeState;
-  final Ref _ref;
+      ref.read(tokenRepositoryProvider);
 
-  Future<void> _init() async {
-    _authState.maybeWhen(
-        loggedIn: () {
-          state = const AppStartState.authenticated();
-        },
-        orElse: () {});
+  @override
+  FutureOr<AppStartState> build() async {
+    ref.onDispose(() {});
 
-    _homeState.maybeWhen(
-        loggedOut: () {
-          state = const AppStartState.unauthenticated();
-        },
-        orElse: () {});
+    final _authState = ref.watch(authNotifierProvider);
+
+    if (_authState is AuthStateLoggedIn) {
+      return AppStartState.authenticated();
+    }
+
+    if (_authState is AuthStateLoggedOut) {
+      return AppStartState.unauthenticated();
+    }
 
     final token = await _tokenRepository.fetchToken();
     if (token != null) {
-      if (mounted) {
-        state = const AppStartState.authenticated();
-      }
+      return const AppStartState.authenticated();
     } else {
-      if (mounted) {
-        state = const AppStartState.unauthenticated();
-      }
+      return const AppStartState.unauthenticated();
     }
   }
 }

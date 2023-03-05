@@ -5,7 +5,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import
+// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal
 
 import 'package:flutter/widgets.dart';
 
@@ -20,10 +20,19 @@ class $AssetsEnvGen {
 
   /// File path: assets/env/.env.staging
   String get envStaging => 'assets/env/.env.staging';
+
+  /// List of all assets
+  List<String> get values => [envDevelopment, envProduction, envStaging];
 }
 
-class $AssetsImageGen {
-  const $AssetsImageGen();
+class $AssetsLangGen {
+  const $AssetsLangGen();
+
+  /// File path: assets/lang/en.json
+  String get en => 'assets/lang/en.json';
+
+  /// List of all assets
+  List<String> get values => [en];
 }
 
 class Assets {
@@ -31,7 +40,10 @@ class Assets {
 
   static const AssetGenImage appLogo = AssetGenImage('assets/app_logo.png');
   static const $AssetsEnvGen env = $AssetsEnvGen();
-  static const $AssetsImageGen image = $AssetsImageGen();
+  static const $AssetsLangGen lang = $AssetsLangGen();
+
+  /// List of all assets
+  List<AssetGenImage> get values => [appLogo];
 }
 
 class AssetGenImage {
@@ -91,6 +103,8 @@ class AssetGenImage {
       cacheHeight: cacheHeight,
     );
   }
+
+  ImageProvider provider() => AssetImage(_assetName);
 
   String get path => _assetName;
 

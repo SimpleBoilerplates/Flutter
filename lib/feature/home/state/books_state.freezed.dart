@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'books_state.dart';
 
@@ -25,9 +25,9 @@ mixin _$BooksState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(List<Book> books)? booksLoaded,
-    TResult Function(AppException error)? error,
+    TResult? Function()? loading,
+    TResult? Function(List<Book> books)? booksLoaded,
+    TResult? Function(AppException error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -47,9 +47,9 @@ mixin _$BooksState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? booksLoaded,
-    TResult Function(_Error value)? error,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? booksLoaded,
+    TResult? Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -66,16 +66,18 @@ mixin _$BooksState {
 abstract class $BooksStateCopyWith<$Res> {
   factory $BooksStateCopyWith(
           BooksState value, $Res Function(BooksState) then) =
-      _$BooksStateCopyWithImpl<$Res>;
+      _$BooksStateCopyWithImpl<$Res, BooksState>;
 }
 
 /// @nodoc
-class _$BooksStateCopyWithImpl<$Res> implements $BooksStateCopyWith<$Res> {
+class _$BooksStateCopyWithImpl<$Res, $Val extends BooksState>
+    implements $BooksStateCopyWith<$Res> {
   _$BooksStateCopyWithImpl(this._value, this._then);
 
-  final BooksState _value;
   // ignore: unused_field
-  final $Res Function(BooksState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 }
 
 /// @nodoc
@@ -86,13 +88,11 @@ abstract class _$$_LoadingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_LoadingCopyWithImpl<$Res> extends _$BooksStateCopyWithImpl<$Res>
+class __$$_LoadingCopyWithImpl<$Res>
+    extends _$BooksStateCopyWithImpl<$Res, _$_Loading>
     implements _$$_LoadingCopyWith<$Res> {
   __$$_LoadingCopyWithImpl(_$_Loading _value, $Res Function(_$_Loading) _then)
-      : super(_value, (v) => _then(v as _$_Loading));
-
-  @override
-  _$_Loading get _value => super._value as _$_Loading;
+      : super(_value, _then);
 }
 
 /// @nodoc
@@ -127,9 +127,9 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(List<Book> books)? booksLoaded,
-    TResult Function(AppException error)? error,
+    TResult? Function()? loading,
+    TResult? Function(List<Book> books)? booksLoaded,
+    TResult? Function(AppException error)? error,
   }) {
     return loading?.call();
   }
@@ -161,9 +161,9 @@ class _$_Loading implements _Loading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? booksLoaded,
-    TResult Function(_Error value)? error,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? booksLoaded,
+    TResult? Function(_Error value)? error,
   }) {
     return loading?.call(this);
   }
@@ -191,24 +191,24 @@ abstract class _Loading implements BooksState {
 abstract class _$$_LoadedCopyWith<$Res> {
   factory _$$_LoadedCopyWith(_$_Loaded value, $Res Function(_$_Loaded) then) =
       __$$_LoadedCopyWithImpl<$Res>;
+  @useResult
   $Res call({List<Book> books});
 }
 
 /// @nodoc
-class __$$_LoadedCopyWithImpl<$Res> extends _$BooksStateCopyWithImpl<$Res>
+class __$$_LoadedCopyWithImpl<$Res>
+    extends _$BooksStateCopyWithImpl<$Res, _$_Loaded>
     implements _$$_LoadedCopyWith<$Res> {
   __$$_LoadedCopyWithImpl(_$_Loaded _value, $Res Function(_$_Loaded) _then)
-      : super(_value, (v) => _then(v as _$_Loaded));
+      : super(_value, _then);
 
-  @override
-  _$_Loaded get _value => super._value as _$_Loaded;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? books = freezed,
+    Object? books = null,
   }) {
     return _then(_$_Loaded(
-      books == freezed
+      null == books
           ? _value._books
           : books // ignore: cast_nullable_to_non_nullable
               as List<Book>,
@@ -224,6 +224,7 @@ class _$_Loaded implements _Loaded {
   final List<Book> _books;
   @override
   List<Book> get books {
+    if (_books is EqualUnmodifiableListView) return _books;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_books);
   }
@@ -247,6 +248,7 @@ class _$_Loaded implements _Loaded {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LoadedCopyWith<_$_Loaded> get copyWith =>
       __$$_LoadedCopyWithImpl<_$_Loaded>(this, _$identity);
 
@@ -263,9 +265,9 @@ class _$_Loaded implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(List<Book> books)? booksLoaded,
-    TResult Function(AppException error)? error,
+    TResult? Function()? loading,
+    TResult? Function(List<Book> books)? booksLoaded,
+    TResult? Function(AppException error)? error,
   }) {
     return booksLoaded?.call(books);
   }
@@ -297,9 +299,9 @@ class _$_Loaded implements _Loaded {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? booksLoaded,
-    TResult Function(_Error value)? error,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? booksLoaded,
+    TResult? Function(_Error value)? error,
   }) {
     return booksLoaded?.call(this);
   }
@@ -332,26 +334,26 @@ abstract class _Loaded implements BooksState {
 abstract class _$$_ErrorCopyWith<$Res> {
   factory _$$_ErrorCopyWith(_$_Error value, $Res Function(_$_Error) then) =
       __$$_ErrorCopyWithImpl<$Res>;
+  @useResult
   $Res call({AppException error});
 
   $AppExceptionCopyWith<$Res> get error;
 }
 
 /// @nodoc
-class __$$_ErrorCopyWithImpl<$Res> extends _$BooksStateCopyWithImpl<$Res>
+class __$$_ErrorCopyWithImpl<$Res>
+    extends _$BooksStateCopyWithImpl<$Res, _$_Error>
     implements _$$_ErrorCopyWith<$Res> {
   __$$_ErrorCopyWithImpl(_$_Error _value, $Res Function(_$_Error) _then)
-      : super(_value, (v) => _then(v as _$_Error));
+      : super(_value, _then);
 
-  @override
-  _$_Error get _value => super._value as _$_Error;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = freezed,
+    Object? error = null,
   }) {
     return _then(_$_Error(
-      error == freezed
+      null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as AppException,
@@ -359,6 +361,7 @@ class __$$_ErrorCopyWithImpl<$Res> extends _$BooksStateCopyWithImpl<$Res>
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $AppExceptionCopyWith<$Res> get error {
     return $AppExceptionCopyWith<$Res>(_value.error, (value) {
       return _then(_value.copyWith(error: value));
@@ -384,15 +387,15 @@ class _$_Error implements _Error {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Error &&
-            const DeepCollectionEquality().equals(other.error, error));
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, error);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
       __$$_ErrorCopyWithImpl<_$_Error>(this, _$identity);
 
@@ -409,9 +412,9 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function(List<Book> books)? booksLoaded,
-    TResult Function(AppException error)? error,
+    TResult? Function()? loading,
+    TResult? Function(List<Book> books)? booksLoaded,
+    TResult? Function(AppException error)? error,
   }) {
     return error?.call(this.error);
   }
@@ -443,9 +446,9 @@ class _$_Error implements _Error {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Loaded value)? booksLoaded,
-    TResult Function(_Error value)? error,
+    TResult? Function(_Loading value)? loading,
+    TResult? Function(_Loaded value)? booksLoaded,
+    TResult? Function(_Error value)? error,
   }) {
     return error?.call(this);
   }

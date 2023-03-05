@@ -20,7 +20,7 @@ class RetryOnConnectionChangeInterceptor extends Interceptor {
   }
 
   bool _shouldRetry(DioError err) {
-    return err.type == DioErrorType.connectTimeout &&
+    return err.type == DioErrorType.connectionTimeout &&
         err.error != null &&
         err.error is SocketException;
   }

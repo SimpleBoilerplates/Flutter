@@ -1,9 +1,9 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_boilerplate/feature/home/model/book.dart';
 import 'package:flutter_boilerplate/feature/home/state/books_state.dart';
 import 'package:flutter_boilerplate/shared/http/api_provider.dart';
 import 'package:flutter_boilerplate/shared/http/api_response.dart';
 import 'package:flutter_boilerplate/shared/http/app_exception.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 abstract class BooksRepositoryProtocol {
   Future<BooksState> fetchBooks();

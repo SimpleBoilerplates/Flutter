@@ -1,18 +1,17 @@
+import 'dart:async';
 import 'dart:developer';
-import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/shared/http/http_override.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_boilerplate/shared/util/logger.dart';
 import 'package:flutter_boilerplate/shared/util/platform_type.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'app/app.dart';
 
 Future<void> start() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  HttpOverrides.global = MyHttpOverrides();
+  await EasyLocalization.ensureInitialized();
 
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
@@ -20,13 +19,14 @@ Future<void> start() async {
 
   final platformType = detectPlatformType();
 
-  runApp(
-    ProviderScope(
-      overrides: [
-        platformTypeProvider.overrideWithValue(platformType),
-      ],
-      observers: [Logger()],
-      child: App(),
-    ),
-  );
+  runApp(EasyLocalization(
+    supportedLocales: const [Locale('en')],
+    path: 'assets/lang',
+    fallbackLocale: const Locale('en'),
+    child: ProviderScope(overrides: [
+      platformTypeProvider.overrideWithValue(platformType),
+    ], observers: [
+      Logger()
+    ], child: const App()),
+  ));
 }

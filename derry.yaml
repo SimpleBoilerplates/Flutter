@@ -3,7 +3,7 @@ format:
   - flutter pub run import_sorter:main
   - flutter format lib
 
-build_once: flutter pub run build_runner build --delete-conflicting-outputs
+build: flutter pub run build_runner build --delete-conflicting-outputs
 # Run whenever start working. It will generate Freezed classes
 watch: flutter pub run build_runner watch --delete-conflicting-outputs
 

@@ -61,6 +61,11 @@ run `make watch` or `derry watch` instead of
 flutter pub run build_runner watch --delete-conflicting-outputs
 ``` 
 
+run `make build` or `derry build` instead of
+
+```sh
+flutter pub run build_runner build --delete-conflicting-outputs
+``` 
 
 or run `make build_apk_dev` or `derry build_apk_dev` instead of 
 

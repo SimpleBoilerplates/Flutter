@@ -11,4 +11,7 @@ class AppStartState with _$AppStartState {
   const factory AppStartState.internetUnAvailable() = _InternetUnAvailable;
 
   const factory AppStartState.authenticated() = AppAuthenticated;
+
+  const factory AppStartState.authenticatedAnonymous() =
+      AppAuthenticatedAnonymous;
 }

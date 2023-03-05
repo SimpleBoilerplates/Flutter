@@ -1,15 +1,14 @@
-import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/feature/auth/provider/auth_provider.dart';
-import 'package:flutter_boilerplate/l10n/l10n.dart';
-import 'package:flutter_boilerplate/shared/route/router.gr.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_boilerplate/feature/auth/provider/auth_provider.dart';
+import 'package:flutter_boilerplate/shared/route/app_router.dart';
 
 class SignInPage extends ConsumerWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  SignInPage({Key? key}) : super(key: key);
+  SignInPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,7 +18,7 @@ class SignInPage extends ConsumerWidget {
             child: Column(children: <Widget>[
               const SizedBox(height: 150),
               Text(
-                context.l10n.sign_in,
+                "sign_in".tr(),
                 style: TextStyle(
                   color: Colors.grey[800],
                   fontWeight: FontWeight.bold,
@@ -31,13 +30,13 @@ class SignInPage extends ConsumerWidget {
                   children: [
                     TextFormField(
                       decoration: InputDecoration(
-                        labelText: context.l10n.email_hint,
+                        labelText: "email".tr(),
                       ),
                       controller: _emailController,
                     ),
                     TextFormField(
                       decoration: InputDecoration(
-                        labelText: context.l10n.password_hint,
+                        labelText: "password".tr(),
                       ),
                       controller: _passwordController,
                       obscureText: true,
@@ -48,11 +47,7 @@ class SignInPage extends ConsumerWidget {
                           const SizedBox(height: 30),
                           _widgetSignInButton(context, ref),
                           const SizedBox(height: 30),
-                          Text(
-                            context.l10n.new_user,
-                            textAlign: TextAlign.center,
-                          ),
-                          _widgetSignUpButton(context),
+                          _widgetSignUpButton(context, ref),
                         ]),
                   ],
                 ),
@@ -66,23 +61,21 @@ class SignInPage extends ConsumerWidget {
         child: ElevatedButton(
           onPressed: () {
             ref
-                .read(authProvider.notifier)
+                .read(authNotifierProvider.notifier)
                 .login(_emailController.text, _passwordController.text);
           },
-          child: Text(context.l10n.sign_in),
+          child: Text("sign_in".tr()),
         ));
   }
 
-  Widget _widgetSignUpButton(BuildContext context) {
+  Widget _widgetSignUpButton(BuildContext context, WidgetRef ref) {
     return SizedBox(
         width: double.infinity,
         child: ElevatedButton(
           onPressed: () {
-            context.router.push(SignUpRoute());
-            //context.navigateTo(SignUpWidget)
-            //const SignUpWidget().show(context);
+            ref.read(routerProvider).go(SignUpRoute.path);
           },
-          child: Text(context.l10n.sign_up),
+          child: Text("sign_up".tr()),
         ));
   }
 }

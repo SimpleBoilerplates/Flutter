@@ -1,19 +1,20 @@
 import 'dart:convert';
 
-import 'package:flutter_boilerplate/feature/auth/model/auth_state.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_boilerplate/feature/auth/model/token.dart';
+import 'package:flutter_boilerplate/feature/auth/repository/token_repository.dart';
+import 'package:flutter_boilerplate/feature/auth/state/auth_state.dart';
 import 'package:flutter_boilerplate/shared/http/api_provider.dart';
 import 'package:flutter_boilerplate/shared/http/app_exception.dart';
-import 'package:flutter_boilerplate/shared/model/token.dart';
-import 'package:flutter_boilerplate/shared/repository/token_repository.dart';
 import 'package:flutter_boilerplate/shared/util/validator.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 abstract class AuthRepositoryProtocol {
   Future<AuthState> login(String email, String password);
+
   Future<AuthState> signUp(String name, String email, String password);
 }
 
-final authRepositoryProvider = Provider((ref) => AuthRepository(ref));
+final authRepositoryProvider = Provider(AuthRepository.new);
 
 class AuthRepository implements AuthRepositoryProtocol {
   AuthRepository(this._ref) {}

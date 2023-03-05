@@ -4,44 +4,40 @@ version: 1.0.0+1
 publish_to: none
 
 environment:
-  sdk: ">=2.17.6 <3.0.0"
-  flutter: ">=2.0.0"
+  sdk: '>=2.19.2 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_riverpod: ^2.0.2
-  auto_route: 5.0.1
-  intl: ^0.17.0
-  meta: ^1.8.0
-  dio: ^4.0.6
-  json_annotation: ^4.7.0
-  pretty_dio_logger: ^1.1.1
-  flutter_secure_storage: 6.0.0
-  google_fonts: ^3.0.1
-  lottie: ^1.4.3
-  connectivity_plus: ^2.3.9
+  cupertino_icons: ^1.0.2
+  flutter_riverpod: ^2.3.0
+  riverpod_annotation: 2.0.0
+  dio: ^5.0.1
+  pretty_dio_logger: ^1.3.1
+  flutter_secure_storage: 7.0.1
   shared_preferences: ^2.0.15
+  google_fonts: ^4.0.1
+  lottie: ^2.2.0
+  connectivity_plus: ^3.0.2
   flutter_dotenv: ^5.0.2
+  go_router: ^6.0.3
+  easy_localization: 3.0.2-dev.5
 
 
 dev_dependencies:
   #flutter_test:
     #sdk: flutter
-  mocktail: ^0.3.0
-  very_good_analysis: ^3.1.0
-  dart_code_metrics: 4.19.1
-  very_good_performance: ^0.0.4
-  dependency_validator: ^3.2.2
   json_serializable:
-  build_runner:
+  go_router_builder: any
+  build_runner: any
+  build_verify: any
   flutter_gen_runner:
-  freezed: ^2.1.0+1
-  auto_route_generator: 5.0.2
-  logger:
+  freezed: ^2.2.1
+  riverpod_generator: 2.0.0
   import_sorter: ^4.6.0
+  very_good_analysis: 4.0.0+1
 
 ## Install derry from https://pub.dev/packages/derry and run derry build, derry watch, derry gen
 scripts: derry.yaml
@@ -70,6 +66,7 @@ flutter:
   uses-material-design: true
   generate: true
   assets:
+    - assets/lang/en.json
     - assets/env/.env.production
     - assets/env/.env.staging
     - assets/env/.env.development

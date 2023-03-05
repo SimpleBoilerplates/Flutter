@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'book.dart';
 
@@ -34,7 +34,8 @@ mixin _$Book {
 /// @nodoc
 abstract class $BookCopyWith<$Res> {
   factory $BookCopyWith(Book value, $Res Function(Book) then) =
-      _$BookCopyWithImpl<$Res>;
+      _$BookCopyWithImpl<$Res, Book>;
+  @useResult
   $Res call(
       {int id,
       String? title,
@@ -44,43 +45,46 @@ abstract class $BookCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
+class _$BookCopyWithImpl<$Res, $Val extends Book>
+    implements $BookCopyWith<$Res> {
   _$BookCopyWithImpl(this._value, this._then);
 
-  final Book _value;
   // ignore: unused_field
-  final $Res Function(Book) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? title = freezed,
     Object? subTitle = freezed,
     Object? description = freezed,
     Object? preview = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: title == freezed
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      subTitle: subTitle == freezed
+      subTitle: freezed == subTitle
           ? _value.subTitle
           : subTitle // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      preview: preview == freezed
+      preview: freezed == preview
           ? _value.preview
           : preview // ignore: cast_nullable_to_non_nullable
               as String?,
-    ));
+    ) as $Val);
   }
 }
 
@@ -89,6 +93,7 @@ abstract class _$$_BookCopyWith<$Res> implements $BookCopyWith<$Res> {
   factory _$$_BookCopyWith(_$_Book value, $Res Function(_$_Book) then) =
       __$$_BookCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {int id,
       String? title,
@@ -98,40 +103,38 @@ abstract class _$$_BookCopyWith<$Res> implements $BookCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
+class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res, _$_Book>
     implements _$$_BookCopyWith<$Res> {
   __$$_BookCopyWithImpl(_$_Book _value, $Res Function(_$_Book) _then)
-      : super(_value, (v) => _then(v as _$_Book));
+      : super(_value, _then);
 
-  @override
-  _$_Book get _value => super._value as _$_Book;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? title = freezed,
     Object? subTitle = freezed,
     Object? description = freezed,
     Object? preview = freezed,
   }) {
     return _then(_$_Book(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      title: title == freezed
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String?,
-      subTitle: subTitle == freezed
+      subTitle: freezed == subTitle
           ? _value.subTitle
           : subTitle // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: description == freezed
+      description: freezed == description
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      preview: preview == freezed
+      preview: freezed == preview
           ? _value.preview
           : preview // ignore: cast_nullable_to_non_nullable
               as String?,
@@ -173,26 +176,23 @@ class _$_Book extends _Book {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Book &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.subTitle, subTitle) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description) &&
-            const DeepCollectionEquality().equals(other.preview, preview));
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.title, title) || other.title == title) &&
+            (identical(other.subTitle, subTitle) ||
+                other.subTitle == subTitle) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.preview, preview) || other.preview == preview));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(subTitle),
-      const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(preview));
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, subTitle, description, preview);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_BookCopyWith<_$_Book> get copyWith =>
       __$$_BookCopyWithImpl<_$_Book>(this, _$identity);
 
