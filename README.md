@@ -144,7 +144,7 @@ Widget build(BuildContext context) {
 
 ---
 
-### Let's become friend
+### Find me at
 - [LinkedIn](https://www.linkedin.com/in/sadmansamee/)
 - [Github](https://github.com/Sadmansamee)
 - [Blog](https://sadmansamee.github.io/)
