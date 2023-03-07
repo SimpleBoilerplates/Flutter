@@ -6,7 +6,7 @@
 <a href="http://fluttersamples.com"><img src="https://img.shields.io/badge/flutter-samples-teal.svg?longCache=true" alt="Flutter Samples"></a>
 [![License: MIT][license_badge]][license_link]
 
-A boilerplate project for Flutter using [RiverPod](https://riverpod.dev/), [Dio](https://pub.dev/packages/dio), [auto_route](https://pub.dev/packages/auto_route), [Freezed](https://pub.dev/packages/freezed) and generated with [very_good_cli](https://github.com/VeryGoodOpenSource/very_good_cli).
+A boilerplate project for Flutter using [RiverPod](https://riverpod.dev/), [Dio](https://pub.dev/packages/dio), [go_router](https://pub.dev/packages/go_router), [Freezed](https://pub.dev/packages/freezed) and generated with [very_good_cli](https://github.com/VeryGoodOpenSource/very_good_cli).
 
 
 ---
@@ -96,109 +96,37 @@ $ open coverage/index.html
 
 ## Working with Translations 🌐
 
-This project relies on [flutter_localizations][flutter_localizations_link] and follows the [official internationalization guide for Flutter][internationalization_link].
 
 ### Adding Strings
 
-1. To add a new localizable string, open the `app_en.arb` file at `lib/l10n/arb/app_en.arb`.
+1. To add a new localizable string, open the `app_en.arb` file at `assets/land/arb/en.json`.
 
-```arb
+```json
 {
-    "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    }
+  "home" : "Home",
+  "loading" : "Loading",
+  "email" : "Email",
+  "password" : "Password",
+  "name" : "Name",
+  "sign_in" : "Sign In",
+  "sign_up" : "Sign Up"
+
 }
 ```
 
-2. Then add a new key/value and description
 
-```arb
-{
-    "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    },
-    "helloWorld": "Hello World",
-    "@helloWorld": {
-        "description": "Hello World Text"
-    }
-}
-```
-
-3. Use the new string
+2. After adding new 
 
 ```dart
-import 'package:flutter_boilerplate/l10n/l10n.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 @override
 Widget build(BuildContext context) {
-  final l10n = context.l10n;
-  return Text(l10n.helloWorld);
+  return Text("helloWorld".tr());
 }
 ```
 
-### Adding Supported Locales
 
-If you face trouble after with translations, then run 
-
-```
-flutter gen-l10n --template-arb-file=arb/app_en.arb
-```
-
-Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info.plist` to include the new locale.
-
-```xml
-    ...
-
-    <key>CFBundleLocalizations</key>
-	<array>
-		<string>en</string>
-		<string>es</string>
-	</array>
-
-    ...
-```
-
-### Adding Translations
-
-1. For each supported locale, add a new ARB file in `lib/l10n/arb`.
-
-```
-├── l10n
-│   ├── arb
-│   │   ├── app_en.arb
-│   │   └── app_es.arb
-```
-
-2. Add the translated strings to each `.arb` file:
-
-`app_en.arb`
-
-```arb
-{
-    "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    }
-}
-```
-
-`app_es.arb`
-
-```arb
-{
-    "@@locale": "es",
-    "counterAppBarTitle": "Contador",
-    "@counterAppBarTitle": {
-        "description": "Texto mostrado en la AppBar de la página del contador"
-    }
-}
-```
----
 
 ### Same implementation in other platforms
    - [iOS](https://github.com/simpleboilerplates/BooksDemoiOS) 
