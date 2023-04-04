@@ -14,7 +14,7 @@ class HomePage extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueGrey,
-        title: Text("home".tr()),
+        title: Text('home'.tr()),
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.adjust),
@@ -44,10 +44,11 @@ class HomePage extends ConsumerWidget {
       },
       booksLoaded: (books) {
         return ListView.builder(
-            itemCount: books.length,
-            itemBuilder: (BuildContext context, int index) {
-              return RowBookWidget(book: books[index]);
-            });
+          itemCount: books.length,
+          itemBuilder: (BuildContext context, int index) {
+            return RowBookWidget(book: books[index]);
+          },
+        );
       },
       error: (AppException error) {
         return _widgetLoading(context, ref);
