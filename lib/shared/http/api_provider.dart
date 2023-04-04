@@ -4,13 +4,13 @@ import 'dart:io';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_boilerplate/feature/auth/repository/token_repository.dart';
 import 'package:flutter_boilerplate/shared/http/api_response.dart';
 import 'package:flutter_boilerplate/shared/http/app_exception.dart';
 import 'package:flutter_boilerplate/shared/http/interceptor/dio_connectivity_request_retrier.dart';
 import 'package:flutter_boilerplate/shared/http/interceptor/retry_interceptor.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 //part 'api_provider.g.dart';
@@ -65,7 +65,7 @@ class ApiProvider {
     Map<String, String?>? query,
     ContentType contentType = ContentType.json,
   }) async {
-    final connectivityResult = await (Connectivity().checkConnectivity());
+    final connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
       return const APIResponse.error(AppException.connectivity());
     }
@@ -73,7 +73,7 @@ class ApiProvider {
     if (newBaseUrl != null) {
       url = newBaseUrl + path;
     } else {
-      url = this._baseUrl + path;
+      url = _baseUrl + path;
     }
     var content = 'application/x-www-form-urlencoded';
 
@@ -86,13 +86,13 @@ class ApiProvider {
         'accept': '*/*',
         'Content-Type': content,
       };
-      final _appToken = await _tokenRepository.fetchToken();
-      if (_appToken != null) {
-        headers['Authorization'] = 'Bearer ${_appToken}';
+      final appToken = await _tokenRepository.fetchToken();
+      if (appToken != null) {
+        headers['Authorization'] = 'Bearer $appToken';
       }
       //Sometime for some specific endpoint it may require to use different Token
       if (token != null) {
-        headers['Authorization'] = 'Bearer ${token}';
+        headers['Authorization'] = 'Bearer $token';
       }
 
       final response = await _dio.post(
@@ -117,13 +117,16 @@ class ApiProvider {
         //   return const APIResponse.error(AppException.connectivity());
         // } else
         if (response.statusCode! == 401) {
-          return APIResponse.error(AppException.unauthorized());
+          return const APIResponse.error(AppException.unauthorized());
         } else if (response.statusCode! == 502) {
           return const APIResponse.error(AppException.error());
         } else {
           if (response.data['message'] != null) {
-            return APIResponse.error(AppException.errorWithMessage(
-                response.data['message'] as String ?? ''));
+            return APIResponse.error(
+              AppException.errorWithMessage(
+                response.data['message'] as String,
+              ),
+            );
           } else {
             return const APIResponse.error(AppException.error());
           }
@@ -141,14 +144,19 @@ class ApiProvider {
 
       if (e.response != null) {
         if (e.response!.data['message'] != null) {
-          return APIResponse.error(AppException.errorWithMessage(
-              e.response!.data['message'] as String));
+          return APIResponse.error(
+            AppException.errorWithMessage(
+              e.response!.data['message'] as String,
+            ),
+          );
         }
       }
       return APIResponse.error(AppException.errorWithMessage(e.message ?? ''));
-    } on Error catch (e) {
+      //Not sure about this change. Please check if this is correct
+    } catch (e, stackTrace) {
       return APIResponse.error(
-          AppException.errorWithMessage(e.stackTrace.toString()));
+        AppException.errorWithMessage(stackTrace.toString()),
+      );
     }
   }
 
@@ -159,7 +167,7 @@ class ApiProvider {
     Map<String, dynamic>? query,
     ContentType contentType = ContentType.json,
   }) async {
-    final connectivityResult = await (Connectivity().checkConnectivity());
+    final connectivityResult = await Connectivity().checkConnectivity();
     if (connectivityResult == ConnectivityResult.none) {
       return const APIResponse.error(AppException.connectivity());
     }
@@ -167,7 +175,7 @@ class ApiProvider {
     if (newBaseUrl != null) {
       url = newBaseUrl + path;
     } else {
-      url = this._baseUrl + path;
+      url = _baseUrl + path;
     }
 
     var content = 'application/x-www-form-urlencoded';
@@ -183,7 +191,7 @@ class ApiProvider {
 
     final _appToken = await _tokenRepository.fetchToken();
     if (_appToken != null) {
-      headers['Authorization'] = 'Bearer ${_appToken}';
+      headers['Authorization'] = 'Bearer $_appToken';
     }
 
     try {
@@ -192,26 +200,25 @@ class ApiProvider {
         queryParameters: query,
         options: Options(validateStatus: (status) => true, headers: headers),
       );
-      if (response == null) {
-        return const APIResponse.error(AppException.error());
-      }
       if (response.statusCode == null) {
         return const APIResponse.error(AppException.connectivity());
       }
-
       if (response.statusCode! < 300) {
         return APIResponse.success(response.data['data']);
       } else {
         if (response.statusCode! == 404) {
           return const APIResponse.error(AppException.connectivity());
         } else if (response.statusCode! == 401) {
-          return APIResponse.error(AppException.unauthorized());
+          return const APIResponse.error(AppException.unauthorized());
         } else if (response.statusCode! == 502) {
           return const APIResponse.error(AppException.error());
         } else {
           if (response.data['error'] != null) {
-            return APIResponse.error(AppException.errorWithMessage(
-                response.data['error'] as String ?? ''));
+            return APIResponse.error(
+              AppException.errorWithMessage(
+                response.data['error'] as String,
+              ),
+            );
           } else {
             return const APIResponse.error(AppException.error());
           }

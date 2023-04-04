@@ -1,9 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:flutter_boilerplate/feature/auth/model/token.dart';
 import 'package:flutter_boilerplate/shared/constants/store_key.dart';
 import 'package:flutter_boilerplate/shared/util/platform_type.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class TokenRepositoryProtocol {
   Future<void> remove();
@@ -51,7 +52,9 @@ class TokenRepository implements TokenRepositoryProtocol {
       const storage = FlutterSecureStorage();
       try {
         await storage.write(
-            key: StoreKey.token.toString(), value: tokenToJson(token));
+          key: StoreKey.token.toString(),
+          value: tokenToJson(token),
+        );
       } on Exception catch (e) {}
     } else {
       await prefs.setString(StoreKey.token.toString(), tokenToJson(token));

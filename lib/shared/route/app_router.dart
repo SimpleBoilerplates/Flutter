@@ -66,11 +66,11 @@ class SignUpRoute extends GoRouteData {
 class GoNavigatorObserver extends NavigatorObserver {
   @override
   void didPush(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    debugPrint('did push route ${route} : ${previousRoute}');
+    debugPrint('did push route $route : $previousRoute');
   }
 
   @override
   void didPop(Route<dynamic> route, Route<dynamic>? previousRoute) {
-    debugPrint('did pop route ${route} : ${previousRoute}');
+    debugPrint('did pop route $route : $previousRoute');
   }
 }

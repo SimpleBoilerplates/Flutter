@@ -4,11 +4,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter_boilerplate/shared/http/interceptor/dio_connectivity_request_retrier.dart';
 
 class RetryOnConnectionChangeInterceptor extends Interceptor {
-  final DioConnectivityRequestRetrier requestRetrier;
-
   RetryOnConnectionChangeInterceptor({
     required this.requestRetrier,
   });
+  final DioConnectivityRequestRetrier requestRetrier;
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {

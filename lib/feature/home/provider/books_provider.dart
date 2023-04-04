@@ -29,15 +29,17 @@ class BooksNotifier extends _$BooksNotifier {
 
     ref.listen(appStartNotifierProvider, (previous, next) {
       next.when(
-          data: (data) {
-            data.maybeWhen(
-                authenticated: () {
-                  _fetchBooks();
-                },
-                orElse: () {});
-          },
-          error: (e, st) {},
-          loading: () {});
+        data: (data) {
+          data.maybeWhen(
+            authenticated: () {
+              _fetchBooks();
+            },
+            orElse: () {},
+          );
+        },
+        error: (e, st) {},
+        loading: () {},
+      );
     });
 
     return const BooksState.loading();

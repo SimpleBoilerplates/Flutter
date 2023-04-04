@@ -13,8 +13,6 @@ Book bookFromJson(String str) =>
 
 @freezed
 class Book with _$Book {
-  const Book._();
-
   const factory Book({
     required int id,
     String? title,
@@ -22,6 +20,8 @@ class Book with _$Book {
     String? description,
     String? preview,
   }) = _Book;
+
+  const Book._();
 
   factory Book.fromJson(Map<String, dynamic> json) => _$BookFromJson(json);
 }
